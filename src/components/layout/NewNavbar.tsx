@@ -4,7 +4,7 @@ import { useState } from 'react'
 import Link from 'next/link'
 import { Menu, X, ChevronDown } from 'lucide-react'
 
-const Navbar = () => {
+const NewNavbar = () => {
   const [isOpen, setIsOpen] = useState(false)
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null)
 
@@ -100,9 +100,9 @@ const Navbar = () => {
   ]
 
   return (
-    <nav className="bg-white shadow-sm sticky top-0 z-[60] border-b border-gray-200" style={{ position: 'sticky', top: 0, zIndex: 60 }}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" style={{ position: 'relative', zIndex: 61 }}>
-        <div className="flex justify-between items-center h-16" style={{ position: 'relative', zIndex: 62 }}>
+    <nav className="bg-white shadow-sm sticky top-0 z-50 border-b border-gray-200">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <Link href="/" className="flex items-center space-x-2">
             <div className="w-8 h-8 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-lg"></div>
@@ -112,82 +112,53 @@ const Navbar = () => {
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center space-x-1" style={{ position: 'relative', zIndex: 63 }}>
+          <div className="hidden lg:flex items-center space-x-1">
             {navItems.map((item) => (
               <div
                 key={item.name}
                 className="relative"
-                style={{ position: 'relative', zIndex: 64 }}
+                onMouseLeave={() => {
+                  // Delay closing to allow smooth transition to dropdown
+                  setTimeout(() => setActiveDropdown(null), 500);
+                }}
               >
                 <button
-                  className="flex items-center px-4 py-2 text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50 rounded-md transition-colors duration-200 cursor-pointer"
-                  style={{
-                    position: 'relative',
-                    zIndex: 65,
-                    pointerEvents: 'all',
-                    backgroundColor: 'white',
-                    border: '1px solid red' // Temporary debug border
-                  }}
+                  className="flex items-center px-4 py-2 text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50 rounded-md transition-colors duration-200"
                   onMouseEnter={() => {
-                    console.log('Mouse entering:', item.name);
                     if (item.dropdown) {
                       setActiveDropdown(item.name);
                     }
                   }}
-                  onMouseLeave={() => {
-                    console.log('Mouse leaving:', item.name);
-                    setTimeout(() => setActiveDropdown(null), 100);
-                  }}
                   onClick={() => {
-                    console.log('Clicked on:', item.name);
-                    alert(`Clicked on ${item.name}`);
-                    // Navigate programmatically for main menu items
                     if (!item.dropdown) {
                       window.location.href = item.href;
-                    } else {
-                      // Toggle dropdown on click as well
-                      setActiveDropdown(activeDropdown === item.name ? null : item.name);
                     }
                   }}
                 >
                   {item.name}
                   {item.dropdown && (
-                    <ChevronDown className="ml-1 h-4 w-4 transition-transform duration-200" />
+                    <ChevronDown className="ml-1 h-4 w-4" />
                   )}
                 </button>
-
-                {/* Debug: Show active dropdown state */}
-                {item.dropdown && (
-                  <div className="absolute top-0 right-0 text-xs text-red-500 bg-yellow-100 px-1 rounded">
-                    {activeDropdown === item.name ? 'OPEN' : 'CLOSED'}
-                  </div>
-                )}
 
                 {/* Dropdown Menu */}
                 {item.dropdown && activeDropdown === item.name && (
                   <div
-                    className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 bg-white shadow-2xl rounded-xl border border-gray-200 min-w-[700px] max-w-4xl p-8 z-[100]"
-                    onMouseEnter={() => {
-                      console.log('Entering dropdown');
-                      setActiveDropdown(item.name);
-                    }}
-                    onMouseLeave={() => {
-                      console.log('Leaving dropdown');
-                      setActiveDropdown(null);
-                    }}
+                    className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 bg-white shadow-xl rounded-lg border border-gray-200 min-w-[600px] p-6 z-50"
+                    onMouseEnter={() => setActiveDropdown(item.name)}
                   >
-                    <div className="grid grid-cols-3 gap-10">
+                    <div className="grid grid-cols-3 gap-8">
                       {item.dropdown.map((category) => (
                         <div key={category.category}>
-                          <h3 className="text-xs font-bold text-gray-900 mb-4 uppercase tracking-wider border-b border-gray-100 pb-2">
+                          <h3 className="text-xs font-bold text-gray-900 mb-3 uppercase tracking-wide border-b border-gray-100 pb-2">
                             {category.category}
                           </h3>
-                          <ul className="space-y-3">
+                          <ul className="space-y-2">
                             {category.items.map((subItem) => (
                               <li key={subItem.name}>
                                 <Link
                                   href={subItem.href}
-                                  className="block text-sm text-gray-700 hover:text-yellow-600 hover:bg-yellow-50 px-3 py-2 rounded-lg transition-all duration-200 font-medium"
+                                  className="block text-sm text-gray-600 hover:text-yellow-600 hover:bg-yellow-50 px-3 py-2 rounded transition-colors duration-200"
                                   onClick={() => setActiveDropdown(null)}
                                 >
                                   {subItem.name}
@@ -198,8 +169,6 @@ const Navbar = () => {
                         </div>
                       ))}
                     </div>
-                    {/* Arrow pointer */}
-                    <div className="absolute -top-2 left-1/2 transform -translate-x-1/2 w-4 h-4 bg-white border-l border-t border-gray-200 rotate-45"></div>
                   </div>
                 )}
               </div>
@@ -207,7 +176,7 @@ const Navbar = () => {
           </div>
 
           {/* CTA Button */}
-          <div className="hidden lg:flex items-center space-x-4">
+          <div className="hidden lg:flex items-center">
             <Link
               href="/contact"
               className="bg-yellow-500 hover:bg-yellow-600 text-white font-semibold px-6 py-2 rounded-lg transition-colors duration-200 shadow-md hover:shadow-lg"
@@ -227,7 +196,7 @@ const Navbar = () => {
 
         {/* Mobile Navigation */}
         {isOpen && (
-          <div className="lg:hidden absolute top-full left-0 right-0 bg-white/95 backdrop-blur-md border-t border-gray-200 shadow-lg max-h-[80vh] overflow-y-auto">
+          <div className="lg:hidden absolute top-full left-0 right-0 bg-white border-t border-gray-200 shadow-lg">
             <div className="max-w-7xl mx-auto px-4 py-6">
               <div className="space-y-4">
                 {navItems.map((item) => (
@@ -240,18 +209,18 @@ const Navbar = () => {
                       {item.name}
                     </Link>
                     {item.dropdown && (
-                      <div className="grid grid-cols-1 gap-4">
+                      <div className="space-y-2">
                         {item.dropdown.map((category) => (
                           <div key={category.category} className="bg-gray-50 rounded-lg p-4">
-                            <h4 className="text-xs font-bold text-gray-700 uppercase tracking-wider mb-3 border-b border-gray-200 pb-2">
+                            <h4 className="text-xs font-bold text-gray-700 uppercase tracking-wide mb-2">
                               {category.category}
                             </h4>
-                            <div className="space-y-2">
+                            <div className="space-y-1">
                               {category.items.map((subItem) => (
                                 <Link
                                   key={subItem.name}
                                   href={subItem.href}
-                                  className="block text-sm text-gray-600 hover:text-yellow-600 hover:bg-white px-3 py-2 rounded-md transition-all duration-200"
+                                  className="block text-sm text-gray-600 hover:text-yellow-600 px-2 py-1 rounded transition-colors"
                                   onClick={() => setIsOpen(false)}
                                 >
                                   {subItem.name}
@@ -268,7 +237,7 @@ const Navbar = () => {
               <div className="mt-6 pt-6 border-t border-gray-200">
                 <Link
                   href="/contact"
-                  className="block w-full text-center bg-yellow-500 hover:bg-yellow-600 text-white font-bold px-6 py-3 rounded-xl transition-all duration-200 shadow-lg hover:shadow-xl"
+                  className="block w-full text-center bg-yellow-500 hover:bg-yellow-600 text-white font-bold px-6 py-3 rounded-lg transition-colors duration-200"
                   onClick={() => setIsOpen(false)}
                 >
                   Get Started
@@ -282,4 +251,4 @@ const Navbar = () => {
   )
 }
 
-export default Navbar
+export default NewNavbar
