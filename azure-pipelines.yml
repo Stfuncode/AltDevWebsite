@@ -1,0 +1,130 @@
+# Azure DevOps Pipeline for AltDev Website Frontend
+trigger:
+  branches:
+    include:
+      - main
+      - master
+  paths:
+    exclude:
+      - README.md
+      - docs/*
+
+variables:
+  # Build Variables
+  nodeVersion: '20.x'
+  buildConfiguration: 'production'
+
+  # Azure Variables
+  azureServiceConnectionName: 'AltDevWebsite-ServiceConnection' # Update this to match your service connection name
+  webAppName: 'altdevfrontend'
+  resourceGroupName: 'ALtDevWebsite'
+
+stages:
+- stage: Build
+  displayName: 'Build Application'
+  jobs:
+  - job: BuildJob
+    displayName: 'Build Next.js App'
+    pool:
+      vmImage: 'ubuntu-latest'
+
+    steps:
+    - task: NodeTool@0
+      displayName: 'Install Node.js'
+      inputs:
+        versionSpec: '$(nodeVersion)'
+
+    - task: Cache@2
+      displayName: 'Cache node_modules'
+      inputs:
+        key: 'npm | "$(Agent.OS)" | package-lock.json'
+        restoreKeys: |
+          npm | "$(Agent.OS)"
+        path: 'node_modules'
+
+    - script: |
+        npm ci --production=false
+      displayName: 'Install dependencies'
+      workingDirectory: '$(System.DefaultWorkingDirectory)'
+
+    - script: |
+        npm run lint
+      displayName: 'Run ESLint'
+      workingDirectory: '$(System.DefaultWorkingDirectory)'
+      continueOnError: true
+
+    - script: |
+        npm run build
+      displayName: 'Build Next.js application'
+      workingDirectory: '$(System.DefaultWorkingDirectory)'
+      env:
+        NODE_ENV: production
+
+    - task: ArchiveFiles@2
+      displayName: 'Archive application'
+      inputs:
+        rootFolderOrFile: '$(System.DefaultWorkingDirectory)'
+        includeRootFolder: false
+        archiveType: 'zip'
+        archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
+        replaceExistingArchive: true
+        excludePaths: |
+          node_modules
+          .git
+          .next/cache
+          .env.local
+          .env.development.local
+          .env.test.local
+          .env.production.local
+          *.md
+          azure-pipelines.yml
+
+    - task: PublishBuildArtifacts@1
+      displayName: 'Publish Artifacts'
+      inputs:
+        PathtoPublish: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
+        ArtifactName: 'webapp'
+        publishLocation: 'Container'
+
+- stage: Deploy
+  displayName: 'Deploy to Production'
+  dependsOn: Build
+  condition: succeeded()
+  jobs:
+  - deployment: DeploymentJob
+    displayName: 'Deploy to Azure App Service'
+    pool:
+      vmImage: 'ubuntu-latest'
+    environment: 'production'
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+          - task: DownloadBuildArtifacts@0
+            displayName: 'Download Artifacts'
+            inputs:
+              buildType: 'current'
+              downloadType: 'single'
+              artifactName: 'webapp'
+              downloadPath: '$(Pipeline.Workspace)'
+
+          - task: ExtractFiles@1
+            displayName: 'Extract Files'
+            inputs:
+              archiveFilePatterns: '$(Pipeline.Workspace)/webapp/*.zip'
+              destinationFolder: '$(Pipeline.Workspace)/webapp-extracted'
+              cleanDestinationFolder: true
+
+          - task: AzureWebApp@1
+            displayName: 'Deploy to Azure App Service'
+            inputs:
+              azureSubscription: '$(azureServiceConnectionName)'
+              appType: 'webAppLinux'
+              appName: '$(webAppName)'
+              resourceGroupName: '$(resourceGroupName)'
+              package: '$(Pipeline.Workspace)/webapp-extracted'
+              runtimeStack: 'NODE|20-lts'
+              startUpCommand: 'npm start'
+              appSettings: |
+                -WEBSITE_NODE_DEFAULT_VERSION "20.x"
+                -NODE_ENV "production"
