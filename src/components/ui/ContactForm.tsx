@@ -1,15 +1,15 @@
-&apos;use client&apos;
+'use client'
 
-import { useState } from &apos;react&apos;
-import { Send } from &apos;lucide-react&apos;
+import { useState } from 'react'
+import { Send } from 'lucide-react'
 
 const ContactForm = () => {
   const [formData, setFormData] = useState({
-    name: &apos;&apos;,
-    email: &apos;&apos;,
-    company: &apos;&apos;,
-    service: &apos;&apos;,
-    message: &apos;&apos;
+    name: '',
+    email: '',
+    company: '',
+    service: '',
+    message: ''
   })
 
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -36,11 +36,11 @@ const ContactForm = () => {
     setTimeout(() => {
       setIsSubmitted(false)
       setFormData({
-        name: &apos;&apos;,
-        email: &apos;&apos;,
-        company: &apos;&apos;,
-        service: &apos;&apos;,
-        message: &apos;&apos;
+        name: '',
+        email: '',
+        company: '',
+        service: '',
+        message: ''
       })
     }, 3000)
   }
@@ -153,7 +153,7 @@ const ContactForm = () => {
         disabled={isSubmitting}
         className="btn-primary w-full md:w-auto flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed"
       >
-        {isSubmitting ? &apos;Sending...&apos; : &apos;Send Message&apos;}
+        {isSubmitting ? 'Sending...' : 'Send Message'}
         <Send className="ml-2" size={20} />
       </button>
     </form>

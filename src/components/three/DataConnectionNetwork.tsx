@@ -98,7 +98,7 @@ function DataFlow() {
     return positions
   }, [])
 
-  useFrame((state, delta) => {
+  useFrame((state) => {
     if (pointsRef.current && pointsRef.current.geometry.attributes.position) {
       const positions = pointsRef.current.geometry.attributes.position.array as Float32Array
 

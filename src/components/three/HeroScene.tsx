@@ -1,14 +1,18 @@
-&apos;use client&apos;
+'use client'
 
-import { useRef, useMemo } from &apos;react&apos;
-import { Canvas, useFrame } from &apos;@react-three/fiber&apos;
-import { Points, PointMaterial } from &apos;@react-three/drei&apos;
-import * as random from &apos;maath/random/dist/maath-random.esm&apos;
-import * as THREE from &apos;three&apos;
+import { useRef, useMemo } from 'react'
+import type { ComponentProps } from 'react'
+import { Canvas, useFrame } from '@react-three/fiber'
+import { Points, PointMaterial } from '@react-three/drei'
+import { inSphere } from 'maath/random'
+import * as THREE from 'three'
 
-function Stars(props: any) {
-  const ref = useRef<THREE.Points>()
-  const [sphere] = useMemo(() => [random.inSphere(new Float32Array(5000), { radius: 1.5 })], [])
+function Stars(props: ComponentProps<typeof Points>) {
+  const ref = useRef<THREE.Points>(null)
+  const [sphere] = useMemo(
+    () => [inSphere(new Float32Array(5000), { radius: 1.5 }) as Float32Array],
+    []
+  )
 
   useFrame((state, delta) => {
     if (ref.current) {
@@ -33,7 +37,7 @@ function Stars(props: any) {
 }
 
 function FloatingCube() {
-  const meshRef = useRef<THREE.Mesh>()
+  const meshRef = useRef<THREE.Mesh>(null)
 
   useFrame((state) => {
     if (meshRef.current) {
@@ -61,7 +65,7 @@ const HeroScene = () => {
     <div className="absolute inset-0 z-0">
       <Canvas
         camera={{ position: [0, 0, 1] }}
-        style={{ background: &apos;transparent&apos; }}
+        style={{ background: 'transparent' }}
       >
         <ambientLight intensity={0.5} />
         <pointLight position={[10, 10, 10]} />

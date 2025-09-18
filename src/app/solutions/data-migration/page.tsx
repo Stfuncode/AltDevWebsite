@@ -186,7 +186,7 @@ export default function DataMigration() {
               </div>
               <h2 className="text-3xl font-bold mb-4">Powered by Microsoft Fabric</h2>
               <p className="text-lg text-blue-100 mb-6">
-                As a Microsoft Fabric specialist, we leverage the world's most advanced unified data platform
+                As a Microsoft Fabric specialist, we leverage the world&apos;s most advanced unified data platform
                 to deliver seamless migrations with built-in AI capabilities, real-time analytics, and
                 enterprise-grade governance.
               </p>
@@ -380,7 +380,7 @@ export default function DataMigration() {
           <Target className="w-16 h-16 text-yellow-500 mx-auto mb-6" />
           <h2 className="text-3xl font-bold text-gray-900 mb-4">Ready to Migrate Your Data?</h2>
           <p className="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
-            Let's discuss your data migration requirements and create a customized strategy
+            Let&apos;s discuss your data migration requirements and create a customized strategy
             that ensures success with minimal risk and maximum efficiency.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">

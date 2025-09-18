@@ -94,7 +94,7 @@ export default function About() {
         <div className="text-center" style={{textAlign: 'center'}}>
           <h2 className="text-3xl font-bold mb-4" style={{fontSize: '2rem', fontWeight: 'bold', color: '#1e293b', marginBottom: '1rem'}}>Ready to Work Together?</h2>
           <p className="text-lg mb-8" style={{fontSize: '1.125rem', color: '#475569', marginBottom: '2rem'}}>
-            Let's discuss how we can help bring your vision to life.
+            Let&apos;s discuss how we can help bring your vision to life.
           </p>
           <Link href="/contact" className="inline-flex items-center" style={{
             backgroundColor: '#fbbf24',

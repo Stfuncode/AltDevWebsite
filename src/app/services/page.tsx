@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import { ArrowRight, BarChart3, Database, Brain, TrendingUp, Globe, Shield, Cpu } from 'lucide-react'
+import { ArrowRight, BarChart3, Database, Brain, TrendingUp, Globe, Shield } from 'lucide-react'
 import DataVisualization from '@/components/three/DataVisualization'
 import AnimatedDataChart from '@/components/three/AnimatedDataChart'
 
@@ -57,7 +57,7 @@ export default function Services() {
           </h1>
           <p className="text-lg text-center max-w-3xl mx-auto" style={{fontSize: '1.25rem', color: '#475569', maxWidth: '48rem', margin: '0 auto', lineHeight: '1.7'}}>
             We provide end-to-end data solutions that transform how you collect, analyze, and act on information. 
-            From raw data to strategic insights, we're your trusted partner in building a data-driven organization.
+            From raw data to strategic insights, we&apos;re your trusted partner in building a data-driven organization.
           </p>
         </div>
 
@@ -143,7 +143,7 @@ export default function Services() {
         <div className="text-center" style={{textAlign: 'center'}}>
           <h2 className="text-3xl font-bold mb-4" style={{fontSize: '2rem', fontWeight: 'bold', color: '#1e293b', marginBottom: '1rem'}}>Ready to Get Started?</h2>
           <p className="text-lg mb-8" style={{fontSize: '1.125rem', color: '#475569', marginBottom: '2rem'}}>
-            Let's discuss your project and find the perfect solution for your needs.
+            Let&apos;s discuss your project and find the perfect solution for your needs.
           </p>
           <Link href="/contact" className="inline-flex items-center" style={{
             backgroundColor: '#fbbf24',

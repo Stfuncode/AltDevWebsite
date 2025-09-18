@@ -54,9 +54,9 @@ function DataBars() {
       {bars.map((bar, index) => (
         <mesh key={index} position={bar.position}>
           <boxGeometry args={[0.5, 1, 0.5]} />
-          <meshBasicMaterial 
-            color={bar.color} 
-            transparent 
+          <meshStandardMaterial
+            color={bar.color}
+            transparent
             opacity={0.8}
             emissive="#fbbf24"
             emissiveIntensity={0.2}
@@ -70,7 +70,7 @@ function DataBars() {
 function DataGrid() {
   const gridRef = useRef<THREE.Group>(null!)
   
-  useFrame((state, delta) => {
+  useFrame((state) => {
     if (gridRef.current) {
       gridRef.current.rotation.x = -Math.PI / 6
       // Subtle movement
@@ -107,12 +107,13 @@ function DataGrid() {
           <bufferGeometry>
             <bufferAttribute
               attach="attributes-position"
-              count={2}
-              array={new Float32Array([
-                ...line.points[0],
-                ...line.points[1]
-              ])}
-              itemSize={3}
+              args={[
+                new Float32Array([
+                  ...line.points[0],
+                  ...line.points[1],
+                ]),
+                3, // itemSize
+              ]}
             />
           </bufferGeometry>
           <lineBasicMaterial 

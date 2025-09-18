@@ -147,9 +147,9 @@ export default function Home() {
       {/* CTA Section */}
       <section className="py-20 bg-gray-900 text-white" style={{padding: '5rem 0', backgroundColor: '#1e293b', margin: 0, width: '100%'}}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center" style={{maxWidth: '80rem', margin: '0 auto', padding: '0 2rem', textAlign: 'center'}}>
-          <h2 className="text-4xl font-bold mb-4" style={{fontSize: '2.5rem', fontWeight: 'bold', color: 'white', marginBottom: '1rem'}}>Ready to Unlock Your Data's Potential?</h2>
+          <h2 className="text-4xl font-bold mb-4" style={{fontSize: '2.5rem', fontWeight: 'bold', color: 'white', marginBottom: '1rem'}}>Ready to Unlock Your Data&apos;s Potential?</h2>
           <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto" style={{fontSize: '1.25rem', color: 'rgba(255, 255, 255, 0.8)', marginBottom: '2rem', maxWidth: '42rem', margin: '0 auto 2rem auto'}}>
-            Transform your business with data-driven insights. Let's discuss how our analytics expertise can drive measurable growth for your organization.
+            Transform your business with data-driven insights. Let&apos;s discuss how our analytics expertise can drive measurable growth for your organization.
           </p>
           <Link href="/contact" className="bg-blue-600 hover:bg-blue-700 text-white font-medium px-8 py-4 rounded-lg transition-colors duration-200 shadow-lg hover:shadow-xl inline-flex items-center" style={{
             backgroundColor: '#fbbf24',

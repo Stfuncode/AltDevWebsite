@@ -1,10 +1,10 @@
-&apos;use client&apos;
+'use client'
 
-import Link from &apos;next/link&apos;
-import { ArrowRight } from &apos;lucide-react&apos;
-import dynamic from &apos;next/dynamic&apos;
+import Link from 'next/link'
+import { ArrowRight } from 'lucide-react'
+import dynamic from 'next/dynamic'
 
-const HeroScene = dynamic(() => import(&apos;@/components/three/HeroScene&apos;), { ssr: false })
+const HeroScene = dynamic(() => import('@/components/three/HeroScene'), { ssr: false })
 
 export default function HeroSection() {
   return (

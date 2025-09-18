@@ -1,12 +1,16 @@
 'use client'
 
+import React from 'react'
 import { useRef, useMemo } from 'react'
+import type { ComponentProps } from "react"
 import { Canvas, useFrame } from '@react-three/fiber'
 import { Points, PointMaterial } from '@react-three/drei'
 import * as THREE from 'three'
 
-function Particles(props: any) {
-  const ref = useRef<THREE.Points>(null!)
+function Particles(props: ComponentProps<typeof Points>) {
+  const ref = useRef<
+    THREE.Points<THREE.BufferGeometry, THREE.Material | THREE.Material[]>
+  >(null)
   const [sphere] = useMemo(() => {
     const sphere = new Float32Array(2000 * 3)
     for (let i = 0; i < 2000; i++) {
@@ -32,7 +36,7 @@ function Particles(props: any) {
           transparent
           color="#fbbf24"
           size={0.03}
-          sizeAttenuation={true}
+          sizeAttenuation
           depthWrite={false}
           opacity={0.8}
         />
@@ -40,6 +44,7 @@ function Particles(props: any) {
     </group>
   )
 }
+
 
 export default function ParticleBackground() {
   return (
