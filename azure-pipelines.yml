@@ -17,7 +17,7 @@ variables:
   # Azure Variables
   azureServiceConnectionName: 'AltDevWebsite-ServiceConnection' # Update this to match your service connection name
   webAppName: 'altdevfrontend'
-  resourceGroupName: 'ALtDevWebsite'
+  resourceGroupName: 'AltDevWebsite'
 
 stages:
 - stage: Build
@@ -34,6 +34,17 @@ stages:
       inputs:
         versionSpec: '$(nodeVersion)'
 
+    # Validate package lock file exists
+    - script: |
+        if [ ! -f "package-lock.json" ]; then
+          echo "##vso[task.logissue type=warning]No package-lock.json found - using npm install instead of npm ci"
+          echo "##vso[task.setvariable variable=useNpmCi]false"
+        else
+          echo "##vso[task.setvariable variable=useNpmCi]true"
+        fi
+      displayName: 'Validate lock file'
+      workingDirectory: '$(System.DefaultWorkingDirectory)'
+
     - task: Cache@2
       displayName: 'Cache node_modules'
       inputs:
@@ -41,9 +52,14 @@ stages:
         restoreKeys: |
           npm | "$(Agent.OS)"
         path: 'node_modules'
+      condition: eq(variables.useNpmCi, 'true')
 
     - script: |
-        npm ci --production=false
+        if [ "$(useNpmCi)" = "true" ]; then
+          npm ci --production=false
+        else
+          npm install
+        fi
       displayName: 'Install dependencies'
       workingDirectory: '$(System.DefaultWorkingDirectory)'
 
@@ -51,7 +67,16 @@ stages:
         npm run lint
       displayName: 'Run ESLint'
       workingDirectory: '$(System.DefaultWorkingDirectory)'
-      continueOnError: true
+      continueOnError: 'true'
+
+    # Verify build script exists
+    - script: |
+        if ! npm run build --dry-run 2>/dev/null; then
+          echo "##vso[task.logissue type=error]Build script not found in package.json"
+          exit 1
+        fi
+      displayName: 'Validate build script'
+      workingDirectory: '$(System.DefaultWorkingDirectory)'
 
     - script: |
         npm run build
@@ -60,24 +85,44 @@ stages:
       env:
         NODE_ENV: production
 
-    - task: ArchiveFiles@2
+    # Verify start script exists
+    - script: |
+        if ! npm run start --dry-run 2>/dev/null; then
+          echo "##vso[task.logissue type=error]Start script not found in package.json"
+          exit 1
+        fi
+      displayName: 'Validate start script'
+      workingDirectory: '$(System.DefaultWorkingDirectory)'
+
+    - task: PowerShell@2
       displayName: 'Archive application'
       inputs:
-        rootFolderOrFile: '$(System.DefaultWorkingDirectory)'
-        includeRootFolder: false
-        archiveType: 'zip'
-        archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
-        replaceExistingArchive: true
-        excludePaths: |
-          node_modules
-          .git
-          .next/cache
-          .env.local
-          .env.development.local
-          .env.test.local
-          .env.production.local
-          *.md
-          azure-pipelines.yml
+        targetType: 'inline'
+        script: |
+          $exclude = @(
+            'node_modules',
+            '.git',
+            '.next/cache',
+            '.env.local',
+            '.env.development.local',
+            '.env.test.local',
+            '.env.production.local',
+            '*.md',
+            'azure-pipelines.yml',
+            '.gitignore',
+            '.eslintrc*',
+            'jest.config*',
+            'cypress*',
+            '__tests__',
+            'coverage'
+          )
+          $source = "$(System.DefaultWorkingDirectory)"
+          $archive = "$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip"
+          $files = Get-ChildItem -Path $source -Recurse | Where-Object {
+            $exclude -notcontains $_.Name
+          }
+          Add-Type -AssemblyName System.IO.Compression.FileSystem
+          [System.IO.Compression.ZipFile]::CreateFromDirectory($source, $archive)
 
     - task: PublishBuildArtifacts@1
       displayName: 'Publish Artifacts'
@@ -115,6 +160,32 @@ stages:
               destinationFolder: '$(Pipeline.Workspace)/webapp-extracted'
               cleanDestinationFolder: true
 
+          # Install production dependencies
+          - task: NodeTool@0
+            displayName: 'Install Node.js for deployment'
+            inputs:
+              versionSpec: '$(nodeVersion)'
+
+          - script: |
+              cd $(Pipeline.Workspace)/webapp-extracted
+              if [ -f "package-lock.json" ]; then
+                npm ci --production
+              else
+                npm install --production
+              fi
+            displayName: 'Install production dependencies'
+
+          # Verify deployment package
+          - script: |
+              cd $(Pipeline.Workspace)/webapp-extracted
+              echo "=== Deployment Package Contents ==="
+              ls -la
+              echo "=== Next.js Build Output ==="
+              ls -la .next/ || echo "No .next directory found"
+              echo "=== Package.json Scripts ==="
+              node -p "JSON.stringify(require('./package.json').scripts, null, 2)" || echo "Cannot read package.json"
+            displayName: 'Verify deployment package'
+
           - task: AzureWebApp@1
             displayName: 'Deploy to Azure App Service'
             inputs:
@@ -128,3 +199,5 @@ stages:
               appSettings: |
                 -WEBSITE_NODE_DEFAULT_VERSION "20.x"
                 -NODE_ENV "production"
+                -WEBSITE_RUN_FROM_PACKAGE "1"
+                -NODE_OPTIONS "--max-old-space-size=4096"
