@@ -55,6 +55,9 @@ const config: Config = {
         'fade-in': 'fadeIn 0.5s ease-in-out',
         'slide-in': 'slideIn 0.3s ease-out',
         'float': 'float 3s ease-in-out infinite',
+        'dropdown-enter': 'dropdownEnter 0.2s ease-out',
+        'stagger-fade-in': 'fadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+        'scale-bounce': 'scaleBounce 0.2s ease-out',
       },
       keyframes: {
         fadeIn: {
@@ -68,6 +71,23 @@ const config: Config = {
         float: {
           '0%, 100%': { transform: 'translateY(0px)' },
           '50%': { transform: 'translateY(-10px)' },
+        },
+        dropdownEnter: {
+          '0%': {
+            opacity: '0',
+            transform: 'translateY(-10px) scale(0.95)',
+            filter: 'blur(1px)'
+          },
+          '100%': {
+            opacity: '1',
+            transform: 'translateY(0) scale(1)',
+            filter: 'blur(0px)'
+          },
+        },
+        scaleBounce: {
+          '0%': { transform: 'scale(1)' },
+          '50%': { transform: 'scale(1.05)' },
+          '100%': { transform: 'scale(1)' },
         },
       },
     },
