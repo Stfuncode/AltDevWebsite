@@ -4,7 +4,7 @@ import { Suspense } from 'react'
 import Link from 'next/link'
 import { ArrowRight, Code, Zap, Shield, Users, CheckCircle, ArrowUpRight } from 'lucide-react'
 import MatrixEffect from '@/components/three/MatrixEffect'
-import MatrixText from '@/components/effects/MatrixText'
+import TypewriterText from '@/components/effects/MatrixText'
 
 const technologies = [
   'React', 'Next.js', 'Node.js', 'Python', 'TypeScript', 'PostgreSQL',
@@ -134,10 +134,11 @@ export default function CustomDevelopmentPage() {
                     key={tech}
                     className="px-4 py-2 bg-gray-800/50 border border-gray-700 rounded-full text-sm backdrop-blur-sm hover:border-yellow-500/50 transition-all duration-200 min-w-[100px] text-center"
                   >
-                    <MatrixText
+                    <TypewriterText
                       text={tech}
-                      delay={index * 200 + 1000}
-                      scrambleSpeed={80}
+                      delay={index * 300 + 1000}
+                      typeSpeed={60}
+                      showCursor={false}
                       className="text-gray-300"
                     />
                   </span>
@@ -155,7 +156,7 @@ export default function CustomDevelopmentPage() {
                 Why Choose Our Development
               </h2>
               <p className="text-xl text-gray-400 max-w-2xl mx-auto">
-                We don't just write code—we engineer secure, tested solutions using shift-left methodology that prevents issues before they occur.
+                We don&apos;t just write code—we engineer secure, tested solutions using shift-left methodology that prevents issues before they occur.
               </p>
             </div>
 
@@ -232,7 +233,7 @@ export default function CustomDevelopmentPage() {
                 Success Stories
               </h2>
               <p className="text-xl text-gray-400 max-w-2xl mx-auto">
-                Real projects, real results. See how we've helped businesses transform their ideas into reality.
+                Real projects, real results. See how we&apos;ve helped businesses transform their ideas into reality.
               </p>
             </div>
 
@@ -277,7 +278,7 @@ export default function CustomDevelopmentPage() {
               Ready to Build Something Amazing?
             </h2>
             <p className="text-xl text-gray-400 mb-8 max-w-2xl mx-auto">
-              Let's discuss your project and explore how we can bring your vision to life with cutting-edge technology.
+              Let&apos;s discuss your project and explore how we can bring your vision to life with cutting-edge technology.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
