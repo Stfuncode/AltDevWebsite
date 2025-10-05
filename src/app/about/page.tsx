@@ -72,12 +72,18 @@ export default function About() {
             At AltDev, we believe that data is the{' '}
             <span
               style={{
-                color: '#D7E150',
+                background: 'linear-gradient(90deg, #D7E150 0%, #E9ECDD 25%, #D7E150 50%, #E9ECDD 75%, #D7E150 100%)',
+                backgroundSize: '200% auto',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                backgroundClip: 'text',
                 fontWeight: '700',
                 opacity: missionVisible ? 1 : 0,
                 transform: missionVisible ? 'scale(1)' : 'scale(0.9)',
                 transition: 'opacity 0.6s ease-out 0.3s, transform 0.6s ease-out 0.3s',
-                display: 'inline-block'
+                display: 'inline-block',
+                animation: missionVisible ? 'shimmer 3s linear infinite' : 'none',
+                position: 'relative'
               }}
             >
               most valuable asset
@@ -85,12 +91,18 @@ export default function About() {
             {' '}of the 21st century. Our mission is to{' '}
             <span
               style={{
-                color: '#D7E150',
+                background: 'linear-gradient(90deg, #D7E150 0%, #E9ECDD 25%, #D7E150 50%, #E9ECDD 75%, #D7E150 100%)',
+                backgroundSize: '200% auto',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                backgroundClip: 'text',
                 fontWeight: '700',
                 opacity: missionVisible ? 1 : 0,
                 transform: missionVisible ? 'scale(1)' : 'scale(0.9)',
                 transition: 'opacity 0.6s ease-out 0.5s, transform 0.6s ease-out 0.5s',
-                display: 'inline-block'
+                display: 'inline-block',
+                animation: missionVisible ? 'shimmer 3s linear infinite' : 'none',
+                position: 'relative'
               }}
             >
               democratize data science
@@ -98,12 +110,18 @@ export default function About() {
             {' '}and make{' '}
             <span
               style={{
-                color: '#D7E150',
+                background: 'linear-gradient(90deg, #D7E150 0%, #E9ECDD 25%, #D7E150 50%, #E9ECDD 75%, #D7E150 100%)',
+                backgroundSize: '200% auto',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                backgroundClip: 'text',
                 fontWeight: '700',
                 opacity: missionVisible ? 1 : 0,
                 transform: missionVisible ? 'scale(1)' : 'scale(0.9)',
                 transition: 'opacity 0.6s ease-out 0.7s, transform 0.6s ease-out 0.7s',
-                display: 'inline-block'
+                display: 'inline-block',
+                animation: missionVisible ? 'shimmer 3s linear infinite' : 'none',
+                position: 'relative'
               }}
             >
               advanced analytics accessible
@@ -111,12 +129,18 @@ export default function About() {
             {' '}to businesses of all sizes. We transform complex datasets into{' '}
             <span
               style={{
-                color: '#D7E150',
+                background: 'linear-gradient(90deg, #D7E150 0%, #E9ECDD 25%, #D7E150 50%, #E9ECDD 75%, #D7E150 100%)',
+                backgroundSize: '200% auto',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                backgroundClip: 'text',
                 fontWeight: '700',
                 opacity: missionVisible ? 1 : 0,
                 transform: missionVisible ? 'scale(1)' : 'scale(0.9)',
                 transition: 'opacity 0.6s ease-out 0.9s, transform 0.6s ease-out 0.9s',
-                display: 'inline-block'
+                display: 'inline-block',
+                animation: missionVisible ? 'shimmer 3s linear infinite' : 'none',
+                position: 'relative'
               }}
             >
               clear, actionable insights
@@ -124,12 +148,18 @@ export default function About() {
             {' '}that drive strategic decisions, optimize operations, and unlock new revenue opportunities. Every solution we build is designed to turn your data into your{' '}
             <span
               style={{
-                color: '#D7E150',
+                background: 'linear-gradient(90deg, #D7E150 0%, #E9ECDD 25%, #D7E150 50%, #E9ECDD 75%, #D7E150 100%)',
+                backgroundSize: '200% auto',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                backgroundClip: 'text',
                 fontWeight: '700',
                 opacity: missionVisible ? 1 : 0,
                 transform: missionVisible ? 'scale(1)' : 'scale(0.9)',
                 transition: 'opacity 0.6s ease-out 1.1s, transform 0.6s ease-out 1.1s',
-                display: 'inline-block'
+                display: 'inline-block',
+                animation: missionVisible ? 'shimmer 3s linear infinite' : 'none',
+                position: 'relative'
               }}
             >
               competitive advantage
@@ -159,12 +189,18 @@ export default function About() {
             We envision a future where{' '}
             <span
               style={{
-                color: '#D7E150',
+                background: 'linear-gradient(90deg, #D7E150 0%, #E9ECDD 25%, #D7E150 50%, #E9ECDD 75%, #D7E150 100%)',
+                backgroundSize: '200% auto',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                backgroundClip: 'text',
                 fontWeight: '700',
                 opacity: visionVisible ? 1 : 0,
                 transform: visionVisible ? 'scale(1)' : 'scale(0.9)',
                 transition: 'opacity 0.6s ease-out 0.3s, transform 0.6s ease-out 0.3s',
-                display: 'inline-block'
+                display: 'inline-block',
+                animation: visionVisible ? 'shimmer 3s linear infinite' : 'none',
+                position: 'relative'
               }}
             >
               every organization
@@ -172,36 +208,54 @@ export default function About() {
             , regardless of size or industry, has the power to{' '}
             <span
               style={{
-                color: '#D7E150',
+                background: 'linear-gradient(90deg, #D7E150 0%, #E9ECDD 25%, #D7E150 50%, #E9ECDD 75%, #D7E150 100%)',
+                backgroundSize: '200% auto',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                backgroundClip: 'text',
                 fontWeight: '700',
                 opacity: visionVisible ? 1 : 0,
                 transform: visionVisible ? 'scale(1)' : 'scale(0.9)',
                 transition: 'opacity 0.6s ease-out 0.5s, transform 0.6s ease-out 0.5s',
-                display: 'inline-block'
+                display: 'inline-block',
+                animation: visionVisible ? 'shimmer 3s linear infinite' : 'none',
+                position: 'relative'
               }}
             >
               harness their data for transformative growth
             </span>. Through{' '}
             <span
               style={{
-                color: '#D7E150',
+                background: 'linear-gradient(90deg, #D7E150 0%, #E9ECDD 25%, #D7E150 50%, #E9ECDD 75%, #D7E150 100%)',
+                backgroundSize: '200% auto',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                backgroundClip: 'text',
                 fontWeight: '700',
                 opacity: visionVisible ? 1 : 0,
                 transform: visionVisible ? 'scale(1)' : 'scale(0.9)',
                 transition: 'opacity 0.6s ease-out 0.7s, transform 0.6s ease-out 0.7s',
-                display: 'inline-block'
+                display: 'inline-block',
+                animation: visionVisible ? 'shimmer 3s linear infinite' : 'none',
+                position: 'relative'
               }}
             >
               innovative technology and expert guidance
             </span>, we aim to be the{' '}
             <span
               style={{
-                color: '#D7E150',
+                background: 'linear-gradient(90deg, #D7E150 0%, #E9ECDD 25%, #D7E150 50%, #E9ECDD 75%, #D7E150 100%)',
+                backgroundSize: '200% auto',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                backgroundClip: 'text',
                 fontWeight: '700',
                 opacity: visionVisible ? 1 : 0,
                 transform: visionVisible ? 'scale(1)' : 'scale(0.9)',
                 transition: 'opacity 0.6s ease-out 0.9s, transform 0.6s ease-out 0.9s',
-                display: 'inline-block'
+                display: 'inline-block',
+                animation: visionVisible ? 'shimmer 3s linear infinite' : 'none',
+                position: 'relative'
               }}
             >
               trusted partner
@@ -209,24 +263,36 @@ export default function About() {
             {' '}that empowers businesses to make confident, data-driven decisions that shape their success. Our vision is to create a world where{' '}
             <span
               style={{
-                color: '#D7E150',
+                background: 'linear-gradient(90deg, #D7E150 0%, #E9ECDD 25%, #D7E150 50%, #E9ECDD 75%, #D7E150 100%)',
+                backgroundSize: '200% auto',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                backgroundClip: 'text',
                 fontWeight: '700',
                 opacity: visionVisible ? 1 : 0,
                 transform: visionVisible ? 'scale(1)' : 'scale(0.9)',
                 transition: 'opacity 0.6s ease-out 1.1s, transform 0.6s ease-out 1.1s',
-                display: 'inline-block'
+                display: 'inline-block',
+                animation: visionVisible ? 'shimmer 3s linear infinite' : 'none',
+                position: 'relative'
               }}
             >
               insights are immediate, intelligence is accessible
             </span>, and every byte of data becomes a{' '}
             <span
               style={{
-                color: '#D7E150',
+                background: 'linear-gradient(90deg, #D7E150 0%, #E9ECDD 25%, #D7E150 50%, #E9ECDD 75%, #D7E150 100%)',
+                backgroundSize: '200% auto',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                backgroundClip: 'text',
                 fontWeight: '700',
                 opacity: visionVisible ? 1 : 0,
                 transform: visionVisible ? 'scale(1)' : 'scale(0.9)',
                 transition: 'opacity 0.6s ease-out 1.3s, transform 0.6s ease-out 1.3s',
-                display: 'inline-block'
+                display: 'inline-block',
+                animation: visionVisible ? 'shimmer 3s linear infinite' : 'none',
+                position: 'relative'
               }}
             >
               catalyst for innovation
