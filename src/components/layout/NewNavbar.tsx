@@ -7,10 +7,15 @@ import { Menu, X, ChevronDown } from 'lucide-react'
 const NewNavbar = () => {
   const [isOpen, setIsOpen] = useState(false)
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null)
+  const [scrolled, setScrolled] = useState(false)
   const dropdownRefs = useRef<{ [key: string]: HTMLDivElement | null }>({})
 
-  // Close dropdown when clicking outside
+  // Handle scroll and close dropdown when clicking outside
   useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20)
+    }
+
     const handleClickOutside = (event: MouseEvent) => {
       const target = event.target as Node
       const isClickInsideDropdown = Object.values(dropdownRefs.current).some(ref =>
@@ -22,8 +27,13 @@ const NewNavbar = () => {
       }
     }
 
+    window.addEventListener('scroll', handleScroll)
     document.addEventListener('mousedown', handleClickOutside)
-    return () => document.removeEventListener('mousedown', handleClickOutside)
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+      document.removeEventListener('mousedown', handleClickOutside)
+    }
   }, [activeDropdown])
 
   const toggleDropdown = (itemName: string) => {
@@ -86,50 +96,27 @@ const NewNavbar = () => {
         }
       ]
     },
-    {
-      name: 'Industries',
-      href: '/industries',
-      dropdown: [
-        {
-          category: 'Sectors',
-          items: [
-            { name: 'Financial Services', href: '/industries/financial-services' },
-            { name: 'Healthcare', href: '/industries/healthcare' },
-            { name: 'Retail & E-commerce', href: '/industries/retail' },
-            { name: 'Manufacturing', href: '/industries/manufacturing' },
-            { name: 'Technology', href: '/industries/technology' }
-          ]
-        }
-      ]
-    },
-    {
-      name: 'Resources',
-      href: '/resources',
-      dropdown: [
-        {
-          category: 'Content',
-          items: [
-            { name: 'Case Studies', href: '/resources/case-studies' },
-            { name: 'White Papers', href: '/resources/white-papers' },
-            { name: 'Blog', href: '/resources/blog' },
-            { name: 'Documentation', href: '/resources/docs' }
-          ]
-        }
-      ]
-    },
     { name: 'About', href: '/about' },
     { name: 'Contact', href: '/contact' }
   ]
 
   return (
-    <nav className="bg-white shadow-sm sticky top-0 z-[60] border-b border-gray-200">
+    <nav
+      className="sticky top-0 z-[60] transition-all duration-500"
+      style={{
+        backgroundColor: scrolled ? 'rgba(3, 32, 61, 0.6)' : 'transparent',
+        backdropFilter: scrolled ? 'blur(20px)' : 'none',
+        borderBottom: 'none',
+        boxShadow: 'none'
+      }}
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <Link href="/" className="flex items-center space-x-2 group">
-            <div className="w-8 h-8 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-lg transition-transform duration-200 group-hover:scale-110"></div>
-            <span className="text-xl font-bold text-gray-900">
-              <span className="text-yellow-500">ALT</span>DEV
+            <div className="w-8 h-8 bg-gradient-to-br rounded-lg transition-transform duration-200 group-hover:scale-110" style={{ background: 'linear-gradient(135deg, #D7E150 0%, #E9ECDD 100%)' }}></div>
+            <span className="text-xl font-bold transition-colors duration-300" style={{ color: scrolled ? '#E9ECDD' : '#03203D' }}>
+              <span style={{ color: '#D7E150' }}>ALT</span>DEV
             </span>
           </Link>
 
@@ -143,11 +130,21 @@ const NewNavbar = () => {
               >
                 {item.dropdown ? (
                   <button
-                    className={`flex items-center px-4 py-2 text-sm font-medium rounded-md transition-all duration-200 ${
-                      activeDropdown === item.name
-                        ? 'text-yellow-600 bg-yellow-50'
-                        : 'text-gray-700 hover:text-gray-900 hover:bg-gray-50'
-                    }`}
+                    className="flex items-center px-4 py-2 text-sm font-medium rounded-md transition-all duration-300"
+                    style={{
+                      color: activeDropdown === item.name ? '#D7E150' : (scrolled ? 'rgba(233, 236, 221, 0.9)' : 'rgba(3, 32, 61, 0.8)'),
+                      backgroundColor: activeDropdown === item.name ? 'rgba(215, 225, 80, 0.1)' : 'transparent'
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.color = scrolled ? '#E9ECDD' : '#03203D';
+                      e.currentTarget.style.backgroundColor = scrolled ? 'rgba(233, 236, 221, 0.1)' : 'rgba(3, 32, 61, 0.1)';
+                    }}
+                    onMouseLeave={(e) => {
+                      if (activeDropdown !== item.name) {
+                        e.currentTarget.style.color = scrolled ? 'rgba(233, 236, 221, 0.9)' : 'rgba(3, 32, 61, 0.8)';
+                        e.currentTarget.style.backgroundColor = 'transparent';
+                      }
+                    }}
                     onClick={() => toggleDropdown(item.name)}
                     aria-expanded={activeDropdown === item.name}
                     aria-haspopup="true"
@@ -162,7 +159,16 @@ const NewNavbar = () => {
                 ) : (
                   <Link
                     href={item.href}
-                    className="flex items-center px-4 py-2 text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50 rounded-md transition-all duration-200"
+                    className="flex items-center px-4 py-2 text-sm font-medium rounded-md transition-all duration-300"
+                    style={{ color: scrolled ? 'rgba(233, 236, 221, 0.9)' : 'rgba(3, 32, 61, 0.8)' }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.color = scrolled ? '#E9ECDD' : '#03203D';
+                      e.currentTarget.style.backgroundColor = scrolled ? 'rgba(233, 236, 221, 0.1)' : 'rgba(3, 32, 61, 0.1)';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.color = scrolled ? 'rgba(233, 236, 221, 0.9)' : 'rgba(3, 32, 61, 0.8)';
+                      e.currentTarget.style.backgroundColor = 'transparent';
+                    }}
                   >
                     {item.name}
                   </Link>
@@ -171,16 +177,14 @@ const NewNavbar = () => {
                 {/* Dropdown Menu */}
                 {item.dropdown && activeDropdown === item.name && (
                   <div
-                    className={`
-                      absolute top-full left-1/2 transform -translate-x-1/2 mt-3
-                      bg-white shadow-2xl rounded-xl border border-gray-200
-                      min-w-[700px] max-w-4xl p-8 z-[100]
-                      animate-dropdown-enter
-                      before:absolute before:-top-2 before:left-1/2 before:transform before:-translate-x-1/2
-                      before:w-4 before:h-4 before:bg-white
-                      before:border-l before:border-t before:border-gray-200
-                      before:rotate-45
-                    `}
+                    className="absolute top-full left-1/2 transform -translate-x-1/2 mt-3 min-w-[700px] max-w-4xl p-8 z-[100] animate-dropdown-enter"
+                    style={{
+                      backgroundColor: 'rgba(3, 32, 61, 0.95)',
+                      backdropFilter: 'blur(20px)',
+                      boxShadow: '0 20px 60px rgba(0, 0, 0, 0.4)',
+                      borderRadius: '1rem',
+                      border: 'none'
+                    }}
                   >
                     <div className="grid grid-cols-3 gap-10">
                       {item.dropdown.map((category, categoryIndex) => (
@@ -189,7 +193,7 @@ const NewNavbar = () => {
                           className="animate-stagger-fade-in opacity-0"
                           style={{ animationDelay: `${categoryIndex * 50}ms` }}
                         >
-                          <h3 className="text-xs font-bold text-gray-900 mb-4 uppercase tracking-wider border-b border-gray-100 pb-2">
+                          <h3 className="text-xs font-bold mb-4 uppercase tracking-wider border-b pb-2" style={{ color: '#D7E150', borderColor: 'rgba(233, 236, 221, 0.1)' }}>
                             {category.category}
                           </h3>
                           <ul className="space-y-2">
@@ -201,7 +205,16 @@ const NewNavbar = () => {
                               >
                                 <Link
                                   href={subItem.href}
-                                  className="block text-sm text-gray-700 hover:text-yellow-600 hover:bg-yellow-50 px-3 py-2 rounded-lg transition-all duration-200 font-medium group"
+                                  className="block text-sm px-3 py-2 rounded-lg transition-all duration-200 font-medium group"
+                                  style={{ color: 'rgba(233, 236, 221, 0.8)' }}
+                                  onMouseEnter={(e) => {
+                                    e.currentTarget.style.color = '#D7E150';
+                                    e.currentTarget.style.backgroundColor = 'rgba(215, 225, 80, 0.1)';
+                                  }}
+                                  onMouseLeave={(e) => {
+                                    e.currentTarget.style.color = 'rgba(233, 236, 221, 0.8)';
+                                    e.currentTarget.style.backgroundColor = 'transparent';
+                                  }}
                                   onClick={() => setActiveDropdown(null)}
                                 >
                                   <span className="flex items-center">
@@ -232,7 +245,22 @@ const NewNavbar = () => {
           <div className="hidden lg:flex items-center space-x-4">
             <Link
               href="/contact"
-              className="bg-yellow-500 hover:bg-yellow-600 text-white font-semibold px-6 py-2 rounded-lg transition-colors duration-200 shadow-md hover:shadow-lg"
+              className="font-semibold px-6 py-2 rounded-lg transition-all duration-200"
+              style={{
+                backgroundColor: '#D7E150',
+                color: '#03203D',
+                boxShadow: '0 4px 15px rgba(215, 225, 80, 0.3)'
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.backgroundColor = '#E9ECDD';
+                e.currentTarget.style.boxShadow = '0 6px 20px rgba(215, 225, 80, 0.5)';
+                e.currentTarget.style.transform = 'translateY(-2px)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.backgroundColor = '#D7E150';
+                e.currentTarget.style.boxShadow = '0 4px 15px rgba(215, 225, 80, 0.3)';
+                e.currentTarget.style.transform = 'translateY(0)';
+              }}
             >
               Get Started
             </Link>
@@ -241,7 +269,16 @@ const NewNavbar = () => {
           {/* Mobile menu button */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="lg:hidden p-2 text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors"
+            className="lg:hidden p-2 rounded-md transition-all duration-300"
+            style={{ color: scrolled ? 'rgba(233, 236, 221, 0.9)' : 'rgba(3, 32, 61, 0.8)' }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.color = scrolled ? '#E9ECDD' : '#03203D';
+              e.currentTarget.style.backgroundColor = scrolled ? 'rgba(233, 236, 221, 0.1)' : 'rgba(3, 32, 61, 0.1)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.color = scrolled ? 'rgba(233, 236, 221, 0.9)' : 'rgba(3, 32, 61, 0.8)';
+              e.currentTarget.style.backgroundColor = 'transparent';
+            }}
           >
             {isOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
@@ -249,18 +286,36 @@ const NewNavbar = () => {
 
         {/* Mobile Navigation */}
         {isOpen && (
-          <div className="lg:hidden absolute top-full left-0 right-0 bg-white/95 backdrop-blur-md border-t border-gray-200 shadow-lg max-h-[80vh] overflow-y-auto animate-dropdown-enter">
+          <div
+            className="lg:hidden absolute top-full left-0 right-0 max-h-[80vh] overflow-y-auto animate-dropdown-enter"
+            style={{
+              backgroundColor: 'rgba(3, 32, 61, 0.98)',
+              backdropFilter: 'blur(20px)',
+              borderTop: 'none',
+              boxShadow: '0 10px 40px rgba(0, 0, 0, 0.4)'
+            }}
+          >
             <div className="max-w-7xl mx-auto px-4 py-6">
               <div className="space-y-4">
                 {navItems.map((item, index) => (
                   <div
                     key={item.name}
-                    className="border-b border-gray-100 pb-4 last:border-b-0 animate-stagger-fade-in opacity-0"
-                    style={{ animationDelay: `${index * 50}ms` }}
+                    className="border-b pb-4 last:border-b-0 animate-stagger-fade-in opacity-0"
+                    style={{
+                      animationDelay: `${index * 50}ms`,
+                      borderColor: 'rgba(233, 236, 221, 0.1)'
+                    }}
                   >
                     <Link
                       href={item.href}
-                      className="block text-lg font-semibold text-gray-900 hover:text-yellow-600 transition-colors mb-3"
+                      className="block text-lg font-semibold transition-colors mb-3"
+                      style={{ color: '#E9ECDD' }}
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.color = '#D7E150';
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.color = '#E9ECDD';
+                      }}
                       onClick={() => setIsOpen(false)}
                     >
                       {item.name}
@@ -268,8 +323,15 @@ const NewNavbar = () => {
                     {item.dropdown && (
                       <div className="grid grid-cols-1 gap-4">
                         {item.dropdown.map((category) => (
-                          <div key={category.category} className="bg-gray-50 rounded-lg p-4">
-                            <h4 className="text-xs font-bold text-gray-700 uppercase tracking-wider mb-3 border-b border-gray-200 pb-2">
+                          <div
+                            key={category.category}
+                            className="rounded-lg p-4"
+                            style={{
+                              backgroundColor: 'rgba(233, 236, 221, 0.05)',
+                              border: '1px solid rgba(233, 236, 221, 0.1)'
+                            }}
+                          >
+                            <h4 className="text-xs font-bold uppercase tracking-wider mb-3 border-b pb-2" style={{ color: '#D7E150', borderColor: 'rgba(233, 236, 221, 0.1)' }}>
                               {category.category}
                             </h4>
                             <div className="space-y-2">
@@ -277,7 +339,16 @@ const NewNavbar = () => {
                                 <Link
                                   key={subItem.name}
                                   href={subItem.href}
-                                  className="block text-sm text-gray-600 hover:text-yellow-600 hover:bg-white px-3 py-2 rounded-md transition-all duration-200"
+                                  className="block text-sm px-3 py-2 rounded-md transition-all duration-200"
+                                  style={{ color: 'rgba(233, 236, 221, 0.8)' }}
+                                  onMouseEnter={(e) => {
+                                    e.currentTarget.style.color = '#D7E150';
+                                    e.currentTarget.style.backgroundColor = 'rgba(215, 225, 80, 0.1)';
+                                  }}
+                                  onMouseLeave={(e) => {
+                                    e.currentTarget.style.color = 'rgba(233, 236, 221, 0.8)';
+                                    e.currentTarget.style.backgroundColor = 'transparent';
+                                  }}
                                   onClick={() => setIsOpen(false)}
                                 >
                                   {subItem.name}
@@ -291,10 +362,11 @@ const NewNavbar = () => {
                   </div>
                 ))}
               </div>
-              <div className="mt-6 pt-6 border-t border-gray-200">
+              <div className="mt-6 pt-6" style={{ borderTop: '1px solid rgba(233, 236, 221, 0.1)' }}>
                 <Link
                   href="/contact"
-                  className="block w-full text-center bg-yellow-500 hover:bg-yellow-600 text-white font-bold px-6 py-3 rounded-xl transition-all duration-200 shadow-lg hover:shadow-xl"
+                  className="block w-full text-center font-bold px-6 py-3 rounded-xl transition-all duration-200 shadow-lg hover:shadow-xl"
+                  style={{ backgroundColor: '#D7E150', color: '#03203D' }}
                   onClick={() => setIsOpen(false)}
                 >
                   Get Started

@@ -1,25 +1,236 @@
 'use client'
 
+import { useState, useEffect, useRef } from 'react'
 import Link from 'next/link'
 import { ArrowRight, Database, Target, BarChart, Lightbulb } from 'lucide-react'
 import DataVisualization from '@/components/three/DataVisualization'
 
 export default function About() {
+  const [missionVisible, setMissionVisible] = useState(false)
+  const [visionVisible, setVisionVisible] = useState(false)
+  const missionRef = useRef<HTMLDivElement>(null)
+  const visionRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.target === missionRef.current && entry.isIntersecting) {
+            setMissionVisible(true)
+          }
+          if (entry.target === visionRef.current && entry.isIntersecting) {
+            setVisionVisible(true)
+          }
+        })
+      },
+      { threshold: 0.3 }
+    )
+
+    if (missionRef.current) observer.observe(missionRef.current)
+    if (visionRef.current) observer.observe(visionRef.current)
+
+    return () => observer.disconnect()
+  }, [])
+
   return (
-    <div className="min-h-screen py-20 relative" style={{minHeight: '100vh', padding: '5rem 0', backgroundColor: '#f8fafc', margin: 0, width: '100%', position: 'relative'}}>
+    <div className="min-h-screen py-20 relative" style={{minHeight: '100vh', padding: '5rem 0', backgroundColor: '#03203D', margin: 0, width: '100%', position: 'relative'}}>
       <div className="absolute inset-0 opacity-30">
         <DataVisualization />
       </div>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10" style={{maxWidth: '80rem', margin: '0 auto', padding: '0 2rem', position: 'relative', zIndex: 10}}>
-        
+
         {/* Hero Section */}
         <div className="text-center mb-16" style={{textAlign: 'center', marginBottom: '4rem'}}>
-          <h1 className="text-4xl font-bold text-center mb-8" style={{fontSize: '3rem', fontWeight: 'bold', color: '#1e293b', marginBottom: '1.5rem'}}>
-            About <span style={{color: '#fbbf24'}}>ALTDEV</span>
+          <h1 className="text-4xl font-bold text-center mb-8" style={{fontSize: '3rem', fontWeight: 'bold', color: '#E9ECDD', marginBottom: '1.5rem'}}>
+            About <span style={{color: '#D7E150'}}>ALTDEV</span>
           </h1>
-          <p className="text-lg text-center max-w-3xl mx-auto" style={{fontSize: '1.25rem', color: '#475569', maxWidth: '48rem', margin: '0 auto', lineHeight: '1.7'}}>
-            We are a team of data scientists, engineers, and analysts who believe that every business decision should be backed by data. 
-            We transform raw information into <strong style={{color: '#fbbf24'}}>actionable intelligence</strong> that drives measurable results.
+          <p className="text-lg text-center max-w-3xl mx-auto" style={{fontSize: '1.25rem', color: 'rgba(233, 236, 221, 0.8)', maxWidth: '48rem', margin: '0 auto', lineHeight: '1.7'}}>
+            We are a team of data scientists, engineers, and analysts who believe that every business decision should be backed by data.
+            We transform raw information into <strong style={{color: '#D7E150'}}>actionable intelligence</strong> that drives measurable results.
+          </p>
+        </div>
+
+        {/* Mission Statement */}
+        <div
+          ref={missionRef}
+          className="rounded-xl shadow-lg p-8 mb-16"
+          style={{
+            backgroundColor: 'rgba(3, 32, 61, 0.5)',
+            backdropFilter: 'blur(20px)',
+            borderRadius: '1rem',
+            boxShadow: '0 10px 25px rgba(0, 0, 0, 0.3)',
+            border: '1px solid rgba(215, 225, 80, 0.2)',
+            padding: '3rem',
+            marginBottom: '4rem',
+            opacity: missionVisible ? 1 : 0,
+            transform: missionVisible ? 'translateY(0)' : 'translateY(30px)',
+            transition: 'opacity 0.8s ease-out, transform 0.8s ease-out'
+          }}
+        >
+          <h2 className="text-3xl font-bold text-center mb-6" style={{fontSize: '2rem', fontWeight: 'bold', color: '#E9ECDD', marginBottom: '1.5rem', textAlign: 'center'}}>Our Mission</h2>
+          <p className="text-lg text-center max-w-4xl mx-auto" style={{fontSize: '1.125rem', color: 'rgba(233, 236, 221, 0.8)', maxWidth: '56rem', margin: '0 auto', lineHeight: '1.7', textAlign: 'center'}}>
+            At AltDev, we believe that data is the{' '}
+            <span
+              style={{
+                color: '#D7E150',
+                fontWeight: '700',
+                opacity: missionVisible ? 1 : 0,
+                transform: missionVisible ? 'scale(1)' : 'scale(0.9)',
+                transition: 'opacity 0.6s ease-out 0.3s, transform 0.6s ease-out 0.3s',
+                display: 'inline-block'
+              }}
+            >
+              most valuable asset
+            </span>
+            {' '}of the 21st century. Our mission is to{' '}
+            <span
+              style={{
+                color: '#D7E150',
+                fontWeight: '700',
+                opacity: missionVisible ? 1 : 0,
+                transform: missionVisible ? 'scale(1)' : 'scale(0.9)',
+                transition: 'opacity 0.6s ease-out 0.5s, transform 0.6s ease-out 0.5s',
+                display: 'inline-block'
+              }}
+            >
+              democratize data science
+            </span>
+            {' '}and make{' '}
+            <span
+              style={{
+                color: '#D7E150',
+                fontWeight: '700',
+                opacity: missionVisible ? 1 : 0,
+                transform: missionVisible ? 'scale(1)' : 'scale(0.9)',
+                transition: 'opacity 0.6s ease-out 0.7s, transform 0.6s ease-out 0.7s',
+                display: 'inline-block'
+              }}
+            >
+              advanced analytics accessible
+            </span>
+            {' '}to businesses of all sizes. We transform complex datasets into{' '}
+            <span
+              style={{
+                color: '#D7E150',
+                fontWeight: '700',
+                opacity: missionVisible ? 1 : 0,
+                transform: missionVisible ? 'scale(1)' : 'scale(0.9)',
+                transition: 'opacity 0.6s ease-out 0.9s, transform 0.6s ease-out 0.9s',
+                display: 'inline-block'
+              }}
+            >
+              clear, actionable insights
+            </span>
+            {' '}that drive strategic decisions, optimize operations, and unlock new revenue opportunities. Every solution we build is designed to turn your data into your{' '}
+            <span
+              style={{
+                color: '#D7E150',
+                fontWeight: '700',
+                opacity: missionVisible ? 1 : 0,
+                transform: missionVisible ? 'scale(1)' : 'scale(0.9)',
+                transition: 'opacity 0.6s ease-out 1.1s, transform 0.6s ease-out 1.1s',
+                display: 'inline-block'
+              }}
+            >
+              competitive advantage
+            </span>.
+          </p>
+        </div>
+
+        {/* Vision Statement */}
+        <div
+          ref={visionRef}
+          className="rounded-xl shadow-lg p-8 mb-16"
+          style={{
+            backgroundColor: 'rgba(3, 32, 61, 0.5)',
+            backdropFilter: 'blur(20px)',
+            borderRadius: '1rem',
+            boxShadow: '0 10px 25px rgba(0, 0, 0, 0.3)',
+            border: '1px solid rgba(215, 225, 80, 0.2)',
+            padding: '3rem',
+            marginBottom: '4rem',
+            opacity: visionVisible ? 1 : 0,
+            transform: visionVisible ? 'translateY(0)' : 'translateY(30px)',
+            transition: 'opacity 0.8s ease-out, transform 0.8s ease-out'
+          }}
+        >
+          <h2 className="text-3xl font-bold text-center mb-6" style={{fontSize: '2rem', fontWeight: 'bold', color: '#E9ECDD', marginBottom: '1.5rem', textAlign: 'center'}}>Our Vision</h2>
+          <p className="text-lg text-center max-w-4xl mx-auto" style={{fontSize: '1.125rem', color: 'rgba(233, 236, 221, 0.8)', maxWidth: '56rem', margin: '0 auto', lineHeight: '1.7', textAlign: 'center'}}>
+            We envision a future where{' '}
+            <span
+              style={{
+                color: '#D7E150',
+                fontWeight: '700',
+                opacity: visionVisible ? 1 : 0,
+                transform: visionVisible ? 'scale(1)' : 'scale(0.9)',
+                transition: 'opacity 0.6s ease-out 0.3s, transform 0.6s ease-out 0.3s',
+                display: 'inline-block'
+              }}
+            >
+              every organization
+            </span>
+            , regardless of size or industry, has the power to{' '}
+            <span
+              style={{
+                color: '#D7E150',
+                fontWeight: '700',
+                opacity: visionVisible ? 1 : 0,
+                transform: visionVisible ? 'scale(1)' : 'scale(0.9)',
+                transition: 'opacity 0.6s ease-out 0.5s, transform 0.6s ease-out 0.5s',
+                display: 'inline-block'
+              }}
+            >
+              harness their data for transformative growth
+            </span>. Through{' '}
+            <span
+              style={{
+                color: '#D7E150',
+                fontWeight: '700',
+                opacity: visionVisible ? 1 : 0,
+                transform: visionVisible ? 'scale(1)' : 'scale(0.9)',
+                transition: 'opacity 0.6s ease-out 0.7s, transform 0.6s ease-out 0.7s',
+                display: 'inline-block'
+              }}
+            >
+              innovative technology and expert guidance
+            </span>, we aim to be the{' '}
+            <span
+              style={{
+                color: '#D7E150',
+                fontWeight: '700',
+                opacity: visionVisible ? 1 : 0,
+                transform: visionVisible ? 'scale(1)' : 'scale(0.9)',
+                transition: 'opacity 0.6s ease-out 0.9s, transform 0.6s ease-out 0.9s',
+                display: 'inline-block'
+              }}
+            >
+              trusted partner
+            </span>
+            {' '}that empowers businesses to make confident, data-driven decisions that shape their success. Our vision is to create a world where{' '}
+            <span
+              style={{
+                color: '#D7E150',
+                fontWeight: '700',
+                opacity: visionVisible ? 1 : 0,
+                transform: visionVisible ? 'scale(1)' : 'scale(0.9)',
+                transition: 'opacity 0.6s ease-out 1.1s, transform 0.6s ease-out 1.1s',
+                display: 'inline-block'
+              }}
+            >
+              insights are immediate, intelligence is accessible
+            </span>, and every byte of data becomes a{' '}
+            <span
+              style={{
+                color: '#D7E150',
+                fontWeight: '700',
+                opacity: visionVisible ? 1 : 0,
+                transform: visionVisible ? 'scale(1)' : 'scale(0.9)',
+                transition: 'opacity 0.6s ease-out 1.3s, transform 0.6s ease-out 1.3s',
+                display: 'inline-block'
+              }}
+            >
+              catalyst for innovation
+            </span>.
           </p>
         </div>
 
@@ -47,58 +258,42 @@ export default function About() {
               description: 'We build systems that learn and adapt, reducing manual work and improving accuracy.'
             }
           ].map((value, index) => (
-            <div key={index} className="bg-white rounded-xl shadow-lg border border-gray-200 p-6 text-center" style={{
-              backgroundColor: 'white',
+            <div key={index} className="rounded-xl shadow-lg p-6 text-center" style={{
+              backgroundColor: 'rgba(3, 32, 61, 0.5)',
+              backdropFilter: 'blur(20px)',
               borderRadius: '1rem',
-              boxShadow: '0 10px 25px rgba(0, 0, 0, 0.1)',
-              border: '1px solid rgba(30, 41, 59, 0.1)',
+              boxShadow: '0 10px 25px rgba(0, 0, 0, 0.3)',
+              border: '1px solid rgba(215, 225, 80, 0.2)',
               padding: '1.5rem',
               textAlign: 'center',
               transition: 'all 0.3s ease'
             }}
             onMouseEnter={(e) => {
-              e.currentTarget.style.transform = 'translateY(-5px)';
-              e.currentTarget.style.boxShadow = '0 20px 40px rgba(251, 191, 36, 0.2)';
-              e.currentTarget.style.borderColor = '#fbbf24';
+              e.currentTarget.style.transform = 'translateY(-8px)';
+              e.currentTarget.style.boxShadow = '0 20px 40px rgba(215, 225, 80, 0.3)';
+              e.currentTarget.style.borderColor = '#D7E150';
             }}
             onMouseLeave={(e) => {
               e.currentTarget.style.transform = 'translateY(0)';
-              e.currentTarget.style.boxShadow = '0 10px 25px rgba(0, 0, 0, 0.1)';
-              e.currentTarget.style.borderColor = 'rgba(30, 41, 59, 0.1)';
+              e.currentTarget.style.boxShadow = '0 10px 25px rgba(0, 0, 0, 0.3)';
+              e.currentTarget.style.borderColor = 'rgba(215, 225, 80, 0.2)';
             }}>
-              <div className="mb-4 flex justify-center" style={{color: '#fbbf24', marginBottom: '1rem', display: 'flex', justifyContent: 'center'}}>{value.icon}</div>
-              <h3 className="text-xl font-semibold mb-3" style={{fontSize: '1.25rem', fontWeight: '600', color: '#1e293b', marginBottom: '0.75rem'}}>{value.title}</h3>
-              <p style={{color: '#64748b', fontSize: '0.95rem', lineHeight: '1.6'}}>{value.description}</p>
+              <div className="mb-4 flex justify-center" style={{color: '#D7E150', marginBottom: '1rem', display: 'flex', justifyContent: 'center'}}>{value.icon}</div>
+              <h3 className="text-xl font-semibold mb-3" style={{fontSize: '1.25rem', fontWeight: '600', color: '#E9ECDD', marginBottom: '0.75rem'}}>{value.title}</h3>
+              <p style={{color: 'rgba(233, 236, 221, 0.8)', fontSize: '0.95rem', lineHeight: '1.6'}}>{value.description}</p>
             </div>
           ))}
         </div>
 
-        {/* Mission Statement */}
-        <div className="bg-white rounded-xl shadow-lg p-8 mb-16" style={{
-          backgroundColor: 'white',
-          borderRadius: '1rem',
-          boxShadow: '0 10px 25px rgba(0, 0, 0, 0.1)',
-          padding: '3rem',
-          marginBottom: '4rem'
-        }}>
-          <h2 className="text-3xl font-bold text-center mb-6" style={{fontSize: '2rem', fontWeight: 'bold', color: '#1e293b', marginBottom: '1.5rem', textAlign: 'center'}}>Our Mission</h2>
-          <p className="text-lg text-center max-w-4xl mx-auto" style={{fontSize: '1.125rem', color: '#475569', maxWidth: '56rem', margin: '0 auto', lineHeight: '1.7', textAlign: 'center'}}>
-            At AltDev, we believe that data is the most valuable asset of the 21st century. 
-            Our mission is to democratize data science and make advanced analytics accessible to businesses of all sizes. 
-            We transform complex datasets into clear, actionable insights that drive strategic decisions, optimize operations, 
-            and unlock new revenue opportunities. Every solution we build is designed to turn your data into your competitive advantage.
-          </p>
-        </div>
-
         {/* CTA Section */}
         <div className="text-center" style={{textAlign: 'center'}}>
-          <h2 className="text-3xl font-bold mb-4" style={{fontSize: '2rem', fontWeight: 'bold', color: '#1e293b', marginBottom: '1rem'}}>Ready to Work Together?</h2>
-          <p className="text-lg mb-8" style={{fontSize: '1.125rem', color: '#475569', marginBottom: '2rem'}}>
+          <h2 className="text-3xl font-bold mb-4" style={{fontSize: '2rem', fontWeight: 'bold', color: '#E9ECDD', marginBottom: '1rem'}}>Ready to Work Together?</h2>
+          <p className="text-lg mb-8" style={{fontSize: '1.125rem', color: 'rgba(233, 236, 221, 0.8)', marginBottom: '2rem'}}>
             Let&apos;s discuss how we can help bring your vision to life.
           </p>
           <Link href="/contact" className="inline-flex items-center" style={{
-            backgroundColor: '#fbbf24',
-            color: '#1e293b',
+            backgroundColor: '#D7E150',
+            color: '#03203D',
             fontWeight: '700',
             padding: '1rem 2.5rem',
             borderRadius: '2rem',
@@ -107,17 +302,17 @@ export default function About() {
             alignItems: 'center',
             gap: '0.5rem',
             transition: 'all 0.3s ease',
-            boxShadow: '0 10px 25px rgba(251, 191, 36, 0.3)'
+            boxShadow: '0 10px 25px rgba(215, 225, 80, 0.3)'
           }}
           onMouseEnter={(e) => {
-            e.currentTarget.style.backgroundColor = '#f59e0b';
+            e.currentTarget.style.backgroundColor = '#E9ECDD';
             e.currentTarget.style.transform = 'translateY(-2px)';
-            e.currentTarget.style.boxShadow = '0 15px 35px rgba(251, 191, 36, 0.4)';
+            e.currentTarget.style.boxShadow = '0 15px 35px rgba(215, 225, 80, 0.5)';
           }}
           onMouseLeave={(e) => {
-            e.currentTarget.style.backgroundColor = '#fbbf24';
+            e.currentTarget.style.backgroundColor = '#D7E150';
             e.currentTarget.style.transform = 'translateY(0)';
-            e.currentTarget.style.boxShadow = '0 10px 25px rgba(251, 191, 36, 0.3)';
+            e.currentTarget.style.boxShadow = '0 10px 25px rgba(215, 225, 80, 0.3)';
           }}>
             Get Started <ArrowRight className="ml-2" size={20} />
           </Link>

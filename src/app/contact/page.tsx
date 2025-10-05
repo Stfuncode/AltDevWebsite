@@ -10,13 +10,23 @@ export default function Contact() {
     email: '',
     company: '',
     projectType: '',
-    budget: '',
-    timeline: '',
-    message: ''
+    message: '',
+    // Data Migration specific
+    dataSize: 'medium',
+    dataSourcesCountMigration: 1,
+    criticalFactors: [] as string[],
+    // ML/AI specific
+    modelComplexity: 'medium',
+    dataVolume: 'medium',
+    // Analytics specific
+    dashboardCount: 3,
+    dataSourcesCount: 2,
+    // Consulting specific
+    consultingDuration: 'short'
   })
 
-  // const [currentStep, setCurrentStep] = useState(0)
   const [isFormValid, setIsFormValid] = useState(false)
+  const [estimatedPrice, setEstimatedPrice] = useState({ min: 0, max: 0 })
 
   const projectTypes = [
     { id: 'data-analytics', name: 'Data Analytics & BI', icon: <BarChart3 size={20} /> },
@@ -25,18 +35,19 @@ export default function Contact() {
     { id: 'consulting', name: 'Data Strategy Consulting', icon: <Users size={20} /> }
   ]
 
-  const budgetRanges = [
-    { id: 'under-25k', name: 'Under $25K' },
-    { id: '25k-50k', name: '$25K - $50K' },
-    { id: '50k-100k', name: '$50K - $100K' },
-    { id: '100k-plus', name: '$100K+' }
+  const dataSizeOptions = [
+    { id: 'small', name: 'Small (< 100 GB)', basePrice: 5000 },
+    { id: 'medium', name: 'Medium (100 GB - 1 TB)', basePrice: 25000 },
+    { id: 'large', name: 'Large (1 TB - 10 TB)', basePrice: 80000 },
+    { id: 'enterprise', name: 'Enterprise (10+ TB)', basePrice: 200000 }
   ]
 
-  const timelines = [
-    { id: '1-3-months', name: '1-3 months' },
-    { id: '3-6-months', name: '3-6 months' },
-    { id: '6-12-months', name: '6-12 months' },
-    { id: '12-plus-months', name: '12+ months' }
+  const criticalFactorsOptions = [
+    { id: 'zero-downtime', name: 'Zero Downtime Required', cost: 15000 },
+    { id: 'data-validation', name: 'Comprehensive Data Validation', cost: 8000 },
+    { id: 'security-compliance', name: 'Security & Compliance (HIPAA, SOC2)', cost: 12000 },
+    { id: 'real-time-sync', name: 'Real-time Data Synchronization', cost: 10000 },
+    { id: 'transformation', name: 'Complex Data Transformation', cost: 9000 }
   ]
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -46,9 +57,79 @@ export default function Contact() {
     })
   }
 
+  const handleSliderChange = (name: string, value: number) => {
+    setFormData({
+      ...formData,
+      [name]: value
+    })
+  }
+
+  const handleCheckboxChange = (factorId: string) => {
+    const currentFactors = formData.criticalFactors
+    const newFactors = currentFactors.includes(factorId)
+      ? currentFactors.filter(f => f !== factorId)
+      : [...currentFactors, factorId]
+
+    setFormData({
+      ...formData,
+      criticalFactors: newFactors
+    })
+  }
+
+  const calculatePrice = () => {
+    let baseMin = 0
+    let baseMax = 0
+
+    switch (formData.projectType) {
+      case 'data-migration':
+        // Base price by size tier
+        const sizeOption = dataSizeOptions.find(s => s.id === formData.dataSize)
+        const basePrice = sizeOption?.basePrice || 25000
+
+        // Number of sources multiplier
+        const sourcesMultiplier = 1 + (formData.dataSourcesCountMigration - 1) * 0.3
+
+        // Critical factors additional cost
+        const factorsCost = formData.criticalFactors.reduce((total, factorId) => {
+          const factor = criticalFactorsOptions.find(f => f.id === factorId)
+          return total + (factor?.cost || 0)
+        }, 0)
+
+        baseMin = Math.round((basePrice * sourcesMultiplier + factorsCost) * 0.85)
+        baseMax = Math.round((basePrice * sourcesMultiplier + factorsCost) * 1.15)
+        break
+
+      case 'ml-ai':
+        const complexityMap = { simple: 30000, medium: 60000, complex: 120000 }
+        const volumeMap = { small: 1, medium: 1.3, large: 1.6 }
+        const baseMLPrice = complexityMap[formData.modelComplexity as keyof typeof complexityMap] || 60000
+        const volumeMultiplier = volumeMap[formData.dataVolume as keyof typeof volumeMap] || 1.3
+        baseMin = Math.round(baseMLPrice * volumeMultiplier * 0.9)
+        baseMax = Math.round(baseMLPrice * volumeMultiplier * 1.3)
+        break
+
+      case 'data-analytics':
+        const dashboardPrice = 8000
+        const sourcePrice = 5000
+        const analyticsBase = (formData.dashboardCount * dashboardPrice) + (formData.dataSourcesCount * sourcePrice)
+        baseMin = Math.round(analyticsBase * 0.85)
+        baseMax = Math.round(analyticsBase * 1.25)
+        break
+
+      case 'consulting':
+        const durationMap = { short: 25000, medium: 50000, long: 100000 }
+        const consultingBase = durationMap[formData.consultingDuration as keyof typeof durationMap] || 50000
+        baseMin = Math.round(consultingBase * 0.9)
+        baseMax = Math.round(consultingBase * 1.2)
+        break
+    }
+
+    setEstimatedPrice({ min: baseMin, max: baseMax })
+  }
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    console.log('Form submitted:', formData)
+    console.log('Form submitted:', formData, 'Estimated price:', estimatedPrice)
     // Handle form submission logic here
   }
 
@@ -58,8 +139,14 @@ export default function Contact() {
     setIsFormValid(valid)
   }, [formData])
 
+  useEffect(() => {
+    if (formData.projectType) {
+      calculatePrice()
+    }
+  }, [formData.projectType, formData.dataSize, formData.dataSourcesCountMigration, formData.criticalFactors, formData.modelComplexity, formData.dataVolume, formData.dashboardCount, formData.dataSourcesCount, formData.consultingDuration])
+
   return (
-    <div className="min-h-screen py-20 relative bg-gray-50">
+    <div className="min-h-screen py-20 relative" style={{ backgroundColor: '#03203D' }}>
       {/* Background Data Visualization */}
       <div className="absolute inset-0 opacity-20">
         <DataConnectionNetwork />
@@ -69,38 +156,38 @@ export default function Contact() {
 
         {/* Hero Section */}
         <div className="text-center mb-16">
-          <div className="inline-flex items-center bg-yellow-100 text-yellow-800 px-4 py-2 rounded-full text-sm font-medium mb-6">
+          <div className="inline-flex items-center px-4 py-2 rounded-full text-sm font-medium mb-6" style={{ backgroundColor: 'rgba(215, 225, 80, 0.1)', border: '1px solid rgba(215, 225, 80, 0.3)', color: '#D7E150' }}>
             <MessageSquare className="mr-2" size={16} />
             Let&apos;s Build Your Data Solution
           </div>
-          <h1 className="text-4xl lg:text-6xl font-bold text-gray-900 mb-6">
-            Transform Your <span className="text-yellow-500">Data Vision</span> Into Reality
+          <h1 className="text-4xl lg:text-6xl font-bold mb-6" style={{ color: '#E9ECDD' }}>
+            Transform Your <span style={{ color: '#D7E150' }}>Data Vision</span> Into Reality
           </h1>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-8">
+          <p className="text-xl max-w-3xl mx-auto mb-8" style={{ color: 'rgba(233, 236, 221, 0.8)' }}>
             Connect with our data experts to discuss your project requirements and discover how
-            we can accelerate your analytics journey with Microsoft Fabric and cutting-edge solutions.
+            we can accelerate your analytics journey with cutting-edge solutions.
           </p>
         </div>
 
         {/* Enhanced Contact Form */}
         <div className="max-w-4xl mx-auto">
-          <div className="bg-white rounded-2xl shadow-xl border border-gray-200 overflow-hidden">
+          <div className="rounded-2xl shadow-xl overflow-hidden" style={{ backgroundColor: 'rgba(3, 32, 61, 0.5)', backdropFilter: 'blur(20px)', border: '1px solid rgba(215, 225, 80, 0.2)' }}>
             {/* Form Header */}
-            <div className="bg-gradient-to-r from-gray-900 to-gray-800 px-8 py-6">
-              <h2 className="text-2xl font-bold text-white mb-2">Start Your Data Journey</h2>
-              <p className="text-gray-300">Tell us about your project and let&apos;s build something amazing together</p>
+            <div className="px-8 py-6" style={{ background: 'linear-gradient(135deg, #03203D 0%, #04152a 100%)' }}>
+              <h2 className="text-2xl font-bold mb-2" style={{ color: '#E9ECDD' }}>Start Your Data Journey</h2>
+              <p style={{ color: 'rgba(233, 236, 221, 0.7)' }}>Tell us about your project and let&apos;s build something amazing together</p>
             </div>
 
             <form onSubmit={handleSubmit} className="p-8 space-y-8">
               {/* Basic Information */}
               <div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center">
-                  <Users className="mr-2 text-yellow-500" size={20} />
+                <h3 className="text-lg font-semibold mb-4 flex items-center" style={{ color: '#E9ECDD' }}>
+                  <Users className="mr-2" size={20} style={{ color: '#D7E150' }} />
                   Basic Information
                 </h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                    <label className="block text-sm font-medium mb-2" style={{ color: 'rgba(233, 236, 221, 0.9)' }}>
                       Full Name *
                     </label>
                     <input
@@ -109,12 +196,13 @@ export default function Contact() {
                       required
                       value={formData.name}
                       onChange={handleChange}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent transition-all duration-200"
+                      className="w-full px-4 py-3 rounded-lg transition-all duration-200"
+                      style={{ backgroundColor: 'rgba(233, 236, 221, 0.1)', border: '1px solid rgba(233, 236, 221, 0.2)', color: '#E9ECDD' }}
                       placeholder="Your full name"
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                    <label className="block text-sm font-medium mb-2" style={{ color: 'rgba(233, 236, 221, 0.9)' }}>
                       Email Address *
                     </label>
                     <input
@@ -123,12 +211,13 @@ export default function Contact() {
                       required
                       value={formData.email}
                       onChange={handleChange}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent transition-all duration-200"
+                      className="w-full px-4 py-3 rounded-lg transition-all duration-200"
+                      style={{ backgroundColor: 'rgba(233, 236, 221, 0.1)', border: '1px solid rgba(233, 236, 221, 0.2)', color: '#E9ECDD' }}
                       placeholder="your@email.com"
                     />
                   </div>
                   <div className="md:col-span-2">
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                    <label className="block text-sm font-medium mb-2" style={{ color: 'rgba(233, 236, 221, 0.9)' }}>
                       Company/Organization *
                     </label>
                     <input
@@ -137,7 +226,8 @@ export default function Contact() {
                       required
                       value={formData.company}
                       onChange={handleChange}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent transition-all duration-200"
+                      className="w-full px-4 py-3 rounded-lg transition-all duration-200"
+                      style={{ backgroundColor: 'rgba(233, 236, 221, 0.1)', border: '1px solid rgba(233, 236, 221, 0.2)', color: '#E9ECDD' }}
                       placeholder="Your company name"
                     />
                   </div>
@@ -146,19 +236,20 @@ export default function Contact() {
 
               {/* Project Type Selection */}
               <div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center">
-                  <BarChart3 className="mr-2 text-yellow-500" size={20} />
+                <h3 className="text-lg font-semibold mb-4 flex items-center" style={{ color: '#E9ECDD' }}>
+                  <BarChart3 className="mr-2" size={20} style={{ color: '#D7E150' }} />
                   Project Type *
                 </h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   {projectTypes.map((type) => (
                     <label
                       key={type.id}
-                      className={`flex items-center p-4 border-2 rounded-lg cursor-pointer transition-all duration-200 ${
-                        formData.projectType === type.id
-                          ? 'border-yellow-500 bg-yellow-50 text-yellow-700'
-                          : 'border-gray-200 hover:border-gray-300'
-                      }`}
+                      className="flex items-center p-4 border-2 rounded-lg cursor-pointer transition-all duration-200"
+                      style={{
+                        borderColor: formData.projectType === type.id ? '#D7E150' : 'rgba(233, 236, 221, 0.2)',
+                        backgroundColor: formData.projectType === type.id ? 'rgba(215, 225, 80, 0.1)' : 'transparent',
+                        color: formData.projectType === type.id ? '#D7E150' : 'rgba(233, 236, 221, 0.8)'
+                      }}
                     >
                       <input
                         type="radio"
@@ -175,50 +266,236 @@ export default function Contact() {
                 </div>
               </div>
 
-              {/* Budget & Timeline */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {/* Project-Specific Configuration */}
+              {formData.projectType === 'data-migration' && (
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Budget Range
-                  </label>
-                  <select
-                    name="budget"
-                    value={formData.budget}
-                    onChange={handleChange}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent transition-all duration-200"
-                  >
-                    <option value="">Select budget range</option>
-                    {budgetRanges.map((range) => (
-                      <option key={range.id} value={range.id}>
-                        {range.name}
-                      </option>
-                    ))}
-                  </select>
+                  <h3 className="text-lg font-semibold mb-4 flex items-center" style={{ color: '#E9ECDD' }}>
+                    <ArrowRight className="mr-2" size={20} style={{ color: '#D7E150' }} />
+                    Migration Configuration
+                  </h3>
+
+                  {/* Data Size Options */}
+                  <div className="mb-6">
+                    <label className="block text-sm font-medium mb-3" style={{ color: 'rgba(233, 236, 221, 0.9)' }}>
+                      Data Size *
+                    </label>
+                    <div className="grid grid-cols-2 gap-3">
+                      {dataSizeOptions.map((option) => (
+                        <label
+                          key={option.id}
+                          className="flex items-center p-3 rounded-lg cursor-pointer transition-all duration-200"
+                          style={{
+                            backgroundColor: formData.dataSize === option.id ? 'rgba(215, 225, 80, 0.1)' : 'rgba(233, 236, 221, 0.05)',
+                            border: `2px solid ${formData.dataSize === option.id ? '#D7E150' : 'rgba(233, 236, 221, 0.2)'}`,
+                            color: formData.dataSize === option.id ? '#D7E150' : 'rgba(233, 236, 221, 0.8)'
+                          }}
+                        >
+                          <input
+                            type="radio"
+                            name="dataSize"
+                            value={option.id}
+                            checked={formData.dataSize === option.id}
+                            onChange={handleChange}
+                            className="sr-only"
+                          />
+                          <span className="font-medium text-sm">{option.name}</span>
+                        </label>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Number of Data Sources */}
+                  <div className="mb-6">
+                    <label className="block text-sm font-medium mb-2" style={{ color: 'rgba(233, 236, 221, 0.9)' }}>
+                      Number of Data Sources: <span style={{ color: '#D7E150' }}>{formData.dataSourcesCountMigration}</span>
+                    </label>
+                    <input
+                      type="range"
+                      min="1"
+                      max="10"
+                      value={formData.dataSourcesCountMigration}
+                      onChange={(e) => handleSliderChange('dataSourcesCountMigration', parseInt(e.target.value))}
+                      className="w-full h-2 rounded-lg appearance-none cursor-pointer"
+                      style={{
+                        background: `linear-gradient(to right, #D7E150 0%, #D7E150 ${(formData.dataSourcesCountMigration / 10) * 100}%, rgba(233, 236, 221, 0.2) ${(formData.dataSourcesCountMigration / 10) * 100}%, rgba(233, 236, 221, 0.2) 100%)`
+                      }}
+                    />
+                    <div className="flex justify-between text-xs mt-1" style={{ color: 'rgba(233, 236, 221, 0.6)' }}>
+                      <span>1 source</span>
+                      <span>10 sources</span>
+                    </div>
+                  </div>
+
+                  {/* Critical Factors */}
+                  <div>
+                    <label className="block text-sm font-medium mb-3" style={{ color: 'rgba(233, 236, 221, 0.9)' }}>
+                      Critical Requirements
+                    </label>
+                    <div className="space-y-2">
+                      {criticalFactorsOptions.map((factor) => (
+                        <label
+                          key={factor.id}
+                          className="flex items-center p-3 rounded-lg cursor-pointer transition-all duration-200"
+                          style={{
+                            backgroundColor: formData.criticalFactors.includes(factor.id) ? 'rgba(215, 225, 80, 0.1)' : 'rgba(233, 236, 221, 0.05)',
+                            border: `1px solid ${formData.criticalFactors.includes(factor.id) ? '#D7E150' : 'rgba(233, 236, 221, 0.2)'}`,
+                            color: formData.criticalFactors.includes(factor.id) ? '#D7E150' : 'rgba(233, 236, 221, 0.8)'
+                          }}
+                        >
+                          <input
+                            type="checkbox"
+                            checked={formData.criticalFactors.includes(factor.id)}
+                            onChange={() => handleCheckboxChange(factor.id)}
+                            className="mr-3"
+                            style={{ accentColor: '#D7E150' }}
+                          />
+                          <span className="flex-1">{factor.name}</span>
+                          <span className="text-sm" style={{ color: '#D7E150' }}>+${(factor.cost / 1000).toFixed(0)}K</span>
+                        </label>
+                      ))}
+                    </div>
+                  </div>
                 </div>
+              )}
+
+              {formData.projectType === 'ml-ai' && (
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Project Timeline
-                  </label>
-                  <select
-                    name="timeline"
-                    value={formData.timeline}
-                    onChange={handleChange}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent transition-all duration-200"
-                  >
-                    <option value="">Select timeline</option>
-                    {timelines.map((timeline) => (
-                      <option key={timeline.id} value={timeline.id}>
-                        {timeline.name}
-                      </option>
-                    ))}
-                  </select>
+                  <h3 className="text-lg font-semibold mb-4 flex items-center" style={{ color: '#E9ECDD' }}>
+                    <Zap className="mr-2" size={20} style={{ color: '#D7E150' }} />
+                    ML/AI Configuration
+                  </h3>
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                      <label className="block text-sm font-medium mb-2" style={{ color: 'rgba(233, 236, 221, 0.9)' }}>
+                        Model Complexity
+                      </label>
+                      <select
+                        name="modelComplexity"
+                        value={formData.modelComplexity}
+                        onChange={handleChange}
+                        className="w-full px-4 py-3 rounded-lg transition-all duration-200"
+                        style={{ backgroundColor: 'rgba(233, 236, 221, 0.1)', border: '1px solid rgba(233, 236, 221, 0.2)', color: '#E9ECDD' }}
+                      >
+                        <option value="simple" style={{ backgroundColor: '#03203D' }}>Simple (Classification, Regression)</option>
+                        <option value="medium" style={{ backgroundColor: '#03203D' }}>Medium (NLP, Recommender)</option>
+                        <option value="complex" style={{ backgroundColor: '#03203D' }}>Complex (Computer Vision, Deep Learning)</option>
+                      </select>
+                    </div>
+
+                    <div>
+                      <label className="block text-sm font-medium mb-2" style={{ color: 'rgba(233, 236, 221, 0.9)' }}>
+                        Data Volume
+                      </label>
+                      <select
+                        name="dataVolume"
+                        value={formData.dataVolume}
+                        onChange={handleChange}
+                        className="w-full px-4 py-3 rounded-lg transition-all duration-200"
+                        style={{ backgroundColor: 'rgba(233, 236, 221, 0.1)', border: '1px solid rgba(233, 236, 221, 0.2)', color: '#E9ECDD' }}
+                      >
+                        <option value="small" style={{ backgroundColor: '#03203D' }}>Small (&lt;100K records)</option>
+                        <option value="medium" style={{ backgroundColor: '#03203D' }}>Medium (100K-1M records)</option>
+                        <option value="large" style={{ backgroundColor: '#03203D' }}>Large (1M+ records)</option>
+                      </select>
+                    </div>
+                  </div>
                 </div>
-              </div>
+              )}
+
+              {formData.projectType === 'data-analytics' && (
+                <div>
+                  <h3 className="text-lg font-semibold mb-4 flex items-center" style={{ color: '#E9ECDD' }}>
+                    <BarChart3 className="mr-2" size={20} style={{ color: '#D7E150' }} />
+                    Analytics Configuration
+                  </h3>
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                      <label className="block text-sm font-medium mb-2" style={{ color: 'rgba(233, 236, 221, 0.9)' }}>
+                        Dashboards: <span style={{ color: '#D7E150' }}>{formData.dashboardCount}</span>
+                      </label>
+                      <input
+                        type="range"
+                        min="1"
+                        max="20"
+                        value={formData.dashboardCount}
+                        onChange={(e) => handleSliderChange('dashboardCount', parseInt(e.target.value))}
+                        className="w-full h-2 rounded-lg appearance-none cursor-pointer"
+                        style={{
+                          background: `linear-gradient(to right, #D7E150 0%, #D7E150 ${(formData.dashboardCount / 20) * 100}%, rgba(233, 236, 221, 0.2) ${(formData.dashboardCount / 20) * 100}%, rgba(233, 236, 221, 0.2) 100%)`
+                        }}
+                      />
+                    </div>
+
+                    <div>
+                      <label className="block text-sm font-medium mb-2" style={{ color: 'rgba(233, 236, 221, 0.9)' }}>
+                        Data Sources: <span style={{ color: '#D7E150' }}>{formData.dataSourcesCount}</span>
+                      </label>
+                      <input
+                        type="range"
+                        min="1"
+                        max="15"
+                        value={formData.dataSourcesCount}
+                        onChange={(e) => handleSliderChange('dataSourcesCount', parseInt(e.target.value))}
+                        className="w-full h-2 rounded-lg appearance-none cursor-pointer"
+                        style={{
+                          background: `linear-gradient(to right, #D7E150 0%, #D7E150 ${(formData.dataSourcesCount / 15) * 100}%, rgba(233, 236, 221, 0.2) ${(formData.dataSourcesCount / 15) * 100}%, rgba(233, 236, 221, 0.2) 100%)`
+                        }}
+                      />
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {formData.projectType === 'consulting' && (
+                <div>
+                  <h3 className="text-lg font-semibold mb-4 flex items-center" style={{ color: '#E9ECDD' }}>
+                    <Users className="mr-2" size={20} style={{ color: '#D7E150' }} />
+                    Consulting Configuration
+                  </h3>
+
+                  <div>
+                    <label className="block text-sm font-medium mb-2" style={{ color: 'rgba(233, 236, 221, 0.9)' }}>
+                      Engagement Duration
+                    </label>
+                    <select
+                      name="consultingDuration"
+                      value={formData.consultingDuration}
+                      onChange={handleChange}
+                      className="w-full px-4 py-3 rounded-lg transition-all duration-200"
+                      style={{ backgroundColor: 'rgba(233, 236, 221, 0.1)', border: '1px solid rgba(233, 236, 221, 0.2)', color: '#E9ECDD' }}
+                    >
+                      <option value="short" style={{ backgroundColor: '#03203D' }}>Short (1-3 months)</option>
+                      <option value="medium" style={{ backgroundColor: '#03203D' }}>Medium (3-6 months)</option>
+                      <option value="long" style={{ backgroundColor: '#03203D' }}>Long (6+ months)</option>
+                    </select>
+                  </div>
+                </div>
+              )}
+
+              {/* Price Estimate Display */}
+              {formData.projectType && estimatedPrice.min > 0 && (
+                <div className="p-6 rounded-xl" style={{
+                  background: 'linear-gradient(135deg, rgba(215, 225, 80, 0.1) 0%, rgba(215, 225, 80, 0.05) 100%)',
+                  border: '2px solid rgba(215, 225, 80, 0.3)'
+                }}>
+                  <div className="text-center">
+                    <p className="text-sm mb-2" style={{ color: 'rgba(233, 236, 221, 0.8)' }}>Estimated Project Cost</p>
+                    <p className="text-3xl font-bold" style={{ color: '#D7E150' }}>
+                      ${(estimatedPrice.min / 1000).toFixed(0)}K - ${(estimatedPrice.max / 1000).toFixed(0)}K
+                    </p>
+                    <p className="text-xs mt-2" style={{ color: 'rgba(233, 236, 221, 0.6)' }}>
+                      *Actual cost may vary based on specific requirements
+                    </p>
+                  </div>
+                </div>
+              )}
 
               {/* Project Details */}
               <div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center">
-                  <MessageSquare className="mr-2 text-yellow-500" size={20} />
+                <h3 className="text-lg font-semibold mb-4 flex items-center" style={{ color: '#E9ECDD' }}>
+                  <MessageSquare className="mr-2" size={20} style={{ color: '#D7E150' }} />
                   Project Details *
                 </h3>
                 <textarea
@@ -228,7 +505,8 @@ export default function Contact() {
                   value={formData.message}
                   onChange={handleChange}
                   placeholder="Describe your project goals, current challenges, data sources, and specific requirements..."
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent resize-vertical transition-all duration-200"
+                  className="w-full px-4 py-3 rounded-lg resize-vertical transition-all duration-200"
+                  style={{ backgroundColor: 'rgba(233, 236, 221, 0.1)', border: '1px solid rgba(233, 236, 221, 0.2)', color: '#E9ECDD' }}
                 />
               </div>
 
@@ -237,11 +515,27 @@ export default function Contact() {
                 <button
                   type="submit"
                   disabled={!isFormValid}
-                  className={`inline-flex items-center px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-200 ${
-                    isFormValid
-                      ? 'bg-yellow-500 hover:bg-yellow-600 text-white shadow-lg hover:shadow-xl transform hover:-translate-y-1'
-                      : 'bg-gray-300 text-gray-500 cursor-not-allowed'
-                  }`}
+                  className="inline-flex items-center px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-200"
+                  style={{
+                    backgroundColor: isFormValid ? '#D7E150' : 'rgba(233, 236, 221, 0.2)',
+                    color: isFormValid ? '#03203D' : 'rgba(233, 236, 221, 0.5)',
+                    cursor: isFormValid ? 'pointer' : 'not-allowed',
+                    boxShadow: isFormValid ? '0 10px 25px rgba(215, 225, 80, 0.3)' : 'none'
+                  }}
+                  onMouseEnter={(e) => {
+                    if (isFormValid) {
+                      e.currentTarget.style.backgroundColor = '#E9ECDD'
+                      e.currentTarget.style.transform = 'translateY(-2px)'
+                      e.currentTarget.style.boxShadow = '0 15px 35px rgba(215, 225, 80, 0.5)'
+                    }
+                  }}
+                  onMouseLeave={(e) => {
+                    if (isFormValid) {
+                      e.currentTarget.style.backgroundColor = '#D7E150'
+                      e.currentTarget.style.transform = 'translateY(0)'
+                      e.currentTarget.style.boxShadow = '0 10px 25px rgba(215, 225, 80, 0.3)'
+                    }
+                  }}
                 >
                   <Send className="mr-2" size={20} />
                   Send Project Details
@@ -255,49 +549,58 @@ export default function Contact() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mt-16">
 
           {/* Contact Information */}
-          <div className="bg-white rounded-2xl shadow-lg p-8">
-            <h3 className="text-2xl font-bold text-gray-900 mb-6">Let&apos;s Connect</h3>
+          <div className="rounded-2xl shadow-lg p-8" style={{ backgroundColor: 'rgba(3, 32, 61, 0.5)', backdropFilter: 'blur(20px)', border: '1px solid rgba(215, 225, 80, 0.2)' }}>
+            <h3 className="text-2xl font-bold mb-6" style={{ color: '#E9ECDD' }}>Let&apos;s Connect</h3>
             <div className="space-y-6">
               <div className="flex items-start space-x-4">
-                <div className="p-3 rounded-full bg-yellow-100">
-                  <Mail size={24} className="text-yellow-600" />
+                <div className="p-3 rounded-full" style={{ backgroundColor: 'rgba(215, 225, 80, 0.1)' }}>
+                  <Mail size={24} style={{ color: '#D7E150' }} />
                 </div>
                 <div>
-                  <h4 className="font-semibold text-gray-900">Email</h4>
-                  <p className="text-gray-600">contact@altdev.com</p>
-                  <p className="text-sm text-gray-500">We&apos;ll respond within 24 hours</p>
+                  <h4 className="font-semibold" style={{ color: '#E9ECDD' }}>Email</h4>
+                  <p style={{ color: 'rgba(233, 236, 221, 0.8)' }}>contact@altdev.com</p>
+                  <p className="text-sm" style={{ color: 'rgba(233, 236, 221, 0.6)' }}>We&apos;ll respond within 24 hours</p>
                 </div>
               </div>
 
               <div className="flex items-start space-x-4">
-                <div className="p-3 rounded-full bg-yellow-100">
-                  <Phone size={24} className="text-yellow-600" />
+                <div className="p-3 rounded-full" style={{ backgroundColor: 'rgba(215, 225, 80, 0.1)' }}>
+                  <Phone size={24} style={{ color: '#D7E150' }} />
                 </div>
                 <div>
-                  <h4 className="font-semibold text-gray-900">Phone</h4>
-                  <p className="text-gray-600">+1 (555) 123-4567</p>
-                  <p className="text-sm text-gray-500">Mon-Fri, 9AM-6PM PST</p>
+                  <h4 className="font-semibold" style={{ color: '#E9ECDD' }}>Phone</h4>
+                  <p style={{ color: 'rgba(233, 236, 221, 0.8)' }}>+1 (555) 123-4567</p>
+                  <p className="text-sm" style={{ color: 'rgba(233, 236, 221, 0.6)' }}>Mon-Fri, 9AM-6PM PST</p>
                 </div>
               </div>
 
               <div className="flex items-start space-x-4">
-                <div className="p-3 rounded-full bg-yellow-100">
-                  <MapPin size={24} className="text-yellow-600" />
+                <div className="p-3 rounded-full" style={{ backgroundColor: 'rgba(215, 225, 80, 0.1)' }}>
+                  <MapPin size={24} style={{ color: '#D7E150' }} />
                 </div>
                 <div>
-                  <h4 className="font-semibold text-gray-900">Location</h4>
-                  <p className="text-gray-600">San Francisco, CA</p>
-                  <p className="text-sm text-gray-500">Remote-friendly worldwide</p>
+                  <h4 className="font-semibold" style={{ color: '#E9ECDD' }}>Location</h4>
+                  <p style={{ color: 'rgba(233, 236, 221, 0.8)' }}>San Francisco, CA</p>
+                  <p className="text-sm" style={{ color: 'rgba(233, 236, 221, 0.6)' }}>Remote-friendly worldwide</p>
                 </div>
               </div>
             </div>
 
-            <div className="mt-8 p-6 bg-gradient-to-r from-gray-900 to-gray-800 rounded-xl text-white">
-              <h4 className="text-lg font-bold mb-3">Schedule a Data Discovery Call</h4>
-              <p className="text-gray-300 mb-4">
+            <div className="mt-8 p-6 rounded-xl" style={{ background: 'linear-gradient(135deg, #03203D 0%, #04152a 100%)', border: '1px solid rgba(215, 225, 80, 0.2)' }}>
+              <h4 className="text-lg font-bold mb-3" style={{ color: '#E9ECDD' }}>Schedule a Data Discovery Call</h4>
+              <p className="mb-4" style={{ color: 'rgba(233, 236, 221, 0.7)' }}>
                 Book a 30-minute consultation to discuss your data challenges and explore solutions.
               </p>
-              <button className="inline-flex items-center bg-yellow-500 hover:bg-yellow-600 text-white font-semibold px-4 py-2 rounded-lg transition-colors duration-200">
+              <button
+                className="inline-flex items-center font-semibold px-4 py-2 rounded-lg transition-all duration-200"
+                style={{ backgroundColor: '#D7E150', color: '#03203D' }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.backgroundColor = '#E9ECDD'
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.backgroundColor = '#D7E150'
+                }}
+              >
                 <Calendar className="mr-2" size={16} />
                 Schedule Call
               </button>
@@ -305,42 +608,42 @@ export default function Contact() {
           </div>
 
           {/* Data Visualization Showcase */}
-          <div className="bg-gray-900 rounded-2xl p-8 relative overflow-hidden">
+          <div className="rounded-2xl p-8 relative overflow-hidden" style={{ backgroundColor: 'rgba(3, 32, 61, 0.8)', border: '1px solid rgba(215, 225, 80, 0.2)' }}>
             <div className="absolute inset-0 opacity-30">
               <DataConnectionNetwork />
             </div>
-            <div className="relative z-10 text-white">
-              <h3 className="text-2xl font-bold mb-4">Your Data, Connected</h3>
-              <p className="text-gray-300 mb-6">
+            <div className="relative z-10">
+              <h3 className="text-2xl font-bold mb-4" style={{ color: '#E9ECDD' }}>Your Data, Connected</h3>
+              <p className="mb-6" style={{ color: 'rgba(233, 236, 221, 0.7)' }}>
                 Watch how we transform disconnected data points into intelligent,
                 interconnected insights that drive business value.
               </p>
 
               <div className="space-y-4">
                 <div className="flex items-center space-x-3">
-                  <CheckCircle className="text-yellow-400" size={20} />
-                  <span>Real-time data processing</span>
+                  <CheckCircle size={20} style={{ color: '#D7E150' }} />
+                  <span style={{ color: 'rgba(233, 236, 221, 0.9)' }}>Real-time data processing</span>
                 </div>
                 <div className="flex items-center space-x-3">
-                  <CheckCircle className="text-yellow-400" size={20} />
-                  <span>Interactive visualizations</span>
+                  <CheckCircle size={20} style={{ color: '#D7E150' }} />
+                  <span style={{ color: 'rgba(233, 236, 221, 0.9)' }}>Interactive visualizations</span>
                 </div>
                 <div className="flex items-center space-x-3">
-                  <CheckCircle className="text-yellow-400" size={20} />
-                  <span>Predictive analytics</span>
+                  <CheckCircle size={20} style={{ color: '#D7E150' }} />
+                  <span style={{ color: 'rgba(233, 236, 221, 0.9)' }}>Predictive analytics</span>
                 </div>
                 <div className="flex items-center space-x-3">
-                  <CheckCircle className="text-yellow-400" size={20} />
-                  <span>Scalable cloud architecture</span>
+                  <CheckCircle size={20} style={{ color: '#D7E150' }} />
+                  <span style={{ color: 'rgba(233, 236, 221, 0.9)' }}>Scalable cloud architecture</span>
                 </div>
               </div>
 
-              <div className="mt-8 p-4 bg-white/10 rounded-lg backdrop-blur-sm">
-                <p className="text-sm text-gray-300">
+              <div className="mt-8 p-4 rounded-lg backdrop-blur-sm" style={{ backgroundColor: 'rgba(233, 236, 221, 0.1)' }}>
+                <p className="text-sm" style={{ color: 'rgba(233, 236, 221, 0.8)' }}>
                   &quot;AltDev transformed our data chaos into clear insights.
-                  The Microsoft Fabric implementation exceeded expectations.&quot;
+                  The implementation exceeded expectations.&quot;
                 </p>
-                <p className="text-xs text-yellow-400 mt-2">— Fortune 500 Client</p>
+                <p className="text-xs mt-2" style={{ color: '#D7E150' }}>— Fortune 500 Client</p>
               </div>
             </div>
           </div>
