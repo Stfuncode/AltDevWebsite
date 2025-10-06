@@ -1,10 +1,10 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
-import { TrendingUp, Users, Award, Zap } from 'lucide-react'
+import { TrendingUp, Users, Award, Zap, LucideIcon } from 'lucide-react'
 
 interface ResultCard {
-  icon: any
+  icon: LucideIcon
   number: string
   suffix: string
   label: string
