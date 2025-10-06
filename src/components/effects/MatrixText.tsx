@@ -18,7 +18,6 @@ export default function TypewriterText({
   showCursor = true
 }: TypewriterTextProps) {
   const [displayText, setDisplayText] = useState('')
-  const [currentIndex, setCurrentIndex] = useState(0)
   const [isTyping, setIsTyping] = useState(false)
   const [showBlinkingCursor, setShowBlinkingCursor] = useState(false)
   const intervalRef = useRef<NodeJS.Timeout | null>(null)
@@ -26,25 +25,21 @@ export default function TypewriterText({
   useEffect(() => {
     const startTyping = () => {
       setIsTyping(true)
-      setCurrentIndex(0)
+      let currentIndex = 0
 
       intervalRef.current = setInterval(() => {
-        setCurrentIndex((prevIndex) => {
-          const nextIndex = prevIndex + 1
+        currentIndex += 1
 
-          if (nextIndex <= text.length) {
-            setDisplayText(text.slice(0, nextIndex))
-            return nextIndex
-          } else {
-            // Typing complete
-            setIsTyping(false)
-            setShowBlinkingCursor(true)
-            if (intervalRef.current) {
-              clearInterval(intervalRef.current)
-            }
-            return prevIndex
+        if (currentIndex <= text.length) {
+          setDisplayText(text.slice(0, currentIndex))
+        } else {
+          // Typing complete
+          setIsTyping(false)
+          setShowBlinkingCursor(true)
+          if (intervalRef.current) {
+            clearInterval(intervalRef.current)
           }
-        })
+        }
       }, typeSpeed)
     }
 

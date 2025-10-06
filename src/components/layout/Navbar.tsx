@@ -139,7 +139,7 @@ const Navbar = () => {
               <div
                 key={item.name}
                 className="relative"
-                ref={(el) => (dropdownRefs.current[item.name] = el)}
+                ref={(el) => { dropdownRefs.current[item.name] = el }}
               >
                 {item.dropdown ? (
                   <button

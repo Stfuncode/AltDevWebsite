@@ -9,6 +9,8 @@ export default function TechStackBackground() {
   useEffect(() => {
     if (!containerRef.current) return
 
+    const container = containerRef.current // Capture ref value
+
     // Scene setup
     const scene = new THREE.Scene()
     const camera = new THREE.PerspectiveCamera(
@@ -25,7 +27,7 @@ export default function TechStackBackground() {
     })
     renderer.setSize(window.innerWidth, window.innerHeight)
     renderer.setPixelRatio(window.devicePixelRatio)
-    containerRef.current.appendChild(renderer.domElement)
+    container.appendChild(renderer.domElement)
 
     // Create particles
     const particlesGeometry = new THREE.BufferGeometry()
@@ -51,7 +53,7 @@ export default function TechStackBackground() {
     scene.add(particlesMesh)
 
     // Create wireframe cubes
-    const cubes: THREE.Mesh[] = []
+    const cubes: THREE.LineSegments[] = [] // Changed from THREE.Mesh[]
     const cubeGeometry = new THREE.BoxGeometry(0.3, 0.3, 0.3)
     const cubeEdges = new THREE.EdgesGeometry(cubeGeometry)
 
@@ -65,7 +67,7 @@ export default function TechStackBackground() {
       cube.position.x = (Math.random() - 0.5) * 10
       cube.position.y = (Math.random() - 0.5) * 10
       cube.position.z = (Math.random() - 0.5) * 10
-      cubes.push(cube as any)
+      cubes.push(cube) // Removed 'as any'
       scene.add(cube)
     }
 
@@ -121,7 +123,7 @@ export default function TechStackBackground() {
     return () => {
       window.removeEventListener('resize', handleResize)
       document.removeEventListener('mousemove', handleMouseMove)
-      containerRef.current?.removeChild(renderer.domElement)
+      container.removeChild(renderer.domElement) // Use captured variable
       renderer.dispose()
     }
   }, [])

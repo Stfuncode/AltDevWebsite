@@ -1,8 +1,30 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { Mail, Phone, MapPin, Send, ArrowRight, MessageSquare, Users, BarChart3, CheckCircle, Calendar, Zap } from 'lucide-react'
 import DataConnectionNetwork from '@/components/three/DataConnectionNetwork'
+
+const projectTypes = [
+  { id: 'data-analytics', name: 'Data Analytics & BI', icon: <BarChart3 size={20} /> },
+  { id: 'data-migration', name: 'Data Migration', icon: <ArrowRight size={20} /> },
+  { id: 'ml-ai', name: 'Machine Learning & AI', icon: <Zap size={20} /> },
+  { id: 'consulting', name: 'Data Strategy Consulting', icon: <Users size={20} /> }
+]
+
+const dataSizeOptions = [
+  { id: 'small', name: 'Small (< 100 GB)', basePrice: 5000 },
+  { id: 'medium', name: 'Medium (100 GB - 1 TB)', basePrice: 25000 },
+  { id: 'large', name: 'Large (1 TB - 10 TB)', basePrice: 80000 },
+  { id: 'enterprise', name: 'Enterprise (10+ TB)', basePrice: 200000 }
+]
+
+const criticalFactorsOptions = [
+  { id: 'zero-downtime', name: 'Zero Downtime Required', cost: 15000 },
+  { id: 'data-validation', name: 'Comprehensive Data Validation', cost: 8000 },
+  { id: 'security-compliance', name: 'Security & Compliance (HIPAA, SOC2)', cost: 12000 },
+  { id: 'real-time-sync', name: 'Real-time Data Synchronization', cost: 10000 },
+  { id: 'transformation', name: 'Complex Data Transformation', cost: 9000 }
+]
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -28,27 +50,6 @@ export default function Contact() {
   const [isFormValid, setIsFormValid] = useState(false)
   const [estimatedPrice, setEstimatedPrice] = useState({ min: 0, max: 0 })
 
-  const projectTypes = [
-    { id: 'data-analytics', name: 'Data Analytics & BI', icon: <BarChart3 size={20} /> },
-    { id: 'data-migration', name: 'Data Migration', icon: <ArrowRight size={20} /> },
-    { id: 'ml-ai', name: 'Machine Learning & AI', icon: <Zap size={20} /> },
-    { id: 'consulting', name: 'Data Strategy Consulting', icon: <Users size={20} /> }
-  ]
-
-  const dataSizeOptions = [
-    { id: 'small', name: 'Small (< 100 GB)', basePrice: 5000 },
-    { id: 'medium', name: 'Medium (100 GB - 1 TB)', basePrice: 25000 },
-    { id: 'large', name: 'Large (1 TB - 10 TB)', basePrice: 80000 },
-    { id: 'enterprise', name: 'Enterprise (10+ TB)', basePrice: 200000 }
-  ]
-
-  const criticalFactorsOptions = [
-    { id: 'zero-downtime', name: 'Zero Downtime Required', cost: 15000 },
-    { id: 'data-validation', name: 'Comprehensive Data Validation', cost: 8000 },
-    { id: 'security-compliance', name: 'Security & Compliance (HIPAA, SOC2)', cost: 12000 },
-    { id: 'real-time-sync', name: 'Real-time Data Synchronization', cost: 10000 },
-    { id: 'transformation', name: 'Complex Data Transformation', cost: 9000 }
-  ]
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setFormData({
@@ -76,7 +77,7 @@ export default function Contact() {
     })
   }
 
-  const calculatePrice = () => {
+  const calculatePrice = useCallback(() => {
     let baseMin = 0
     let baseMax = 0
 
@@ -125,7 +126,17 @@ export default function Contact() {
     }
 
     setEstimatedPrice({ min: baseMin, max: baseMax })
-  }
+  }, [
+    formData.projectType,
+    formData.dataSize,
+    formData.dataSourcesCountMigration,
+    formData.criticalFactors,
+    formData.modelComplexity,
+    formData.dataVolume,
+    formData.dashboardCount,
+    formData.dataSourcesCount,
+    formData.consultingDuration
+  ])
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
@@ -143,7 +154,7 @@ export default function Contact() {
     if (formData.projectType) {
       calculatePrice()
     }
-  }, [formData.projectType, formData.dataSize, formData.dataSourcesCountMigration, formData.criticalFactors, formData.modelComplexity, formData.dataVolume, formData.dashboardCount, formData.dataSourcesCount, formData.consultingDuration])
+  }, [formData.projectType, calculatePrice])
 
   return (
     <div className="min-h-screen py-20 relative" style={{ backgroundColor: '#03203D' }}>
