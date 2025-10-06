@@ -1,12 +1,12 @@
 'use client'
 
-import { useState, useEffect } from 'react'
-import { Code2, Server, Cloud, Database, Brain, Zap, ChevronLeft, ChevronRight, ArrowRight } from 'lucide-react'
+import { useState, useEffect, useCallback } from 'react'
+import { Code2, Server, Cloud, Database, Brain, Zap, ChevronLeft, ChevronRight, ArrowRight, LucideIcon } from 'lucide-react'
 import Link from 'next/link'
 
 interface TechItem {
   name: string
-  icon: any
+  icon: LucideIcon
   percentage: number
 }
 
@@ -73,21 +73,21 @@ export default function TechStackCarousel() {
   const [currentIndex, setCurrentIndex] = useState(0)
   const [isAnimating, setIsAnimating] = useState(false)
 
-  const nextSlide = () => {
+  const nextSlide = useCallback(() => {
     if (!isAnimating) {
       setIsAnimating(true)
       setCurrentIndex((prev) => (prev + 1) % useCases.length)
       setTimeout(() => setIsAnimating(false), 500)
     }
-  }
+  }, [isAnimating])
 
-  const prevSlide = () => {
+  const prevSlide = useCallback(() => {
     if (!isAnimating) {
       setIsAnimating(true)
       setCurrentIndex((prev) => (prev - 1 + useCases.length) % useCases.length)
       setTimeout(() => setIsAnimating(false), 500)
     }
-  }
+  }, [isAnimating])
 
   // Auto-advance carousel
   useEffect(() => {
@@ -96,7 +96,7 @@ export default function TechStackCarousel() {
     }, 5000)
 
     return () => clearInterval(interval)
-  }, [currentIndex])
+  }, [nextSlide])
 
   const currentUseCase = useCases[currentIndex]
 

@@ -1,13 +1,13 @@
 'use client'
 
 import { useState, useEffect, useRef } from 'react'
-import { Code2, Server, Cloud, Database, Brain, Zap, PieChart, Leaf, FileCode, Box, Settings, CloudCog, Network, Hexagon } from 'lucide-react'
+import { Code2, Server, Cloud, Database, Brain, Zap, PieChart, Box, Settings, CloudCog, Network, Hexagon, LucideIcon } from 'lucide-react'
 import Link from 'next/link'
 
 interface TechCard {
   id: string
   name: string
-  icon: any
+  icon: LucideIcon
   percentage: number
   position: { x: number; y: number }
   connections: string[]
@@ -81,7 +81,7 @@ const useCases: UseCase[] = [
 ]
 
 export default function TechStackNetwork() {
-  const [activeTab, setActiveTab] = useState(useCases[0].id)
+  const [activeTab] = useState(useCases[0].id)
   const [hoveredTab, setHoveredTab] = useState<string | null>(null)
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const containerRef = useRef<HTMLDivElement>(null)
