@@ -1,304 +1,355 @@
 'use client'
 
-import { Suspense } from 'react'
 import Link from 'next/link'
-import { ArrowRight, Code, Zap, Shield, Users, CheckCircle, ArrowUpRight } from 'lucide-react'
-import MatrixEffect from '@/components/three/MatrixEffect'
-import TypewriterText from '@/components/effects/MatrixText'
+import { ArrowRight, Code, Layers, Zap, CheckCircle2, Rocket, Shield, GitBranch } from 'lucide-react'
+import DataVisualization from '@/components/three/DataVisualization'
 
-const technologies = [
-  'React', 'Next.js', 'Node.js', 'Python', 'TypeScript', 'PostgreSQL',
-  'MongoDB', 'AWS', 'Docker', 'Kubernetes', 'GraphQL', 'Redis'
-]
-
-const features = [
-  {
-    icon: Code,
-    title: 'Shift-Left Development',
-    description: 'Quality, security, and testing integrated from the very beginning of the development cycle.'
-  },
-  {
-    icon: Zap,
-    title: 'Performance First',
-    description: 'Optimized applications that load fast and scale seamlessly with your business growth.'
-  },
-  {
-    icon: Shield,
-    title: 'Security by Design',
-    description: 'Enterprise-grade security measures and threat modeling integrated from day one.'
-  },
-  {
-    icon: Users,
-    title: 'Early Collaboration',
-    description: 'Stakeholder feedback and user testing integrated throughout the development process.'
-  }
-]
-
-const process = [
-  {
-    step: '01',
-    title: 'Security & Quality Planning',
-    description: 'Define security requirements, quality gates, and testing strategies before writing any code.'
-  },
-  {
-    step: '02',
-    title: 'Secure Architecture Design',
-    description: 'Create threat models, security controls, and performance benchmarks in the design phase.'
-  },
-  {
-    step: '03',
-    title: 'Shift-Left Development',
-    description: 'Continuous testing, security scanning, and quality checks integrated into every commit.'
-  },
-  {
-    step: '04',
-    title: 'Automated Deployment',
-    description: 'Zero-downtime deployment with automated security validation and performance monitoring.'
-  }
-]
-
-const caseStudies = [
-  {
-    title: 'E-commerce Platform',
-    description: 'Built a high-performance marketplace handling 100K+ daily transactions',
-    tech: ['Next.js', 'Node.js', 'PostgreSQL'],
-    metric: '300% increase in conversion rate'
-  },
-  {
-    title: 'Healthcare Dashboard',
-    description: 'Real-time patient monitoring system with advanced analytics',
-    tech: ['React', 'Python', 'MongoDB'],
-    metric: '50% reduction in response time'
-  },
-  {
-    title: 'FinTech API',
-    description: 'Secure payment processing system with fraud detection',
-    tech: ['Node.js', 'Redis', 'AWS'],
-    metric: '99.99% uptime achieved'
-  }
-]
-
-export default function CustomDevelopmentPage() {
+export default function CustomDevelopment() {
   return (
-    <div className="min-h-screen bg-gray-900 text-white relative overflow-hidden">
-      {/* Matrix Background Effect */}
-      <Suspense fallback={null}>
-        <MatrixEffect intensity="medium" />
-      </Suspense>
+    <div className="min-h-screen py-20 relative" style={{minHeight: '100vh', padding: '5rem 0', backgroundColor: '#03203D', margin: 0, width: '100%', position: 'relative'}}>
+      <div className="absolute inset-0 opacity-30">
+        <DataVisualization />
+      </div>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10" style={{maxWidth: '80rem', margin: '0 auto', padding: '0 2rem', position: 'relative', zIndex: 10}}>
 
-      {/* Content */}
-      <div className="relative z-10">
         {/* Hero Section */}
-        <section className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8">
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-gray-900/50 to-gray-900/90" />
+        <div className="text-center mb-16" style={{textAlign: 'center', marginBottom: '4rem'}}>
+          <h1 className="text-4xl font-bold text-center mb-8" style={{fontSize: '3.5rem', fontWeight: 'bold', color: '#E9ECDD', marginBottom: '1.5rem'}}>
+            Custom <span style={{color: '#D7E150'}}>Development</span>
+          </h1>
+          <p className="text-lg text-center max-w-3xl mx-auto" style={{fontSize: '1.25rem', color: 'rgba(233, 236, 221, 0.8)', maxWidth: '48rem', margin: '0 auto', lineHeight: '1.7'}}>
+            Build tailored data solutions that perfectly align with your unique business requirements. From data pipelines to analytics platforms, we create scalable, production-ready applications.
+          </p>
+        </div>
 
-          <div className="relative max-w-6xl mx-auto text-center">
-            <div className="mb-8">
-              <span className="inline-block px-4 py-2 bg-yellow-500/20 text-yellow-400 rounded-full text-sm font-medium border border-yellow-500/30">
-                Custom Development Solutions
-              </span>
+        {/* What We Build */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16" style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '2rem', marginBottom: '4rem'}}>
+          {[
+            {
+              icon: <Code size={48} />,
+              title: 'Data Applications',
+              description: 'Custom web and desktop applications for data analysis, visualization, and workflow automation'
+            },
+            {
+              icon: <Layers size={48} />,
+              title: 'Data Platforms',
+              description: 'End-to-end data platforms combining ingestion, processing, storage, and analytics'
+            },
+            {
+              icon: <Zap size={48} />,
+              title: 'Real-time Systems',
+              description: 'Streaming data pipelines and real-time analytics for time-sensitive insights'
+            }
+          ].map((solution, index) => (
+            <div
+              key={index}
+              className="rounded-xl shadow-lg p-6 text-center"
+              style={{
+                backgroundColor: 'rgba(3, 32, 61, 0.5)',
+                backdropFilter: 'blur(20px)',
+                borderRadius: '1rem',
+                boxShadow: '0 10px 25px rgba(0, 0, 0, 0.3)',
+                border: '1px solid rgba(215, 225, 80, 0.2)',
+                padding: '2rem',
+                textAlign: 'center',
+                transition: 'all 0.3s ease'
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.transform = 'translateY(-8px)';
+                e.currentTarget.style.boxShadow = '0 20px 40px rgba(215, 225, 80, 0.3)';
+                e.currentTarget.style.borderColor = '#D7E150';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.transform = 'translateY(0)';
+                e.currentTarget.style.boxShadow = '0 10px 25px rgba(0, 0, 0, 0.3)';
+                e.currentTarget.style.borderColor = 'rgba(215, 225, 80, 0.2)';
+              }}
+            >
+              <div className="mb-4 flex justify-center" style={{color: '#D7E150', marginBottom: '1.5rem', display: 'flex', justifyContent: 'center'}}>{solution.icon}</div>
+              <h3 className="text-xl font-semibold mb-3" style={{fontSize: '1.5rem', fontWeight: '600', color: '#E9ECDD', marginBottom: '1rem'}}>{solution.title}</h3>
+              <p style={{color: 'rgba(233, 236, 221, 0.8)', fontSize: '1rem', lineHeight: '1.6'}}>{solution.description}</p>
             </div>
+          ))}
+        </div>
 
-            <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-white via-yellow-200 to-yellow-400 bg-clip-text text-transparent">
-              Code the Future
-            </h1>
-
-            <p className="text-xl md:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto leading-relaxed">
-              We transform your vision into secure, scalable software solutions using shift-left development methodology that delivers quality from day one.
-            </p>
-
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link
-                href="/contact"
-                className="group bg-yellow-500 hover:bg-yellow-600 text-black font-semibold px-8 py-4 rounded-lg transition-all duration-200 shadow-lg hover:shadow-xl flex items-center justify-center"
+        {/* Technology Stack */}
+        <div
+          className="rounded-xl shadow-lg p-8 mb-16"
+          style={{
+            backgroundColor: 'rgba(3, 32, 61, 0.5)',
+            backdropFilter: 'blur(20px)',
+            borderRadius: '1rem',
+            boxShadow: '0 10px 25px rgba(0, 0, 0, 0.3)',
+            border: '1px solid rgba(215, 225, 80, 0.2)',
+            padding: '3rem',
+            marginBottom: '4rem'
+          }}
+        >
+          <h2 className="text-3xl font-bold text-center mb-8" style={{fontSize: '2.5rem', fontWeight: 'bold', color: '#E9ECDD', marginBottom: '2rem', textAlign: 'center'}}>
+            Our <span style={{color: '#D7E150'}}>Technology Stack</span>
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.5rem'}}>
+            {[
+              {
+                category: 'Backend & Data',
+                technologies: ['Python', 'Node.js', 'Apache Spark', 'PostgreSQL', 'MongoDB', 'Redis']
+              },
+              {
+                category: 'Cloud & Infrastructure',
+                technologies: ['AWS', 'Azure', 'GCP', 'Docker', 'Kubernetes', 'Terraform']
+              },
+              {
+                category: 'Frontend & Visualization',
+                technologies: ['React', 'Next.js', 'D3.js', 'Plotly', 'Tableau', 'Power BI']
+              },
+              {
+                category: 'Data Processing',
+                technologies: ['Apache Airflow', 'dbt', 'Kafka', 'Snowflake', 'Databricks', 'BigQuery']
+              },
+              {
+                category: 'ML & AI',
+                technologies: ['TensorFlow', 'PyTorch', 'scikit-learn', 'MLflow', 'Hugging Face', 'OpenAI']
+              },
+              {
+                category: 'DevOps & Quality',
+                technologies: ['Git', 'CI/CD', 'Jenkins', 'pytest', 'Jest', 'SonarQube']
+              }
+            ].map((stack, index) => (
+              <div
+                key={index}
+                className="p-6 rounded-lg"
+                style={{
+                  padding: '1.5rem',
+                  backgroundColor: 'rgba(215, 225, 80, 0.05)',
+                  borderRadius: '0.75rem',
+                  border: '1px solid rgba(215, 225, 80, 0.1)',
+                  transition: 'all 0.3s ease'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.backgroundColor = 'rgba(215, 225, 80, 0.1)';
+                  e.currentTarget.style.borderColor = 'rgba(215, 225, 80, 0.3)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.backgroundColor = 'rgba(215, 225, 80, 0.05)';
+                  e.currentTarget.style.borderColor = 'rgba(215, 225, 80, 0.1)';
+                }}
               >
-                Start Your Project
-                <ArrowRight className="ml-2 w-5 h-5 transition-transform group-hover:translate-x-1" />
-              </Link>
-
-              <Link
-                href="#process"
-                className="group border border-gray-600 hover:border-yellow-500 text-white hover:text-yellow-400 font-semibold px-8 py-4 rounded-lg transition-all duration-200 flex items-center justify-center"
-              >
-                Our Process
-                <ArrowUpRight className="ml-2 w-5 h-5 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
-              </Link>
-            </div>
-
-            {/* Technology Pills */}
-            <div className="mt-16">
-              <p className="text-gray-400 mb-6 text-sm uppercase tracking-wider">Technologies We Master</p>
-              <div className="flex flex-wrap justify-center gap-3 max-w-4xl mx-auto">
-                {technologies.map((tech, index) => (
-                  <span
-                    key={tech}
-                    className="px-4 py-2 bg-gray-800/50 border border-gray-700 rounded-full text-sm backdrop-blur-sm hover:border-yellow-500/50 transition-all duration-200 min-w-[100px] text-center"
-                  >
-                    <TypewriterText
-                      text={tech}
-                      delay={index * 300 + 1000}
-                      typeSpeed={60}
-                      showCursor={false}
-                      className="text-gray-300"
-                    />
-                  </span>
-                ))}
+                <h4 className="font-bold mb-3" style={{fontSize: '1.125rem', fontWeight: 'bold', color: '#D7E150', marginBottom: '1rem'}}>{stack.category}</h4>
+                <div className="flex flex-wrap gap-2" style={{display: 'flex', flexWrap: 'wrap', gap: '0.5rem'}}>
+                  {stack.technologies.map((tech, techIndex) => (
+                    <span
+                      key={techIndex}
+                      className="px-3 py-1 rounded-full text-sm"
+                      style={{
+                        padding: '0.25rem 0.75rem',
+                        borderRadius: '9999px',
+                        fontSize: '0.875rem',
+                        backgroundColor: 'rgba(233, 236, 221, 0.1)',
+                        color: 'rgba(233, 236, 221, 0.9)',
+                        border: '1px solid rgba(233, 236, 221, 0.2)'
+                      }}
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
               </div>
-            </div>
+            ))}
           </div>
-        </section>
+        </div>
 
-        {/* Features Section */}
-        <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-900/80 backdrop-blur-sm">
-          <div className="max-w-6xl mx-auto">
-            <div className="text-center mb-16">
-              <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
-                Why Choose Our Development
-              </h2>
-              <p className="text-xl text-gray-400 max-w-2xl mx-auto">
-                We don&apos;t just write code—we engineer secure, tested solutions using shift-left methodology that prevents issues before they occur.
-              </p>
-            </div>
-
-            <div className="grid md:grid-cols-2 gap-8">
-              {features.map((feature, index) => (
+        {/* Development Process */}
+        <div
+          className="rounded-xl shadow-lg p-8 mb-16"
+          style={{
+            backgroundColor: 'rgba(3, 32, 61, 0.5)',
+            backdropFilter: 'blur(20px)',
+            borderRadius: '1rem',
+            boxShadow: '0 10px 25px rgba(0, 0, 0, 0.3)',
+            border: '1px solid rgba(215, 225, 80, 0.2)',
+            padding: '3rem',
+            marginBottom: '4rem'
+          }}
+        >
+          <h2 className="text-3xl font-bold text-center mb-8" style={{fontSize: '2.5rem', fontWeight: 'bold', color: '#E9ECDD', marginBottom: '2rem', textAlign: 'center'}}>
+            Our Development <span style={{color: '#D7E150'}}>Process</span>
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6" style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '1.5rem'}}>
+            {[
+              {
+                step: '01',
+                title: 'Discovery',
+                description: 'Deep dive into requirements, constraints, and success criteria',
+                icon: <GitBranch size={32} />
+              },
+              {
+                step: '02',
+                title: 'Design',
+                description: 'Architecture design, technology selection, and prototyping',
+                icon: <Layers size={32} />
+              },
+              {
+                step: '03',
+                title: 'Development',
+                description: 'Agile sprints with continuous testing and stakeholder feedback',
+                icon: <Code size={32} />
+              },
+              {
+                step: '04',
+                title: 'Deployment',
+                description: 'Production rollout, monitoring setup, and knowledge transfer',
+                icon: <Rocket size={32} />
+              }
+            ].map((phase, index) => (
+              <div key={index} className="text-center" style={{textAlign: 'center'}}>
                 <div
-                  key={index}
-                  className="group p-8 bg-gray-800/50 border border-gray-700 rounded-xl backdrop-blur-sm hover:border-yellow-500/50 transition-all duration-300 hover:transform hover:scale-105"
+                  className="mb-4 flex items-center justify-center"
+                  style={{
+                    width: '5rem',
+                    height: '5rem',
+                    backgroundColor: 'rgba(215, 225, 80, 0.1)',
+                    color: '#D7E150',
+                    borderRadius: '1rem',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    margin: '0 auto 1rem auto',
+                    border: '2px solid rgba(215, 225, 80, 0.2)',
+                    transition: 'all 0.3s ease'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.backgroundColor = 'rgba(215, 225, 80, 0.2)';
+                    e.currentTarget.style.transform = 'scale(1.1) rotate(5deg)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.backgroundColor = 'rgba(215, 225, 80, 0.1)';
+                    e.currentTarget.style.transform = 'scale(1) rotate(0deg)';
+                  }}
                 >
-                  <div className="flex items-start space-x-4">
-                    <div className="flex-shrink-0 w-12 h-12 bg-yellow-500/20 rounded-lg flex items-center justify-center group-hover:bg-yellow-500/30 transition-colors duration-300">
-                      <feature.icon className="w-6 h-6 text-yellow-400" />
-                    </div>
-                    <div>
-                      <h3 className="text-xl font-semibold mb-3 text-white group-hover:text-yellow-400 transition-colors duration-300">
-                        {feature.title}
-                      </h3>
-                      <p className="text-gray-400 leading-relaxed">
-                        {feature.description}
-                      </p>
-                    </div>
-                  </div>
+                  {phase.icon}
                 </div>
-              ))}
-            </div>
+                <div className="text-sm font-bold mb-2" style={{fontSize: '0.875rem', fontWeight: 'bold', color: '#D7E150', marginBottom: '0.5rem'}}>STEP {phase.step}</div>
+                <h3 className="text-lg font-semibold mb-2" style={{fontSize: '1.25rem', fontWeight: '600', color: '#E9ECDD', marginBottom: '0.5rem'}}>{phase.title}</h3>
+                <p style={{color: 'rgba(233, 236, 221, 0.7)', fontSize: '0.9rem', lineHeight: '1.5'}}>{phase.description}</p>
+              </div>
+            ))}
           </div>
-        </section>
+        </div>
 
-        {/* Process Section */}
-        <section id="process" className="py-20 px-4 sm:px-6 lg:px-8">
-          <div className="max-w-6xl mx-auto">
-            <div className="text-center mb-16">
-              <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
-                Our Development Process
-              </h2>
-              <p className="text-xl text-gray-400 max-w-2xl mx-auto">
-                Our shift-left approach integrates quality, security, and testing from the earliest stages for faster, more reliable delivery.
-              </p>
-            </div>
-
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-              {process.map((item, index) => (
-                <div
-                  key={index}
-                  className="relative group"
-                >
-                  <div className="p-6 bg-gray-800/50 border border-gray-700 rounded-xl backdrop-blur-sm hover:border-yellow-500/50 transition-all duration-300">
-                    <div className="text-4xl font-bold text-yellow-500 mb-4">
-                      {item.step}
-                    </div>
-                    <h3 className="text-lg font-semibold mb-3 text-white">
-                      {item.title}
-                    </h3>
-                    <p className="text-gray-400 text-sm leading-relaxed">
-                      {item.description}
-                    </p>
-                  </div>
-
-                  {/* Connector Line */}
-                  {index < process.length - 1 && (
-                    <div className="hidden lg:block absolute top-1/2 -right-4 w-8 h-px bg-gradient-to-r from-yellow-500 to-transparent transform -translate-y-1/2" />
-                  )}
+        {/* Key Features */}
+        <div
+          className="rounded-xl shadow-lg p-8 mb-16"
+          style={{
+            backgroundColor: 'rgba(3, 32, 61, 0.5)',
+            backdropFilter: 'blur(20px)',
+            borderRadius: '1rem',
+            boxShadow: '0 10px 25px rgba(0, 0, 0, 0.3)',
+            border: '1px solid rgba(215, 225, 80, 0.2)',
+            padding: '3rem',
+            marginBottom: '4rem'
+          }}
+        >
+          <h2 className="text-3xl font-bold text-center mb-8" style={{fontSize: '2.5rem', fontWeight: 'bold', color: '#E9ECDD', marginBottom: '2rem', textAlign: 'center'}}>
+            What Makes Us <span style={{color: '#D7E150'}}>Different</span>
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6" style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '1.5rem'}}>
+            {[
+              {
+                icon: <Shield size={28} />,
+                title: 'Enterprise-Grade Quality',
+                description: 'Production-ready code with comprehensive testing, documentation, and security best practices'
+              },
+              {
+                icon: <Rocket size={28} />,
+                title: 'Rapid Delivery',
+                description: 'Agile methodology with 2-week sprints delivering incremental value continuously'
+              },
+              {
+                icon: <Zap size={28} />,
+                title: 'Performance Optimized',
+                description: 'Scalable architectures designed to handle growing data volumes and user loads'
+              },
+              {
+                icon: <Code size={28} />,
+                title: 'Clean, Maintainable Code',
+                description: 'Well-documented, modular code following industry standards and best practices'
+              },
+              {
+                icon: <GitBranch size={28} />,
+                title: 'Future-Proof Solutions',
+                description: 'Modern tech stacks and architectures that evolve with your business needs'
+              },
+              {
+                icon: <CheckCircle2 size={28} />,
+                title: 'Post-Launch Support',
+                description: 'Ongoing maintenance, monitoring, and enhancements to ensure continued success'
+              }
+            ].map((feature, index) => (
+              <div
+                key={index}
+                className="flex items-start space-x-4 p-4 rounded-lg"
+                style={{
+                  display: 'flex',
+                  alignItems: 'flex-start',
+                  gap: '1rem',
+                  padding: '1.5rem',
+                  backgroundColor: 'rgba(215, 225, 80, 0.05)',
+                  borderRadius: '0.75rem',
+                  border: '1px solid rgba(215, 225, 80, 0.1)',
+                  transition: 'all 0.3s ease'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.backgroundColor = 'rgba(215, 225, 80, 0.1)';
+                  e.currentTarget.style.borderColor = 'rgba(215, 225, 80, 0.3)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.backgroundColor = 'rgba(215, 225, 80, 0.05)';
+                  e.currentTarget.style.borderColor = 'rgba(215, 225, 80, 0.1)';
+                }}
+              >
+                <div style={{color: '#D7E150', flexShrink: 0, marginTop: '0.25rem'}}>{feature.icon}</div>
+                <div>
+                  <h4 className="font-semibold mb-1" style={{fontSize: '1.125rem', fontWeight: '600', color: '#E9ECDD', marginBottom: '0.5rem'}}>{feature.title}</h4>
+                  <p style={{color: 'rgba(233, 236, 221, 0.7)', fontSize: '0.95rem', lineHeight: '1.5'}}>{feature.description}</p>
                 </div>
-              ))}
-            </div>
+              </div>
+            ))}
           </div>
-        </section>
-
-        {/* Case Studies Section */}
-        <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-900/80 backdrop-blur-sm">
-          <div className="max-w-6xl mx-auto">
-            <div className="text-center mb-16">
-              <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
-                Success Stories
-              </h2>
-              <p className="text-xl text-gray-400 max-w-2xl mx-auto">
-                Real projects, real results. See how we&apos;ve helped businesses transform their ideas into reality.
-              </p>
-            </div>
-
-            <div className="grid md:grid-cols-3 gap-8">
-              {caseStudies.map((study, index) => (
-                <div
-                  key={index}
-                  className="group p-6 bg-gray-800/50 border border-gray-700 rounded-xl backdrop-blur-sm hover:border-yellow-500/50 transition-all duration-300"
-                >
-                  <h3 className="text-lg font-semibold mb-3 text-white group-hover:text-yellow-400 transition-colors duration-300">
-                    {study.title}
-                  </h3>
-                  <p className="text-gray-400 mb-4 text-sm leading-relaxed">
-                    {study.description}
-                  </p>
-
-                  <div className="flex flex-wrap gap-2 mb-4">
-                    {study.tech.map((tech) => (
-                      <span
-                        key={tech}
-                        className="px-2 py-1 bg-gray-700/50 text-xs text-gray-300 rounded"
-                      >
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
-
-                  <div className="flex items-center text-yellow-400 text-sm font-medium">
-                    <CheckCircle className="w-4 h-4 mr-2" />
-                    {study.metric}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
+        </div>
 
         {/* CTA Section */}
-        <section className="py-20 px-4 sm:px-6 lg:px-8">
-          <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
-              Ready to Build Something Amazing?
-            </h2>
-            <p className="text-xl text-gray-400 mb-8 max-w-2xl mx-auto">
-              Let&apos;s discuss your project and explore how we can bring your vision to life with cutting-edge technology.
-            </p>
+        <div className="text-center" style={{textAlign: 'center'}}>
+          <h2 className="text-3xl font-bold mb-4" style={{fontSize: '2rem', fontWeight: 'bold', color: '#E9ECDD', marginBottom: '1rem'}}>Ready to Build Your Solution?</h2>
+          <p className="text-lg mb-8" style={{fontSize: '1.125rem', color: 'rgba(233, 236, 221, 0.8)', marginBottom: '2rem'}}>
+            Let&apos;s discuss your project requirements and create a custom solution that exceeds expectations.
+          </p>
+          <Link href="/contact" className="inline-flex items-center" style={{
+            backgroundColor: '#D7E150',
+            color: '#03203D',
+            fontWeight: '700',
+            padding: '1rem 2.5rem',
+            borderRadius: '2rem',
+            textDecoration: 'none',
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: '0.5rem',
+            transition: 'all 0.3s ease',
+            boxShadow: '0 10px 25px rgba(215, 225, 80, 0.3)'
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.backgroundColor = '#E9ECDD';
+            e.currentTarget.style.transform = 'translateY(-2px)';
+            e.currentTarget.style.boxShadow = '0 15px 35px rgba(215, 225, 80, 0.5)';
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.backgroundColor = '#D7E150';
+            e.currentTarget.style.transform = 'translateY(0)';
+            e.currentTarget.style.boxShadow = '0 10px 25px rgba(215, 225, 80, 0.3)';
+          }}>
+            Get Started <ArrowRight className="ml-2" size={20} />
+          </Link>
+        </div>
 
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link
-                href="/contact"
-                className="group bg-yellow-500 hover:bg-yellow-600 text-black font-semibold px-8 py-4 rounded-lg transition-all duration-200 shadow-lg hover:shadow-xl flex items-center justify-center"
-              >
-                Get Started Today
-                <ArrowRight className="ml-2 w-5 h-5 transition-transform group-hover:translate-x-1" />
-              </Link>
-
-              <Link
-                href="/services"
-                className="group border border-gray-600 hover:border-yellow-500 text-white hover:text-yellow-400 font-semibold px-8 py-4 rounded-lg transition-all duration-200 flex items-center justify-center"
-              >
-                View All Services
-              </Link>
-            </div>
-          </div>
-        </section>
       </div>
     </div>
   )
