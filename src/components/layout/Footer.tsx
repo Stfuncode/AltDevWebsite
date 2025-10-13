@@ -6,7 +6,7 @@ import { Mail, Phone, MapPin, Github, Linkedin, Twitter, ArrowRight } from 'luci
 const Footer = () => {
   return (
     <footer className="bg-secondary-900 text-white" style={{
-      backgroundColor: '#03203D',
+      backgroundColor: '#051D2E',
       color: '#E9ECDD',
       margin: 0,
       padding: 0,
@@ -21,15 +21,15 @@ const Footer = () => {
               <div className="w-8 h-8 bg-gradient-to-br from-primary-600 to-accent-600 rounded-lg" style={{
                 width: '2rem',
                 height: '2rem',
-                background: '#D7E150',
+                background: '#F2C864',
                 borderRadius: '0.5rem'
               }}></div>
               <span className="text-xl font-bold" style={{fontSize: '1.5rem', fontWeight: 'bold', color: '#E9ECDD'}}>
-                <span style={{color: '#D7E150'}}>ALT</span>DEV
+                <span style={{color: '#F2C864'}}>ALT</span>DEV
               </span>
             </div>
             <p className="text-secondary-400 text-sm" style={{color: 'rgba(233, 236, 221, 0.8)', fontSize: '0.875rem', lineHeight: '1.5'}}>
-              Transforming businesses through <strong style={{color: '#D7E150'}}>data-driven insights</strong> and intelligent analytics.
+              Transforming businesses through <strong style={{color: '#F2C864'}}>data-driven insights</strong> and intelligent analytics.
               Building the future, one dataset at a time.
             </p>
             <div className="flex space-x-4" style={{display: 'flex', gap: '1rem'}}>
@@ -38,7 +38,7 @@ const Footer = () => {
                 transition: 'all 0.3s'
               }}
               onMouseEnter={(e) => {
-                e.currentTarget.style.color = '#D7E150';
+                e.currentTarget.style.color = '#F2C864';
                 e.currentTarget.style.transform = 'translateY(-2px)';
               }}
               onMouseLeave={(e) => {
@@ -52,7 +52,7 @@ const Footer = () => {
                 transition: 'all 0.3s'
               }}
               onMouseEnter={(e) => {
-                e.currentTarget.style.color = '#D7E150';
+                e.currentTarget.style.color = '#F2C864';
                 e.currentTarget.style.transform = 'translateY(-2px)';
               }}
               onMouseLeave={(e) => {
@@ -66,7 +66,7 @@ const Footer = () => {
                 transition: 'all 0.3s'
               }}
               onMouseEnter={(e) => {
-                e.currentTarget.style.color = '#D7E150';
+                e.currentTarget.style.color = '#F2C864';
                 e.currentTarget.style.transform = 'translateY(-2px)';
               }}
               onMouseLeave={(e) => {
@@ -100,7 +100,7 @@ const Footer = () => {
                     gap: '0.25rem'
                   }}
                   onMouseEnter={(e) => {
-                    e.currentTarget.style.color = '#D7E150';
+                    e.currentTarget.style.color = '#F2C864';
                     e.currentTarget.style.transform = 'translateX(4px)';
                   }}
                   onMouseLeave={(e) => {
@@ -132,7 +132,7 @@ const Footer = () => {
                   <div className="w-1.5 h-1.5 rounded-full mr-2" style={{
                     width: '6px',
                     height: '6px',
-                    backgroundColor: '#D7E150',
+                    backgroundColor: '#F2C864',
                     borderRadius: '50%',
                     marginRight: '0.5rem'
                   }}></div>
@@ -151,21 +151,21 @@ const Footer = () => {
             </h3>
             <ul className="space-y-3" style={{listStyle: 'none', padding: 0}}>
               <li className="flex items-start space-x-3 text-secondary-400" style={{display: 'flex', alignItems: 'flex-start', gap: '0.75rem', marginBottom: '0.75rem'}}>
-                <Mail size={16} style={{color: '#D7E150', marginTop: '2px'}} />
+                <Mail size={16} style={{color: '#F2C864', marginTop: '2px'}} />
                 <div>
                   <span style={{color: 'rgba(233, 236, 221, 0.8)', fontSize: '0.9rem'}}>contact@altdev.com</span>
                   <p style={{fontSize: '0.75rem', color: 'rgba(233, 236, 221, 0.5)', margin: 0}}>24hr response time</p>
                 </div>
               </li>
               <li className="flex items-start space-x-3 text-secondary-400" style={{display: 'flex', alignItems: 'flex-start', gap: '0.75rem', marginBottom: '0.75rem'}}>
-                <Phone size={16} style={{color: '#D7E150', marginTop: '2px'}} />
+                <Phone size={16} style={{color: '#F2C864', marginTop: '2px'}} />
                 <div>
                   <span style={{color: 'rgba(233, 236, 221, 0.8)', fontSize: '0.9rem'}}>+1 (555) 123-4567</span>
                   <p style={{fontSize: '0.75rem', color: 'rgba(233, 236, 221, 0.5)', margin: 0}}>Mon-Fri, 9AM-6PM PST</p>
                 </div>
               </li>
               <li className="flex items-start space-x-3 text-secondary-400" style={{display: 'flex', alignItems: 'flex-start', gap: '0.75rem', marginBottom: '0.75rem'}}>
-                <MapPin size={16} style={{color: '#D7E150', marginTop: '2px'}} />
+                <MapPin size={16} style={{color: '#F2C864', marginTop: '2px'}} />
                 <div>
                   <span style={{color: 'rgba(233, 236, 221, 0.8)', fontSize: '0.9rem'}}>San Francisco, CA</span>
                   <p style={{fontSize: '0.75rem', color: 'rgba(233, 236, 221, 0.5)', margin: 0}}>Remote-friendly worldwide</p>
@@ -175,8 +175,8 @@ const Footer = () => {
 
             <div className="mt-6" style={{marginTop: '1.5rem'}}>
               <Link href="/contact" className="inline-flex items-center" style={{
-                backgroundColor: '#D7E150',
-                color: '#03203D',
+                backgroundColor: '#F2C864',
+                color: '#051D2E',
                 fontWeight: '600',
                 padding: '0.5rem 1rem',
                 borderRadius: '0.5rem',
@@ -186,17 +186,17 @@ const Footer = () => {
                 gap: '0.25rem',
                 fontSize: '0.875rem',
                 transition: 'all 0.3s ease',
-                boxShadow: '0 4px 12px rgba(215, 225, 80, 0.3)'
+                boxShadow: '0 4px 12px rgba(242, 200, 100, 0.3)'
               }}
               onMouseEnter={(e) => {
-                e.currentTarget.style.backgroundColor = '#E9ECDD';
+                e.currentTarget.style.backgroundColor = '#EFB93C';
                 e.currentTarget.style.transform = 'translateY(-2px)';
-                e.currentTarget.style.boxShadow = '0 6px 20px rgba(215, 225, 80, 0.4)';
+                e.currentTarget.style.boxShadow = '0 6px 20px rgba(242, 200, 100, 0.4)';
               }}
               onMouseLeave={(e) => {
-                e.currentTarget.style.backgroundColor = '#D7E150';
+                e.currentTarget.style.backgroundColor = '#F2C864';
                 e.currentTarget.style.transform = 'translateY(0)';
-                e.currentTarget.style.boxShadow = '0 4px 12px rgba(215, 225, 80, 0.3)';
+                e.currentTarget.style.boxShadow = '0 4px 12px rgba(242, 200, 100, 0.3)';
               }}>
                 Start Project <ArrowRight size={14} />
               </Link>
@@ -206,13 +206,13 @@ const Footer = () => {
 
         {/* Bottom Section */}
         <div className="border-t border-secondary-800 mt-12 pt-8" style={{
-          borderTop: '1px solid rgba(215, 225, 80, 0.2)',
+          borderTop: '1px solid rgba(242, 200, 100, 0.2)',
           marginTop: '3rem',
           paddingTop: '2rem'
         }}>
           <div className="flex flex-col md:flex-row justify-between items-center" style={{display: 'flex', flexDirection: 'column', justifyContent: 'space-between', alignItems: 'center', gap: '1rem'}}>
             <p className="text-center text-secondary-400 text-sm" style={{color: 'rgba(233, 236, 221, 0.6)', fontSize: '0.875rem', textAlign: 'center'}}>
-              &copy; 2025 <span style={{color: '#D7E150'}}>AltDev</span>. All rights reserved. Built with cutting-edge technology.
+              &copy; 2025 <span style={{color: '#F2C864'}}>AltDev</span>. All rights reserved. Built with cutting-edge technology.
             </p>
             <div className="flex space-x-6 text-sm" style={{display: 'flex', gap: '1.5rem', fontSize: '0.875rem'}}>
               <a href="#" className="text-secondary-400 hover:text-lime-400 transition-colors" style={{
@@ -220,7 +220,7 @@ const Footer = () => {
                 textDecoration: 'none',
                 transition: 'color 0.3s'
               }}
-              onMouseEnter={(e) => e.currentTarget.style.color = '#D7E150'}
+              onMouseEnter={(e) => e.currentTarget.style.color = '#F2C864'}
               onMouseLeave={(e) => e.currentTarget.style.color = 'rgba(233, 236, 221, 0.6)'}>
                 Privacy Policy
               </a>
@@ -229,7 +229,7 @@ const Footer = () => {
                 textDecoration: 'none',
                 transition: 'color 0.3s'
               }}
-              onMouseEnter={(e) => e.currentTarget.style.color = '#D7E150'}
+              onMouseEnter={(e) => e.currentTarget.style.color = '#F2C864'}
               onMouseLeave={(e) => e.currentTarget.style.color = 'rgba(233, 236, 221, 0.6)'}>
                 Terms of Service
               </a>

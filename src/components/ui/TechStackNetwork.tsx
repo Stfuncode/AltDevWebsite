@@ -150,7 +150,7 @@ export default function TechStackNetwork() {
 
           ctx.beginPath()
           ctx.arc(x, y, 3, 0, Math.PI * 2)
-          ctx.fillStyle = '#D7E150'
+          ctx.fillStyle = '#F2C864'
           ctx.fill()
         }
       })
@@ -237,9 +237,9 @@ export default function TechStackNetwork() {
             onMouseLeave={() => setHoveredTab(null)}
             className="relative px-8 py-4 rounded-xl font-semibold transition-all duration-500"
             style={{
-              backgroundColor: hoveredTab === useCase.id ? '#D7E150' : 'rgba(215, 225, 80, 0.1)',
-              color: hoveredTab === useCase.id ? '#03203D' : '#03203D',
-              border: `2px solid ${hoveredTab === useCase.id ? '#D7E150' : 'rgba(215, 225, 80, 0.3)'}`,
+              backgroundColor: hoveredTab === useCase.id ? '#F2C864' : 'rgba(215, 225, 80, 0.1)',
+              color: hoveredTab === useCase.id ? '#051D2E' : '#051D2E',
+              border: `2px solid ${hoveredTab === useCase.id ? '#F2C864' : 'rgba(215, 225, 80, 0.3)'}`,
               padding: '1rem 2rem',
               borderRadius: '0.75rem',
               fontWeight: '600',
@@ -276,7 +276,7 @@ export default function TechStackNetwork() {
         style={{
           width: '100%',
           height: '600px',
-          background: 'linear-gradient(135deg, #03203D 0%, #04152a 100%)',
+          background: 'linear-gradient(135deg, #051D2E 0%, #04152a 100%)',
           borderRadius: '1.5rem',
           border: '2px solid rgba(215, 225, 80, 0.3)',
           position: 'relative',
@@ -333,7 +333,7 @@ export default function TechStackNetwork() {
                   onMouseEnter={(e) => {
                     e.currentTarget.style.transform = 'scale(1.15)'
                     e.currentTarget.style.boxShadow = '0 12px 30px rgba(215, 225, 80, 0.4), 0 0 40px rgba(215, 225, 80, 0.2)'
-                    e.currentTarget.style.borderColor = '#D7E150'
+                    e.currentTarget.style.borderColor = '#F2C864'
                     e.currentTarget.style.borderWidth = '4px'
                   }}
                   onMouseLeave={(e) => {
@@ -347,7 +347,7 @@ export default function TechStackNetwork() {
                   <div
                     className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100"
                     style={{
-                      border: '2px solid #D7E150',
+                      border: '2px solid #F2C864',
                       borderRadius: '50%',
                       animation: 'ping 1.5s cubic-bezier(0, 0, 0.2, 1) infinite',
                       opacity: 0
@@ -369,7 +369,7 @@ export default function TechStackNetwork() {
                     <IconComponent
                       size={36}
                       strokeWidth={1.8}
-                      style={{ color: '#03203D' }}
+                      style={{ color: '#051D2E' }}
                     />
                   </div>
                 </div>
@@ -392,10 +392,10 @@ export default function TechStackNetwork() {
                       borderRadius: '0.5rem',
                       padding: '0.5rem 0.75rem',
                       boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)',
-                      border: '2px solid #D7E150'
+                      border: '2px solid #F2C864'
                     }}
                   >
-                    <h4 className="font-semibold text-sm mb-1" style={{ fontSize: '0.875rem', fontWeight: '600', color: '#03203D', marginBottom: '0.25rem' }}>
+                    <h4 className="font-semibold text-sm mb-1" style={{ fontSize: '0.875rem', fontWeight: '600', color: '#051D2E', marginBottom: '0.25rem' }}>
                       {tech.name}
                     </h4>
                     <div
@@ -408,7 +408,7 @@ export default function TechStackNetwork() {
                         margin: '0 auto'
                       }}
                     >
-                      <span className="text-xs font-bold" style={{ color: '#03203D', fontSize: '0.75rem', fontWeight: '700' }}>
+                      <span className="text-xs font-bold" style={{ color: '#051D2E', fontSize: '0.75rem', fontWeight: '700' }}>
                         {tech.percentage}%
                       </span>
                     </div>
@@ -426,8 +426,8 @@ export default function TechStackNetwork() {
           href={currentUseCase.link}
           className="inline-flex items-center gap-2 px-6 py-3 rounded-lg font-semibold transition-all duration-500"
           style={{
-            backgroundColor: '#D7E150',
-            color: '#03203D',
+            backgroundColor: '#F2C864',
+            color: '#051D2E',
             padding: '0.75rem 1.5rem',
             borderRadius: '0.5rem',
             fontWeight: '600',
@@ -443,7 +443,7 @@ export default function TechStackNetwork() {
             e.currentTarget.style.boxShadow = '0 8px 20px rgba(215, 225, 80, 0.5)'
           }}
           onMouseLeave={(e) => {
-            e.currentTarget.style.backgroundColor = '#D7E150'
+            e.currentTarget.style.backgroundColor = '#F2C864'
             e.currentTarget.style.transform = 'translateY(0)'
             e.currentTarget.style.boxShadow = 'none'
           }}

@@ -6,7 +6,7 @@ import DataVisualization from '@/components/three/DataVisualization'
 
 export default function DigitalTransformation() {
   return (
-    <div className="min-h-screen py-20 relative" style={{minHeight: '100vh', padding: '5rem 0', backgroundColor: '#03203D', margin: 0, width: '100%', position: 'relative'}}>
+    <div className="min-h-screen py-20 relative" style={{minHeight: '100vh', padding: '5rem 0', backgroundColor: '#051D2E', margin: 0, width: '100%', position: 'relative'}}>
       <div className="absolute inset-0 opacity-30">
         <DataVisualization />
       </div>
@@ -15,7 +15,7 @@ export default function DigitalTransformation() {
         {/* Hero Section */}
         <div className="text-center mb-16" style={{textAlign: 'center', marginBottom: '4rem'}}>
           <h1 className="text-4xl font-bold text-center mb-8" style={{fontSize: '3.5rem', fontWeight: 'bold', color: '#E9ECDD', marginBottom: '1.5rem'}}>
-            Digital <span style={{color: '#D7E150'}}>Transformation</span>
+            Digital <span style={{color: '#F2C864'}}>Transformation</span>
           </h1>
           <p className="text-lg text-center max-w-3xl mx-auto" style={{fontSize: '1.25rem', color: 'rgba(233, 236, 221, 0.8)', maxWidth: '48rem', margin: '0 auto', lineHeight: '1.7'}}>
             Modernize your technology infrastructure, processes, and culture to thrive in the digital age. We guide organizations through comprehensive transformation journeys that deliver measurable business value.
@@ -57,7 +57,7 @@ export default function DigitalTransformation() {
               onMouseEnter={(e) => {
                 e.currentTarget.style.transform = 'translateY(-8px)';
                 e.currentTarget.style.boxShadow = '0 20px 40px rgba(215, 225, 80, 0.3)';
-                e.currentTarget.style.borderColor = '#D7E150';
+                e.currentTarget.style.borderColor = '#F2C864';
               }}
               onMouseLeave={(e) => {
                 e.currentTarget.style.transform = 'translateY(0)';
@@ -65,7 +65,7 @@ export default function DigitalTransformation() {
                 e.currentTarget.style.borderColor = 'rgba(215, 225, 80, 0.2)';
               }}
             >
-              <div className="mb-4 flex justify-center" style={{color: '#D7E150', marginBottom: '1.5rem', display: 'flex', justifyContent: 'center'}}>{area.icon}</div>
+              <div className="mb-4 flex justify-center" style={{color: '#F2C864', marginBottom: '1.5rem', display: 'flex', justifyContent: 'center'}}>{area.icon}</div>
               <h3 className="text-xl font-semibold mb-3" style={{fontSize: '1.5rem', fontWeight: '600', color: '#E9ECDD', marginBottom: '1rem'}}>{area.title}</h3>
               <p style={{color: 'rgba(233, 236, 221, 0.8)', fontSize: '1rem', lineHeight: '1.6'}}>{area.description}</p>
             </div>
@@ -86,7 +86,7 @@ export default function DigitalTransformation() {
           }}
         >
           <h2 className="text-3xl font-bold text-center mb-8" style={{fontSize: '2.5rem', fontWeight: 'bold', color: '#E9ECDD', marginBottom: '2rem', textAlign: 'center'}}>
-            Transformation <span style={{color: '#D7E150'}}>Benefits</span>
+            Transformation <span style={{color: '#F2C864'}}>Benefits</span>
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.5rem'}}>
             {[
@@ -140,7 +140,7 @@ export default function DigitalTransformation() {
                   e.currentTarget.style.borderColor = 'rgba(215, 225, 80, 0.1)';
                 }}
               >
-                <div className="mb-3" style={{color: '#D7E150', marginBottom: '1rem'}}>{benefit.icon}</div>
+                <div className="mb-3" style={{color: '#F2C864', marginBottom: '1rem'}}>{benefit.icon}</div>
                 <h4 className="font-semibold mb-2" style={{fontSize: '1.125rem', fontWeight: '600', color: '#E9ECDD', marginBottom: '0.75rem'}}>{benefit.title}</h4>
                 <p style={{color: 'rgba(233, 236, 221, 0.7)', fontSize: '0.95rem', lineHeight: '1.5'}}>{benefit.description}</p>
               </div>
@@ -162,7 +162,7 @@ export default function DigitalTransformation() {
           }}
         >
           <h2 className="text-3xl font-bold text-center mb-8" style={{fontSize: '2.5rem', fontWeight: 'bold', color: '#E9ECDD', marginBottom: '2rem', textAlign: 'center'}}>
-            Your Transformation <span style={{color: '#D7E150'}}>Journey</span>
+            Your Transformation <span style={{color: '#F2C864'}}>Journey</span>
           </h2>
           <div className="space-y-6" style={{display: 'flex', flexDirection: 'column', gap: '1.5rem'}}>
             {[
@@ -219,8 +219,8 @@ export default function DigitalTransformation() {
                   style={{
                     minWidth: '3.5rem',
                     height: '3.5rem',
-                    backgroundColor: '#D7E150',
-                    color: '#03203D',
+                    backgroundColor: '#F2C864',
+                    color: '#051D2E',
                     borderRadius: '50%',
                     display: 'flex',
                     alignItems: 'center',
@@ -235,7 +235,7 @@ export default function DigitalTransformation() {
                 <div style={{flex: 1}}>
                   <div className="flex justify-between items-start mb-2" style={{display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '0.5rem'}}>
                     <h4 className="font-bold text-lg" style={{fontSize: '1.25rem', fontWeight: 'bold', color: '#E9ECDD'}}>{phase.title}</h4>
-                    <span className="text-sm" style={{fontSize: '0.875rem', color: '#D7E150', fontWeight: '600'}}>{phase.duration}</span>
+                    <span className="text-sm" style={{fontSize: '0.875rem', color: '#F2C864', fontWeight: '600'}}>{phase.duration}</span>
                   </div>
                   <p className="text-sm mb-1" style={{fontSize: '0.875rem', color: 'rgba(215, 225, 80, 0.8)', marginBottom: '0.25rem', fontWeight: '600'}}>{phase.phase}</p>
                   <p style={{color: 'rgba(233, 236, 221, 0.7)', fontSize: '0.95rem', lineHeight: '1.5'}}>{phase.description}</p>
@@ -252,8 +252,8 @@ export default function DigitalTransformation() {
             Let&apos;s modernize your organization and unlock new opportunities for growth.
           </p>
           <Link href="/contact" className="inline-flex items-center" style={{
-            backgroundColor: '#D7E150',
-            color: '#03203D',
+            backgroundColor: '#F2C864',
+            color: '#051D2E',
             fontWeight: '700',
             padding: '1rem 2.5rem',
             borderRadius: '2rem',
@@ -270,7 +270,7 @@ export default function DigitalTransformation() {
             e.currentTarget.style.boxShadow = '0 15px 35px rgba(215, 225, 80, 0.5)';
           }}
           onMouseLeave={(e) => {
-            e.currentTarget.style.backgroundColor = '#D7E150';
+            e.currentTarget.style.backgroundColor = '#F2C864';
             e.currentTarget.style.transform = 'translateY(0)';
             e.currentTarget.style.boxShadow = '0 10px 25px rgba(215, 225, 80, 0.3)';
           }}>

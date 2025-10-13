@@ -104,7 +104,7 @@ const NewNavbar = () => {
     <nav
       className="sticky top-0 z-[60] transition-all duration-500"
       style={{
-        backgroundColor: scrolled ? 'rgba(3, 32, 61, 0.6)' : 'transparent',
+        backgroundColor: scrolled ? 'rgba(5, 29, 46, 0.8)' : 'transparent',
         backdropFilter: scrolled ? 'blur(20px)' : 'none',
         borderBottom: 'none',
         boxShadow: 'none'
@@ -114,9 +114,9 @@ const NewNavbar = () => {
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <Link href="/" className="flex items-center space-x-2 group">
-            <div className="w-8 h-8 bg-gradient-to-br rounded-lg transition-transform duration-200 group-hover:scale-110" style={{ background: 'linear-gradient(135deg, #D7E150 0%, #E9ECDD 100%)' }}></div>
-            <span className="text-xl font-bold transition-colors duration-300" style={{ color: scrolled ? '#E9ECDD' : '#03203D' }}>
-              <span style={{ color: '#D7E150' }}>ALT</span>DEV
+            <div className="w-8 h-8 bg-gradient-to-br rounded-lg transition-transform duration-200 group-hover:scale-110" style={{ background: '#F2C864' }}></div>
+            <span className="text-xl font-bold transition-colors duration-300" style={{ color: scrolled ? '#E9ECDD' : '#051D2E' }}>
+              <span style={{ color: '#F2C864' }}>ALT</span>DEV
             </span>
           </Link>
 
@@ -132,16 +132,16 @@ const NewNavbar = () => {
                   <button
                     className="flex items-center px-4 py-2 text-sm font-medium rounded-md transition-all duration-300"
                     style={{
-                      color: activeDropdown === item.name ? '#D7E150' : (scrolled ? 'rgba(233, 236, 221, 0.9)' : 'rgba(3, 32, 61, 0.8)'),
-                      backgroundColor: activeDropdown === item.name ? 'rgba(215, 225, 80, 0.1)' : 'transparent'
+                      color: activeDropdown === item.name ? '#F2C864' : (scrolled ? 'rgba(233, 236, 221, 0.9)' : 'rgba(5, 29, 46, 0.8)'),
+                      backgroundColor: activeDropdown === item.name ? 'rgba(242, 200, 100, 0.1)' : 'transparent'
                     }}
                     onMouseEnter={(e) => {
-                      e.currentTarget.style.color = scrolled ? '#E9ECDD' : '#03203D';
-                      e.currentTarget.style.backgroundColor = scrolled ? 'rgba(233, 236, 221, 0.1)' : 'rgba(3, 32, 61, 0.1)';
+                      e.currentTarget.style.color = scrolled ? '#F2C864' : '#051D2E';
+                      e.currentTarget.style.backgroundColor = scrolled ? 'rgba(242, 200, 100, 0.1)' : 'rgba(5, 29, 46, 0.1)';
                     }}
                     onMouseLeave={(e) => {
                       if (activeDropdown !== item.name) {
-                        e.currentTarget.style.color = scrolled ? 'rgba(233, 236, 221, 0.9)' : 'rgba(3, 32, 61, 0.8)';
+                        e.currentTarget.style.color = scrolled ? 'rgba(233, 236, 221, 0.9)' : 'rgba(5, 29, 46, 0.8)';
                         e.currentTarget.style.backgroundColor = 'transparent';
                       }
                     }}
@@ -160,13 +160,13 @@ const NewNavbar = () => {
                   <Link
                     href={item.href}
                     className="flex items-center px-4 py-2 text-sm font-medium rounded-md transition-all duration-300"
-                    style={{ color: scrolled ? 'rgba(233, 236, 221, 0.9)' : 'rgba(3, 32, 61, 0.8)' }}
+                    style={{ color: scrolled ? 'rgba(233, 236, 221, 0.9)' : 'rgba(5, 29, 46, 0.8)' }}
                     onMouseEnter={(e) => {
-                      e.currentTarget.style.color = scrolled ? '#E9ECDD' : '#03203D';
-                      e.currentTarget.style.backgroundColor = scrolled ? 'rgba(233, 236, 221, 0.1)' : 'rgba(3, 32, 61, 0.1)';
+                      e.currentTarget.style.color = scrolled ? '#F2C864' : '#051D2E';
+                      e.currentTarget.style.backgroundColor = scrolled ? 'rgba(242, 200, 100, 0.1)' : 'rgba(5, 29, 46, 0.1)';
                     }}
                     onMouseLeave={(e) => {
-                      e.currentTarget.style.color = scrolled ? 'rgba(233, 236, 221, 0.9)' : 'rgba(3, 32, 61, 0.8)';
+                      e.currentTarget.style.color = scrolled ? 'rgba(233, 236, 221, 0.9)' : 'rgba(5, 29, 46, 0.8)';
                       e.currentTarget.style.backgroundColor = 'transparent';
                     }}
                   >
@@ -179,7 +179,7 @@ const NewNavbar = () => {
                   <div
                     className="absolute top-full left-1/2 transform -translate-x-1/2 mt-3 min-w-[700px] max-w-4xl p-8 z-[100] animate-dropdown-enter"
                     style={{
-                      backgroundColor: 'rgba(3, 32, 61, 0.95)',
+                      backgroundColor: 'rgba(5, 29, 46, 0.98)',
                       backdropFilter: 'blur(20px)',
                       boxShadow: '0 20px 60px rgba(0, 0, 0, 0.4)',
                       borderRadius: '1rem',
@@ -193,7 +193,7 @@ const NewNavbar = () => {
                           className="animate-stagger-fade-in opacity-0"
                           style={{ animationDelay: `${categoryIndex * 50}ms` }}
                         >
-                          <h3 className="text-xs font-bold mb-4 uppercase tracking-wider border-b pb-2" style={{ color: '#D7E150', borderColor: 'rgba(233, 236, 221, 0.1)' }}>
+                          <h3 className="text-xs font-bold mb-4 uppercase tracking-wider border-b pb-2" style={{ color: '#F2C864', borderColor: 'rgba(233, 236, 221, 0.1)' }}>
                             {category.category}
                           </h3>
                           <ul className="space-y-2">
@@ -208,8 +208,8 @@ const NewNavbar = () => {
                                   className="block text-sm px-3 py-2 rounded-lg transition-all duration-200 font-medium group"
                                   style={{ color: 'rgba(233, 236, 221, 0.8)' }}
                                   onMouseEnter={(e) => {
-                                    e.currentTarget.style.color = '#D7E150';
-                                    e.currentTarget.style.backgroundColor = 'rgba(215, 225, 80, 0.1)';
+                                    e.currentTarget.style.color = '#F2C864';
+                                    e.currentTarget.style.backgroundColor = 'rgba(242, 200, 100, 0.1)';
                                   }}
                                   onMouseLeave={(e) => {
                                     e.currentTarget.style.color = 'rgba(233, 236, 221, 0.8)';
@@ -247,18 +247,18 @@ const NewNavbar = () => {
               href="/contact"
               className="font-semibold px-6 py-2 rounded-lg transition-all duration-200"
               style={{
-                backgroundColor: '#D7E150',
-                color: '#03203D',
-                boxShadow: '0 4px 15px rgba(215, 225, 80, 0.3)'
+                backgroundColor: '#F2C864',
+                color: '#051D2E',
+                boxShadow: '0 4px 15px rgba(242, 200, 100, 0.3)'
               }}
               onMouseEnter={(e) => {
-                e.currentTarget.style.backgroundColor = '#E9ECDD';
-                e.currentTarget.style.boxShadow = '0 6px 20px rgba(215, 225, 80, 0.5)';
+                e.currentTarget.style.backgroundColor = '#EFB93C';
+                e.currentTarget.style.boxShadow = '0 6px 20px rgba(242, 200, 100, 0.5)';
                 e.currentTarget.style.transform = 'translateY(-2px)';
               }}
               onMouseLeave={(e) => {
-                e.currentTarget.style.backgroundColor = '#D7E150';
-                e.currentTarget.style.boxShadow = '0 4px 15px rgba(215, 225, 80, 0.3)';
+                e.currentTarget.style.backgroundColor = '#F2C864';
+                e.currentTarget.style.boxShadow = '0 4px 15px rgba(242, 200, 100, 0.3)';
                 e.currentTarget.style.transform = 'translateY(0)';
               }}
             >
@@ -270,13 +270,13 @@ const NewNavbar = () => {
           <button
             onClick={() => setIsOpen(!isOpen)}
             className="lg:hidden p-2 rounded-md transition-all duration-300"
-            style={{ color: scrolled ? 'rgba(233, 236, 221, 0.9)' : 'rgba(3, 32, 61, 0.8)' }}
+            style={{ color: scrolled ? 'rgba(233, 236, 221, 0.9)' : 'rgba(5, 29, 46, 0.8)' }}
             onMouseEnter={(e) => {
-              e.currentTarget.style.color = scrolled ? '#E9ECDD' : '#03203D';
-              e.currentTarget.style.backgroundColor = scrolled ? 'rgba(233, 236, 221, 0.1)' : 'rgba(3, 32, 61, 0.1)';
+              e.currentTarget.style.color = scrolled ? '#F2C864' : '#051D2E';
+              e.currentTarget.style.backgroundColor = scrolled ? 'rgba(242, 200, 100, 0.1)' : 'rgba(5, 29, 46, 0.1)';
             }}
             onMouseLeave={(e) => {
-              e.currentTarget.style.color = scrolled ? 'rgba(233, 236, 221, 0.9)' : 'rgba(3, 32, 61, 0.8)';
+              e.currentTarget.style.color = scrolled ? 'rgba(233, 236, 221, 0.9)' : 'rgba(5, 29, 46, 0.8)';
               e.currentTarget.style.backgroundColor = 'transparent';
             }}
           >
@@ -289,7 +289,7 @@ const NewNavbar = () => {
           <div
             className="lg:hidden absolute top-full left-0 right-0 max-h-[80vh] overflow-y-auto animate-dropdown-enter"
             style={{
-              backgroundColor: 'rgba(3, 32, 61, 0.98)',
+              backgroundColor: 'rgba(5, 29, 46, 0.98)',
               backdropFilter: 'blur(20px)',
               borderTop: 'none',
               boxShadow: '0 10px 40px rgba(0, 0, 0, 0.4)'
@@ -311,7 +311,7 @@ const NewNavbar = () => {
                       className="block text-lg font-semibold transition-colors mb-3"
                       style={{ color: '#E9ECDD' }}
                       onMouseEnter={(e) => {
-                        e.currentTarget.style.color = '#D7E150';
+                        e.currentTarget.style.color = '#F2C864';
                       }}
                       onMouseLeave={(e) => {
                         e.currentTarget.style.color = '#E9ECDD';
@@ -331,7 +331,7 @@ const NewNavbar = () => {
                               border: '1px solid rgba(233, 236, 221, 0.1)'
                             }}
                           >
-                            <h4 className="text-xs font-bold uppercase tracking-wider mb-3 border-b pb-2" style={{ color: '#D7E150', borderColor: 'rgba(233, 236, 221, 0.1)' }}>
+                            <h4 className="text-xs font-bold uppercase tracking-wider mb-3 border-b pb-2" style={{ color: '#F2C864', borderColor: 'rgba(233, 236, 221, 0.1)' }}>
                               {category.category}
                             </h4>
                             <div className="space-y-2">
@@ -342,8 +342,8 @@ const NewNavbar = () => {
                                   className="block text-sm px-3 py-2 rounded-md transition-all duration-200"
                                   style={{ color: 'rgba(233, 236, 221, 0.8)' }}
                                   onMouseEnter={(e) => {
-                                    e.currentTarget.style.color = '#D7E150';
-                                    e.currentTarget.style.backgroundColor = 'rgba(215, 225, 80, 0.1)';
+                                    e.currentTarget.style.color = '#F2C864';
+                                    e.currentTarget.style.backgroundColor = 'rgba(242, 200, 100, 0.1)';
                                   }}
                                   onMouseLeave={(e) => {
                                     e.currentTarget.style.color = 'rgba(233, 236, 221, 0.8)';
@@ -366,7 +366,7 @@ const NewNavbar = () => {
                 <Link
                   href="/contact"
                   className="block w-full text-center font-bold px-6 py-3 rounded-xl transition-all duration-200 shadow-lg hover:shadow-xl"
-                  style={{ backgroundColor: '#D7E150', color: '#03203D' }}
+                  style={{ backgroundColor: '#F2C864', color: '#051D2E' }}
                   onClick={() => setIsOpen(false)}
                 >
                   Get Started

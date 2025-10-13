@@ -157,7 +157,7 @@ export default function Contact() {
   }, [formData.projectType, calculatePrice])
 
   return (
-    <div className="min-h-screen py-20 relative" style={{ backgroundColor: '#03203D' }}>
+    <div className="min-h-screen py-20 relative" style={{ backgroundColor: '#051D2E' }}>
       {/* Background Data Visualization */}
       <div className="absolute inset-0 opacity-20">
         <DataConnectionNetwork />
@@ -167,12 +167,12 @@ export default function Contact() {
 
         {/* Hero Section */}
         <div className="text-center mb-16">
-          <div className="inline-flex items-center px-4 py-2 rounded-full text-sm font-medium mb-6" style={{ backgroundColor: 'rgba(215, 225, 80, 0.1)', border: '1px solid rgba(215, 225, 80, 0.3)', color: '#D7E150' }}>
+          <div className="inline-flex items-center px-4 py-2 rounded-full text-sm font-medium mb-6" style={{ backgroundColor: 'rgba(215, 225, 80, 0.1)', border: '1px solid rgba(215, 225, 80, 0.3)', color: '#F2C864' }}>
             <MessageSquare className="mr-2" size={16} />
             Let&apos;s Build Your Data Solution
           </div>
           <h1 className="text-4xl lg:text-6xl font-bold mb-6" style={{ color: '#E9ECDD' }}>
-            Transform Your <span style={{ color: '#D7E150' }}>Data Vision</span> Into Reality
+            Transform Your <span style={{ color: '#F2C864' }}>Data Vision</span> Into Reality
           </h1>
           <p className="text-xl max-w-3xl mx-auto mb-8" style={{ color: 'rgba(233, 236, 221, 0.8)' }}>
             Connect with our data experts to discuss your project requirements and discover how
@@ -184,7 +184,7 @@ export default function Contact() {
         <div className="max-w-4xl mx-auto">
           <div className="rounded-2xl shadow-xl overflow-hidden" style={{ backgroundColor: 'rgba(3, 32, 61, 0.5)', backdropFilter: 'blur(20px)', border: '1px solid rgba(215, 225, 80, 0.2)' }}>
             {/* Form Header */}
-            <div className="px-8 py-6" style={{ background: 'linear-gradient(135deg, #03203D 0%, #04152a 100%)' }}>
+            <div className="px-8 py-6" style={{ background: 'linear-gradient(135deg, #051D2E 0%, #04152a 100%)' }}>
               <h2 className="text-2xl font-bold mb-2" style={{ color: '#E9ECDD' }}>Start Your Data Journey</h2>
               <p style={{ color: 'rgba(233, 236, 221, 0.7)' }}>Tell us about your project and let&apos;s build something amazing together</p>
             </div>
@@ -193,7 +193,7 @@ export default function Contact() {
               {/* Basic Information */}
               <div>
                 <h3 className="text-lg font-semibold mb-4 flex items-center" style={{ color: '#E9ECDD' }}>
-                  <Users className="mr-2" size={20} style={{ color: '#D7E150' }} />
+                  <Users className="mr-2" size={20} style={{ color: '#F2C864' }} />
                   Basic Information
                 </h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -248,7 +248,7 @@ export default function Contact() {
               {/* Project Type Selection */}
               <div>
                 <h3 className="text-lg font-semibold mb-4 flex items-center" style={{ color: '#E9ECDD' }}>
-                  <BarChart3 className="mr-2" size={20} style={{ color: '#D7E150' }} />
+                  <BarChart3 className="mr-2" size={20} style={{ color: '#F2C864' }} />
                   Project Type *
                 </h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -257,9 +257,9 @@ export default function Contact() {
                       key={type.id}
                       className="flex items-center p-4 border-2 rounded-lg cursor-pointer transition-all duration-200"
                       style={{
-                        borderColor: formData.projectType === type.id ? '#D7E150' : 'rgba(233, 236, 221, 0.2)',
+                        borderColor: formData.projectType === type.id ? '#F2C864' : 'rgba(233, 236, 221, 0.2)',
                         backgroundColor: formData.projectType === type.id ? 'rgba(215, 225, 80, 0.1)' : 'transparent',
-                        color: formData.projectType === type.id ? '#D7E150' : 'rgba(233, 236, 221, 0.8)'
+                        color: formData.projectType === type.id ? '#F2C864' : 'rgba(233, 236, 221, 0.8)'
                       }}
                     >
                       <input
@@ -281,7 +281,7 @@ export default function Contact() {
               {formData.projectType === 'data-migration' && (
                 <div>
                   <h3 className="text-lg font-semibold mb-4 flex items-center" style={{ color: '#E9ECDD' }}>
-                    <ArrowRight className="mr-2" size={20} style={{ color: '#D7E150' }} />
+                    <ArrowRight className="mr-2" size={20} style={{ color: '#F2C864' }} />
                     Migration Configuration
                   </h3>
 
@@ -297,8 +297,8 @@ export default function Contact() {
                           className="flex items-center p-3 rounded-lg cursor-pointer transition-all duration-200"
                           style={{
                             backgroundColor: formData.dataSize === option.id ? 'rgba(215, 225, 80, 0.1)' : 'rgba(233, 236, 221, 0.05)',
-                            border: `2px solid ${formData.dataSize === option.id ? '#D7E150' : 'rgba(233, 236, 221, 0.2)'}`,
-                            color: formData.dataSize === option.id ? '#D7E150' : 'rgba(233, 236, 221, 0.8)'
+                            border: `2px solid ${formData.dataSize === option.id ? '#F2C864' : 'rgba(233, 236, 221, 0.2)'}`,
+                            color: formData.dataSize === option.id ? '#F2C864' : 'rgba(233, 236, 221, 0.8)'
                           }}
                         >
                           <input
@@ -318,7 +318,7 @@ export default function Contact() {
                   {/* Number of Data Sources */}
                   <div className="mb-6">
                     <label className="block text-sm font-medium mb-2" style={{ color: 'rgba(233, 236, 221, 0.9)' }}>
-                      Number of Data Sources: <span style={{ color: '#D7E150' }}>{formData.dataSourcesCountMigration}</span>
+                      Number of Data Sources: <span style={{ color: '#F2C864' }}>{formData.dataSourcesCountMigration}</span>
                     </label>
                     <input
                       type="range"
@@ -328,7 +328,7 @@ export default function Contact() {
                       onChange={(e) => handleSliderChange('dataSourcesCountMigration', parseInt(e.target.value))}
                       className="w-full h-2 rounded-lg appearance-none cursor-pointer"
                       style={{
-                        background: `linear-gradient(to right, #D7E150 0%, #D7E150 ${(formData.dataSourcesCountMigration / 10) * 100}%, rgba(233, 236, 221, 0.2) ${(formData.dataSourcesCountMigration / 10) * 100}%, rgba(233, 236, 221, 0.2) 100%)`
+                        background: `linear-gradient(to right, #F2C864 0%, #F2C864 ${(formData.dataSourcesCountMigration / 10) * 100}%, rgba(233, 236, 221, 0.2) ${(formData.dataSourcesCountMigration / 10) * 100}%, rgba(233, 236, 221, 0.2) 100%)`
                       }}
                     />
                     <div className="flex justify-between text-xs mt-1" style={{ color: 'rgba(233, 236, 221, 0.6)' }}>
@@ -349,8 +349,8 @@ export default function Contact() {
                           className="flex items-center p-3 rounded-lg cursor-pointer transition-all duration-200"
                           style={{
                             backgroundColor: formData.criticalFactors.includes(factor.id) ? 'rgba(215, 225, 80, 0.1)' : 'rgba(233, 236, 221, 0.05)',
-                            border: `1px solid ${formData.criticalFactors.includes(factor.id) ? '#D7E150' : 'rgba(233, 236, 221, 0.2)'}`,
-                            color: formData.criticalFactors.includes(factor.id) ? '#D7E150' : 'rgba(233, 236, 221, 0.8)'
+                            border: `1px solid ${formData.criticalFactors.includes(factor.id) ? '#F2C864' : 'rgba(233, 236, 221, 0.2)'}`,
+                            color: formData.criticalFactors.includes(factor.id) ? '#F2C864' : 'rgba(233, 236, 221, 0.8)'
                           }}
                         >
                           <input
@@ -358,10 +358,10 @@ export default function Contact() {
                             checked={formData.criticalFactors.includes(factor.id)}
                             onChange={() => handleCheckboxChange(factor.id)}
                             className="mr-3"
-                            style={{ accentColor: '#D7E150' }}
+                            style={{ accentColor: '#F2C864' }}
                           />
                           <span className="flex-1">{factor.name}</span>
-                          <span className="text-sm" style={{ color: '#D7E150' }}>+${(factor.cost / 1000).toFixed(0)}K</span>
+                          <span className="text-sm" style={{ color: '#F2C864' }}>+${(factor.cost / 1000).toFixed(0)}K</span>
                         </label>
                       ))}
                     </div>
@@ -372,7 +372,7 @@ export default function Contact() {
               {formData.projectType === 'ml-ai' && (
                 <div>
                   <h3 className="text-lg font-semibold mb-4 flex items-center" style={{ color: '#E9ECDD' }}>
-                    <Zap className="mr-2" size={20} style={{ color: '#D7E150' }} />
+                    <Zap className="mr-2" size={20} style={{ color: '#F2C864' }} />
                     ML/AI Configuration
                   </h3>
 
@@ -388,9 +388,9 @@ export default function Contact() {
                         className="w-full px-4 py-3 rounded-lg transition-all duration-200"
                         style={{ backgroundColor: 'rgba(233, 236, 221, 0.1)', border: '1px solid rgba(233, 236, 221, 0.2)', color: '#E9ECDD' }}
                       >
-                        <option value="simple" style={{ backgroundColor: '#03203D' }}>Simple (Classification, Regression)</option>
-                        <option value="medium" style={{ backgroundColor: '#03203D' }}>Medium (NLP, Recommender)</option>
-                        <option value="complex" style={{ backgroundColor: '#03203D' }}>Complex (Computer Vision, Deep Learning)</option>
+                        <option value="simple" style={{ backgroundColor: '#051D2E' }}>Simple (Classification, Regression)</option>
+                        <option value="medium" style={{ backgroundColor: '#051D2E' }}>Medium (NLP, Recommender)</option>
+                        <option value="complex" style={{ backgroundColor: '#051D2E' }}>Complex (Computer Vision, Deep Learning)</option>
                       </select>
                     </div>
 
@@ -405,9 +405,9 @@ export default function Contact() {
                         className="w-full px-4 py-3 rounded-lg transition-all duration-200"
                         style={{ backgroundColor: 'rgba(233, 236, 221, 0.1)', border: '1px solid rgba(233, 236, 221, 0.2)', color: '#E9ECDD' }}
                       >
-                        <option value="small" style={{ backgroundColor: '#03203D' }}>Small (&lt;100K records)</option>
-                        <option value="medium" style={{ backgroundColor: '#03203D' }}>Medium (100K-1M records)</option>
-                        <option value="large" style={{ backgroundColor: '#03203D' }}>Large (1M+ records)</option>
+                        <option value="small" style={{ backgroundColor: '#051D2E' }}>Small (&lt;100K records)</option>
+                        <option value="medium" style={{ backgroundColor: '#051D2E' }}>Medium (100K-1M records)</option>
+                        <option value="large" style={{ backgroundColor: '#051D2E' }}>Large (1M+ records)</option>
                       </select>
                     </div>
                   </div>
@@ -417,14 +417,14 @@ export default function Contact() {
               {formData.projectType === 'data-analytics' && (
                 <div>
                   <h3 className="text-lg font-semibold mb-4 flex items-center" style={{ color: '#E9ECDD' }}>
-                    <BarChart3 className="mr-2" size={20} style={{ color: '#D7E150' }} />
+                    <BarChart3 className="mr-2" size={20} style={{ color: '#F2C864' }} />
                     Analytics Configuration
                   </h3>
 
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
                       <label className="block text-sm font-medium mb-2" style={{ color: 'rgba(233, 236, 221, 0.9)' }}>
-                        Dashboards: <span style={{ color: '#D7E150' }}>{formData.dashboardCount}</span>
+                        Dashboards: <span style={{ color: '#F2C864' }}>{formData.dashboardCount}</span>
                       </label>
                       <input
                         type="range"
@@ -434,14 +434,14 @@ export default function Contact() {
                         onChange={(e) => handleSliderChange('dashboardCount', parseInt(e.target.value))}
                         className="w-full h-2 rounded-lg appearance-none cursor-pointer"
                         style={{
-                          background: `linear-gradient(to right, #D7E150 0%, #D7E150 ${(formData.dashboardCount / 20) * 100}%, rgba(233, 236, 221, 0.2) ${(formData.dashboardCount / 20) * 100}%, rgba(233, 236, 221, 0.2) 100%)`
+                          background: `linear-gradient(to right, #F2C864 0%, #F2C864 ${(formData.dashboardCount / 20) * 100}%, rgba(233, 236, 221, 0.2) ${(formData.dashboardCount / 20) * 100}%, rgba(233, 236, 221, 0.2) 100%)`
                         }}
                       />
                     </div>
 
                     <div>
                       <label className="block text-sm font-medium mb-2" style={{ color: 'rgba(233, 236, 221, 0.9)' }}>
-                        Data Sources: <span style={{ color: '#D7E150' }}>{formData.dataSourcesCount}</span>
+                        Data Sources: <span style={{ color: '#F2C864' }}>{formData.dataSourcesCount}</span>
                       </label>
                       <input
                         type="range"
@@ -451,7 +451,7 @@ export default function Contact() {
                         onChange={(e) => handleSliderChange('dataSourcesCount', parseInt(e.target.value))}
                         className="w-full h-2 rounded-lg appearance-none cursor-pointer"
                         style={{
-                          background: `linear-gradient(to right, #D7E150 0%, #D7E150 ${(formData.dataSourcesCount / 15) * 100}%, rgba(233, 236, 221, 0.2) ${(formData.dataSourcesCount / 15) * 100}%, rgba(233, 236, 221, 0.2) 100%)`
+                          background: `linear-gradient(to right, #F2C864 0%, #F2C864 ${(formData.dataSourcesCount / 15) * 100}%, rgba(233, 236, 221, 0.2) ${(formData.dataSourcesCount / 15) * 100}%, rgba(233, 236, 221, 0.2) 100%)`
                         }}
                       />
                     </div>
@@ -462,7 +462,7 @@ export default function Contact() {
               {formData.projectType === 'consulting' && (
                 <div>
                   <h3 className="text-lg font-semibold mb-4 flex items-center" style={{ color: '#E9ECDD' }}>
-                    <Users className="mr-2" size={20} style={{ color: '#D7E150' }} />
+                    <Users className="mr-2" size={20} style={{ color: '#F2C864' }} />
                     Consulting Configuration
                   </h3>
 
@@ -477,9 +477,9 @@ export default function Contact() {
                       className="w-full px-4 py-3 rounded-lg transition-all duration-200"
                       style={{ backgroundColor: 'rgba(233, 236, 221, 0.1)', border: '1px solid rgba(233, 236, 221, 0.2)', color: '#E9ECDD' }}
                     >
-                      <option value="short" style={{ backgroundColor: '#03203D' }}>Short (1-3 months)</option>
-                      <option value="medium" style={{ backgroundColor: '#03203D' }}>Medium (3-6 months)</option>
-                      <option value="long" style={{ backgroundColor: '#03203D' }}>Long (6+ months)</option>
+                      <option value="short" style={{ backgroundColor: '#051D2E' }}>Short (1-3 months)</option>
+                      <option value="medium" style={{ backgroundColor: '#051D2E' }}>Medium (3-6 months)</option>
+                      <option value="long" style={{ backgroundColor: '#051D2E' }}>Long (6+ months)</option>
                     </select>
                   </div>
                 </div>
@@ -493,7 +493,7 @@ export default function Contact() {
                 }}>
                   <div className="text-center">
                     <p className="text-sm mb-2" style={{ color: 'rgba(233, 236, 221, 0.8)' }}>Estimated Project Cost</p>
-                    <p className="text-3xl font-bold" style={{ color: '#D7E150' }}>
+                    <p className="text-3xl font-bold" style={{ color: '#F2C864' }}>
                       ${(estimatedPrice.min / 1000).toFixed(0)}K - ${(estimatedPrice.max / 1000).toFixed(0)}K
                     </p>
                     <p className="text-xs mt-2" style={{ color: 'rgba(233, 236, 221, 0.6)' }}>
@@ -506,7 +506,7 @@ export default function Contact() {
               {/* Project Details */}
               <div>
                 <h3 className="text-lg font-semibold mb-4 flex items-center" style={{ color: '#E9ECDD' }}>
-                  <MessageSquare className="mr-2" size={20} style={{ color: '#D7E150' }} />
+                  <MessageSquare className="mr-2" size={20} style={{ color: '#F2C864' }} />
                   Project Details *
                 </h3>
                 <textarea
@@ -528,8 +528,8 @@ export default function Contact() {
                   disabled={!isFormValid}
                   className="inline-flex items-center px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-200"
                   style={{
-                    backgroundColor: isFormValid ? '#D7E150' : 'rgba(233, 236, 221, 0.2)',
-                    color: isFormValid ? '#03203D' : 'rgba(233, 236, 221, 0.5)',
+                    backgroundColor: isFormValid ? '#F2C864' : 'rgba(233, 236, 221, 0.2)',
+                    color: isFormValid ? '#051D2E' : 'rgba(233, 236, 221, 0.5)',
                     cursor: isFormValid ? 'pointer' : 'not-allowed',
                     boxShadow: isFormValid ? '0 10px 25px rgba(215, 225, 80, 0.3)' : 'none'
                   }}
@@ -542,7 +542,7 @@ export default function Contact() {
                   }}
                   onMouseLeave={(e) => {
                     if (isFormValid) {
-                      e.currentTarget.style.backgroundColor = '#D7E150'
+                      e.currentTarget.style.backgroundColor = '#F2C864'
                       e.currentTarget.style.transform = 'translateY(0)'
                       e.currentTarget.style.boxShadow = '0 10px 25px rgba(215, 225, 80, 0.3)'
                     }
@@ -565,7 +565,7 @@ export default function Contact() {
             <div className="space-y-6">
               <div className="flex items-start space-x-4">
                 <div className="p-3 rounded-full" style={{ backgroundColor: 'rgba(215, 225, 80, 0.1)' }}>
-                  <Mail size={24} style={{ color: '#D7E150' }} />
+                  <Mail size={24} style={{ color: '#F2C864' }} />
                 </div>
                 <div>
                   <h4 className="font-semibold" style={{ color: '#E9ECDD' }}>Email</h4>
@@ -576,7 +576,7 @@ export default function Contact() {
 
               <div className="flex items-start space-x-4">
                 <div className="p-3 rounded-full" style={{ backgroundColor: 'rgba(215, 225, 80, 0.1)' }}>
-                  <Phone size={24} style={{ color: '#D7E150' }} />
+                  <Phone size={24} style={{ color: '#F2C864' }} />
                 </div>
                 <div>
                   <h4 className="font-semibold" style={{ color: '#E9ECDD' }}>Phone</h4>
@@ -587,7 +587,7 @@ export default function Contact() {
 
               <div className="flex items-start space-x-4">
                 <div className="p-3 rounded-full" style={{ backgroundColor: 'rgba(215, 225, 80, 0.1)' }}>
-                  <MapPin size={24} style={{ color: '#D7E150' }} />
+                  <MapPin size={24} style={{ color: '#F2C864' }} />
                 </div>
                 <div>
                   <h4 className="font-semibold" style={{ color: '#E9ECDD' }}>Location</h4>
@@ -597,19 +597,19 @@ export default function Contact() {
               </div>
             </div>
 
-            <div className="mt-8 p-6 rounded-xl" style={{ background: 'linear-gradient(135deg, #03203D 0%, #04152a 100%)', border: '1px solid rgba(215, 225, 80, 0.2)' }}>
+            <div className="mt-8 p-6 rounded-xl" style={{ background: 'linear-gradient(135deg, #051D2E 0%, #04152a 100%)', border: '1px solid rgba(215, 225, 80, 0.2)' }}>
               <h4 className="text-lg font-bold mb-3" style={{ color: '#E9ECDD' }}>Schedule a Data Discovery Call</h4>
               <p className="mb-4" style={{ color: 'rgba(233, 236, 221, 0.7)' }}>
                 Book a 30-minute consultation to discuss your data challenges and explore solutions.
               </p>
               <button
                 className="inline-flex items-center font-semibold px-4 py-2 rounded-lg transition-all duration-200"
-                style={{ backgroundColor: '#D7E150', color: '#03203D' }}
+                style={{ backgroundColor: '#F2C864', color: '#051D2E' }}
                 onMouseEnter={(e) => {
                   e.currentTarget.style.backgroundColor = '#E9ECDD'
                 }}
                 onMouseLeave={(e) => {
-                  e.currentTarget.style.backgroundColor = '#D7E150'
+                  e.currentTarget.style.backgroundColor = '#F2C864'
                 }}
               >
                 <Calendar className="mr-2" size={16} />
@@ -632,19 +632,19 @@ export default function Contact() {
 
               <div className="space-y-4">
                 <div className="flex items-center space-x-3">
-                  <CheckCircle size={20} style={{ color: '#D7E150' }} />
+                  <CheckCircle size={20} style={{ color: '#F2C864' }} />
                   <span style={{ color: 'rgba(233, 236, 221, 0.9)' }}>Real-time data processing</span>
                 </div>
                 <div className="flex items-center space-x-3">
-                  <CheckCircle size={20} style={{ color: '#D7E150' }} />
+                  <CheckCircle size={20} style={{ color: '#F2C864' }} />
                   <span style={{ color: 'rgba(233, 236, 221, 0.9)' }}>Interactive visualizations</span>
                 </div>
                 <div className="flex items-center space-x-3">
-                  <CheckCircle size={20} style={{ color: '#D7E150' }} />
+                  <CheckCircle size={20} style={{ color: '#F2C864' }} />
                   <span style={{ color: 'rgba(233, 236, 221, 0.9)' }}>Predictive analytics</span>
                 </div>
                 <div className="flex items-center space-x-3">
-                  <CheckCircle size={20} style={{ color: '#D7E150' }} />
+                  <CheckCircle size={20} style={{ color: '#F2C864' }} />
                   <span style={{ color: 'rgba(233, 236, 221, 0.9)' }}>Scalable cloud architecture</span>
                 </div>
               </div>
@@ -654,7 +654,7 @@ export default function Contact() {
                   &quot;AltDev transformed our data chaos into clear insights.
                   The implementation exceeded expectations.&quot;
                 </p>
-                <p className="text-xs mt-2" style={{ color: '#D7E150' }}>— Fortune 500 Client</p>
+                <p className="text-xs mt-2" style={{ color: '#F2C864' }}>— Fortune 500 Client</p>
               </div>
             </div>
           </div>

@@ -59,7 +59,7 @@ export default function Home() {
         ref={heroRef}
         className="relative min-h-screen flex items-center justify-center bg-red-500 overflow-hidden"
         style={{
-          background: '#03203D',
+          background: '#051D2E',
           minHeight: '100vh',
           display: 'flex',
           alignItems: 'center',
@@ -97,7 +97,7 @@ export default function Home() {
             <span
               className="bg-gradient-to-r from-yellow-400 via-orange-500 to-yellow-400 bg-clip-text text-transparent"
               style={{
-                background: 'linear-gradient(90deg, #D7E150 0%, #E9ECDD 50%, #D7E150 100%)',
+                background: 'linear-gradient(90deg, #F2C864 0%, #E9ECDD 50%, #F2C864 100%)',
                 backgroundSize: '200% auto',
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent',
@@ -141,26 +141,26 @@ export default function Home() {
               href="/contact"
               className="inline-flex items-center bg-orange-500 hover:bg-orange-600 text-white font-medium px-8 py-4 rounded-full transition-colors duration-200 shadow-lg hover:shadow-xl group"
               style={{
-                backgroundColor: '#D7E150',
-                color: '#03203D',
+                backgroundColor: '#F2C864',
+                color: '#051D2E',
                 padding: '1rem 2.5rem',
                 borderRadius: '2rem',
                 textDecoration: 'none',
                 fontWeight: '700',
-                boxShadow: '0 10px 25px rgba(215, 225, 80, 0.3)',
+                boxShadow: '0 10px 25px rgba(242, 200, 100, 0.3)',
                 transition: 'all 0.3s ease',
                 position: 'relative',
                 overflow: 'hidden'
               }}
               onMouseEnter={(e) => {
-                e.currentTarget.style.backgroundColor = '#E9ECDD';
+                e.currentTarget.style.backgroundColor = '#EFB93C';
                 e.currentTarget.style.transform = 'translateY(-2px)';
-                e.currentTarget.style.boxShadow = '0 15px 35px rgba(215, 225, 80, 0.5), 0 0 30px rgba(215, 225, 80, 0.3)';
+                e.currentTarget.style.boxShadow = '0 15px 35px rgba(242, 200, 100, 0.5), 0 0 30px rgba(242, 200, 100, 0.3)';
               }}
               onMouseLeave={(e) => {
-                e.currentTarget.style.backgroundColor = '#D7E150';
+                e.currentTarget.style.backgroundColor = '#F2C864';
                 e.currentTarget.style.transform = 'translateY(0)';
-                e.currentTarget.style.boxShadow = '0 10px 25px rgba(215, 225, 80, 0.3)';
+                e.currentTarget.style.boxShadow = '0 10px 25px rgba(242, 200, 100, 0.3)';
               }}
             >
               Get Started <ArrowRight className="ml-2" size={20} />
@@ -280,8 +280,8 @@ export default function Home() {
                 }}
                 onMouseEnter={(e) => {
                   e.currentTarget.style.transform = 'translateY(-12px)';
-                  e.currentTarget.style.boxShadow = '0 20px 40px rgba(215, 225, 80, 0.25), 0 0 20px rgba(215, 225, 80, 0.15)';
-                  e.currentTarget.style.borderColor = '#D7E150';
+                  e.currentTarget.style.boxShadow = '0 20px 40px rgba(242, 200, 100, 0.25), 0 0 20px rgba(242, 200, 100, 0.15)';
+                  e.currentTarget.style.borderColor = '#F2C864';
                 }}
                 onMouseLeave={(e) => {
                   e.currentTarget.style.transform = 'translateY(0)';
@@ -292,14 +292,14 @@ export default function Home() {
                 <div
                   className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                   style={{
-                    background: 'radial-gradient(circle at 50% 50%, rgba(215, 225, 80, 0.05), transparent 70%)',
+                    background: 'radial-gradient(circle at 50% 50%, rgba(242, 200, 100, 0.05), transparent 70%)',
                     pointerEvents: 'none'
                   }}
                 />
                 <div
                   className="text-blue-600 mb-4 flex justify-center relative z-10"
                   style={{
-                    color: '#D7E150',
+                    color: '#F2C864',
                     marginBottom: '1rem',
                     display: 'flex',
                     justifyContent: 'center',
@@ -327,7 +327,7 @@ export default function Home() {
         <TechStackBackground />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10" style={{maxWidth: '80rem', margin: '0 auto', padding: '0 2rem', position: 'relative', zIndex: 10}}>
           <div className="text-center mb-16" style={{textAlign: 'center', marginBottom: '4rem'}}>
-            <h2 className="text-4xl font-bold mb-4" style={{fontSize: '2.5rem', fontWeight: 'bold', color: '#03203D', marginBottom: '1rem'}}>Technology Stacks for Every Use Case</h2>
+            <h2 className="text-4xl font-bold mb-4" style={{fontSize: '2.5rem', fontWeight: 'bold', color: '#051D2E', marginBottom: '1rem'}}>Technology Stacks for Every Use Case</h2>
             <p className="text-xl max-w-3xl mx-auto" style={{fontSize: '1.25rem', color: '#475569', maxWidth: '48rem', margin: '0 auto'}}>
               Explore how we combine cutting-edge technologies to deliver solutions tailored to your specific needs
             </p>
@@ -341,7 +341,7 @@ export default function Home() {
       <section className="py-20 bg-white relative overflow-hidden" style={{padding: '5rem 0', backgroundColor: '#ffffff', margin: 0, width: '100%', position: 'relative', overflow: 'hidden'}}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10" style={{maxWidth: '80rem', margin: '0 auto', padding: '0 2rem', position: 'relative', zIndex: 10}}>
           <div className="text-center mb-16" style={{textAlign: 'center', marginBottom: '4rem'}}>
-            <h2 className="text-4xl font-bold mb-4" style={{fontSize: '2.5rem', fontWeight: 'bold', color: '#03203D', marginBottom: '1rem'}}>Our Technology Expertise</h2>
+            <h2 className="text-4xl font-bold mb-4" style={{fontSize: '2.5rem', fontWeight: 'bold', color: '#051D2E', marginBottom: '1rem'}}>Our Technology Expertise</h2>
             <p className="text-xl max-w-3xl mx-auto" style={{fontSize: '1.25rem', color: '#475569', maxWidth: '48rem', margin: '0 auto'}}>
               We leverage cutting-edge technologies to build robust, scalable solutions
             </p>
@@ -387,8 +387,8 @@ export default function Home() {
                   }}
                   onMouseEnter={(e) => {
                     e.currentTarget.style.transform = 'translateY(-8px)';
-                    e.currentTarget.style.boxShadow = '0 12px 30px rgba(215, 225, 80, 0.25)';
-                    e.currentTarget.style.borderColor = '#D7E150';
+                    e.currentTarget.style.boxShadow = '0 12px 30px rgba(242, 200, 100, 0.25)';
+                    e.currentTarget.style.borderColor = '#F2C864';
                   }}
                   onMouseLeave={(e) => {
                     e.currentTarget.style.transform = 'translateY(0)';
@@ -400,7 +400,7 @@ export default function Home() {
                   <div
                     className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
                     style={{
-                      background: 'radial-gradient(circle at center, rgba(215, 225, 80, 0.1), transparent 70%)',
+                      background: 'radial-gradient(circle at center, rgba(242, 200, 100, 0.1), transparent 70%)',
                       pointerEvents: 'none'
                     }}
                   />
@@ -419,22 +419,22 @@ export default function Home() {
                       strokeWidth={1.5}
                       className="transition-all duration-300 group-hover:scale-110"
                       style={{
-                        color: '#03203D',
-                        filter: 'drop-shadow(0 2px 4px rgba(3, 32, 61, 0.1))'
+                        color: '#051D2E',
+                        filter: 'drop-shadow(0 2px 4px rgba(5, 29, 46, 0.1))'
                       }}
                     />
                     {/* Glow effect on hover */}
                     <div
                       className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                       style={{
-                        background: 'radial-gradient(circle, rgba(215, 225, 80, 0.3), transparent 70%)',
+                        background: 'radial-gradient(circle, rgba(242, 200, 100, 0.3), transparent 70%)',
                         filter: 'blur(10px)',
                         transform: 'scale(1.5)'
                       }}
                     />
                   </div>
 
-                  <h3 className="text-sm font-semibold text-center relative z-10" style={{fontSize: '0.875rem', fontWeight: '600', color: '#03203D', textAlign: 'center'}}>
+                  <h3 className="text-sm font-semibold text-center relative z-10" style={{fontSize: '0.875rem', fontWeight: '600', color: '#051D2E', textAlign: 'center'}}>
                     {tech.name}
                   </h3>
                 </div>
@@ -448,15 +448,15 @@ export default function Home() {
       <ProvenResults />
 
       {/* CTA Section */}
-      <section className="py-20 bg-gray-900 text-white" style={{padding: '5rem 0', backgroundColor: '#03203D', margin: 0, width: '100%'}}>
+      <section className="py-20 bg-gray-900 text-white" style={{padding: '5rem 0', backgroundColor: '#051D2E', margin: 0, width: '100%'}}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center" style={{maxWidth: '80rem', margin: '0 auto', padding: '0 2rem', textAlign: 'center'}}>
           <h2 className="text-4xl font-bold mb-4" style={{fontSize: '2.5rem', fontWeight: 'bold', color: '#E9ECDD', marginBottom: '1rem'}}>Ready to Unlock Your Data&apos;s Potential?</h2>
           <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto" style={{fontSize: '1.25rem', color: 'rgba(233, 236, 221, 0.8)', marginBottom: '2rem', maxWidth: '42rem', margin: '0 auto 2rem auto'}}>
             Transform your business with data-driven insights. Let&apos;s discuss how our analytics expertise can drive measurable growth for your organization.
           </p>
           <Link href="/contact" className="bg-blue-600 hover:bg-blue-700 text-white font-medium px-8 py-4 rounded-lg transition-colors duration-200 shadow-lg hover:shadow-xl inline-flex items-center" style={{
-            backgroundColor: '#D7E150',
-            color: '#03203D',
+            backgroundColor: '#F2C864',
+            color: '#051D2E',
             fontWeight: '700',
             padding: '1rem 2.5rem',
             borderRadius: '2rem',
@@ -465,17 +465,17 @@ export default function Home() {
             alignItems: 'center',
             gap: '0.5rem',
             transition: 'all 0.3s ease',
-            boxShadow: '0 10px 25px rgba(215, 225, 80, 0.3)'
+            boxShadow: '0 10px 25px rgba(242, 200, 100, 0.3)'
           }}
           onMouseEnter={(e) => {
-            e.currentTarget.style.backgroundColor = '#E9ECDD';
+            e.currentTarget.style.backgroundColor = '#EFB93C';
             e.currentTarget.style.transform = 'translateY(-2px)';
-            e.currentTarget.style.boxShadow = '0 15px 35px rgba(215, 225, 80, 0.5)';
+            e.currentTarget.style.boxShadow = '0 15px 35px rgba(242, 200, 100, 0.5)';
           }}
           onMouseLeave={(e) => {
-            e.currentTarget.style.backgroundColor = '#D7E150';
+            e.currentTarget.style.backgroundColor = '#F2C864';
             e.currentTarget.style.transform = 'translateY(0)';
-            e.currentTarget.style.boxShadow = '0 10px 25px rgba(215, 225, 80, 0.3)';
+            e.currentTarget.style.boxShadow = '0 10px 25px rgba(242, 200, 100, 0.3)';
           }}>
             Start Your Project <ArrowRight className="ml-2" size={20} />
           </Link>

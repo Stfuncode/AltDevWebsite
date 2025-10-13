@@ -6,7 +6,7 @@ import DataVisualization from '@/components/three/DataVisualization'
 
 export default function TrainingSupport() {
   return (
-    <div className="min-h-screen py-20 relative" style={{minHeight: '100vh', padding: '5rem 0', backgroundColor: '#03203D', margin: 0, width: '100%', position: 'relative'}}>
+    <div className="min-h-screen py-20 relative" style={{minHeight: '100vh', padding: '5rem 0', backgroundColor: '#051D2E', margin: 0, width: '100%', position: 'relative'}}>
       <div className="absolute inset-0 opacity-30">
         <DataVisualization />
       </div>
@@ -15,7 +15,7 @@ export default function TrainingSupport() {
         {/* Hero Section */}
         <div className="text-center mb-16" style={{textAlign: 'center', marginBottom: '4rem'}}>
           <h1 className="text-4xl font-bold text-center mb-8" style={{fontSize: '3.5rem', fontWeight: 'bold', color: '#E9ECDD', marginBottom: '1.5rem'}}>
-            Training & <span style={{color: '#D7E150'}}>Support</span>
+            Training & <span style={{color: '#F2C864'}}>Support</span>
           </h1>
           <p className="text-lg text-center max-w-3xl mx-auto" style={{fontSize: '1.25rem', color: 'rgba(233, 236, 221, 0.8)', maxWidth: '48rem', margin: '0 auto', lineHeight: '1.7'}}>
             Empower your team with expert training and ongoing support to maximize the value of your data solutions. We ensure your organization has the knowledge and assistance needed for long-term success.
@@ -57,7 +57,7 @@ export default function TrainingSupport() {
               onMouseEnter={(e) => {
                 e.currentTarget.style.transform = 'translateY(-8px)';
                 e.currentTarget.style.boxShadow = '0 20px 40px rgba(215, 225, 80, 0.3)';
-                e.currentTarget.style.borderColor = '#D7E150';
+                e.currentTarget.style.borderColor = '#F2C864';
               }}
               onMouseLeave={(e) => {
                 e.currentTarget.style.transform = 'translateY(0)';
@@ -65,7 +65,7 @@ export default function TrainingSupport() {
                 e.currentTarget.style.borderColor = 'rgba(215, 225, 80, 0.2)';
               }}
             >
-              <div className="mb-4 flex justify-center" style={{color: '#D7E150', marginBottom: '1.5rem', display: 'flex', justifyContent: 'center'}}>{service.icon}</div>
+              <div className="mb-4 flex justify-center" style={{color: '#F2C864', marginBottom: '1.5rem', display: 'flex', justifyContent: 'center'}}>{service.icon}</div>
               <h3 className="text-xl font-semibold mb-3" style={{fontSize: '1.5rem', fontWeight: '600', color: '#E9ECDD', marginBottom: '1rem'}}>{service.title}</h3>
               <p style={{color: 'rgba(233, 236, 221, 0.8)', fontSize: '1rem', lineHeight: '1.6'}}>{service.description}</p>
             </div>
@@ -86,7 +86,7 @@ export default function TrainingSupport() {
           }}
         >
           <h2 className="text-3xl font-bold text-center mb-8" style={{fontSize: '2.5rem', fontWeight: 'bold', color: '#E9ECDD', marginBottom: '2rem', textAlign: 'center'}}>
-            Training <span style={{color: '#D7E150'}}>Programs</span>
+            Training <span style={{color: '#F2C864'}}>Programs</span>
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6" style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '1.5rem'}}>
             {[
@@ -145,7 +145,7 @@ export default function TrainingSupport() {
                 <div className="space-y-2" style={{display: 'flex', flexDirection: 'column', gap: '0.5rem'}}>
                   {program.topics.map((topic, topicIndex) => (
                     <div key={topicIndex} className="flex items-center gap-2" style={{display: 'flex', alignItems: 'center', gap: '0.5rem'}}>
-                      <CheckCircle2 size={16} style={{color: '#D7E150', flexShrink: 0}} />
+                      <CheckCircle2 size={16} style={{color: '#F2C864', flexShrink: 0}} />
                       <span style={{color: 'rgba(233, 236, 221, 0.8)', fontSize: '0.875rem'}}>{topic}</span>
                     </div>
                   ))}
@@ -169,7 +169,7 @@ export default function TrainingSupport() {
           }}
         >
           <h2 className="text-3xl font-bold text-center mb-8" style={{fontSize: '2.5rem', fontWeight: 'bold', color: '#E9ECDD', marginBottom: '2rem', textAlign: 'center'}}>
-            Support <span style={{color: '#D7E150'}}>Tiers</span>
+            Support <span style={{color: '#F2C864'}}>Tiers</span>
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6" style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.5rem'}}>
             {[
@@ -233,17 +233,17 @@ export default function TrainingSupport() {
               >
                 {tier.highlighted && (
                   <div className="absolute -top-3 left-1/2 transform -translate-x-1/2" style={{position: 'absolute', top: '-0.75rem', left: '50%', transform: 'translateX(-50%)'}}>
-                    <span className="px-3 py-1 text-xs font-bold rounded-full" style={{padding: '0.25rem 0.75rem', fontSize: '0.75rem', fontWeight: 'bold', borderRadius: '9999px', backgroundColor: '#D7E150', color: '#03203D'}}>
+                    <span className="px-3 py-1 text-xs font-bold rounded-full" style={{padding: '0.25rem 0.75rem', fontSize: '0.75rem', fontWeight: 'bold', borderRadius: '9999px', backgroundColor: '#F2C864', color: '#051D2E'}}>
                       POPULAR
                     </span>
                   </div>
                 )}
-                <h4 className="font-bold text-center mb-2" style={{fontSize: '1.5rem', fontWeight: 'bold', color: '#D7E150', marginBottom: '0.5rem', textAlign: 'center'}}>{tier.tier}</h4>
+                <h4 className="font-bold text-center mb-2" style={{fontSize: '1.5rem', fontWeight: 'bold', color: '#F2C864', marginBottom: '0.5rem', textAlign: 'center'}}>{tier.tier}</h4>
                 <p className="text-center mb-4" style={{color: 'rgba(233, 236, 221, 0.7)', fontSize: '0.95rem', lineHeight: '1.5', marginBottom: '1.5rem', textAlign: 'center'}}>{tier.description}</p>
                 <div className="space-y-3" style={{display: 'flex', flexDirection: 'column', gap: '0.75rem'}}>
                   {tier.features.map((feature, featureIndex) => (
                     <div key={featureIndex} className="flex items-start gap-2" style={{display: 'flex', alignItems: 'flex-start', gap: '0.5rem'}}>
-                      <CheckCircle2 size={18} style={{color: '#D7E150', flexShrink: 0, marginTop: '0.125rem'}} />
+                      <CheckCircle2 size={18} style={{color: '#F2C864', flexShrink: 0, marginTop: '0.125rem'}} />
                       <span style={{color: 'rgba(233, 236, 221, 0.9)', fontSize: '0.9rem', lineHeight: '1.4'}}>{feature}</span>
                     </div>
                   ))}
@@ -267,7 +267,7 @@ export default function TrainingSupport() {
           }}
         >
           <h2 className="text-3xl font-bold text-center mb-8" style={{fontSize: '2.5rem', fontWeight: 'bold', color: '#E9ECDD', marginBottom: '2rem', textAlign: 'center'}}>
-            Delivery <span style={{color: '#D7E150'}}>Methods</span>
+            Delivery <span style={{color: '#F2C864'}}>Methods</span>
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6" style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '1.5rem'}}>
             {[
@@ -299,7 +299,7 @@ export default function TrainingSupport() {
                     width: '5rem',
                     height: '5rem',
                     backgroundColor: 'rgba(215, 225, 80, 0.1)',
-                    color: '#D7E150',
+                    color: '#F2C864',
                     borderRadius: '1rem',
                     display: 'flex',
                     alignItems: 'center',
@@ -333,8 +333,8 @@ export default function TrainingSupport() {
             Let&apos;s build your team&apos;s data capabilities and ensure ongoing success with our training and support services.
           </p>
           <Link href="/contact" className="inline-flex items-center" style={{
-            backgroundColor: '#D7E150',
-            color: '#03203D',
+            backgroundColor: '#F2C864',
+            color: '#051D2E',
             fontWeight: '700',
             padding: '1rem 2.5rem',
             borderRadius: '2rem',
@@ -351,7 +351,7 @@ export default function TrainingSupport() {
             e.currentTarget.style.boxShadow = '0 15px 35px rgba(215, 225, 80, 0.5)';
           }}
           onMouseLeave={(e) => {
-            e.currentTarget.style.backgroundColor = '#D7E150';
+            e.currentTarget.style.backgroundColor = '#F2C864';
             e.currentTarget.style.transform = 'translateY(0)';
             e.currentTarget.style.boxShadow = '0 10px 25px rgba(215, 225, 80, 0.3)';
           }}>

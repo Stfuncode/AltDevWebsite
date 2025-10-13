@@ -33,7 +33,7 @@ export default function About() {
   }, [])
 
   return (
-    <div className="min-h-screen py-20 relative" style={{minHeight: '100vh', padding: '5rem 0', backgroundColor: '#03203D', margin: 0, width: '100%', position: 'relative'}}>
+    <div className="min-h-screen py-20 relative" style={{minHeight: '100vh', padding: '5rem 0', backgroundColor: '#051D2E', margin: 0, width: '100%', position: 'relative'}}>
       <div className="absolute inset-0 opacity-30">
         <DataVisualization />
       </div>
@@ -42,11 +42,11 @@ export default function About() {
         {/* Hero Section */}
         <div className="text-center mb-16" style={{textAlign: 'center', marginBottom: '4rem'}}>
           <h1 className="text-4xl font-bold text-center mb-8" style={{fontSize: '3rem', fontWeight: 'bold', color: '#E9ECDD', marginBottom: '1.5rem'}}>
-            About <span style={{color: '#D7E150'}}>ALTDEV</span>
+            About <span style={{color: '#F2C864'}}>ALTDEV</span>
           </h1>
           <p className="text-lg text-center max-w-3xl mx-auto" style={{fontSize: '1.25rem', color: 'rgba(233, 236, 221, 0.8)', maxWidth: '48rem', margin: '0 auto', lineHeight: '1.7'}}>
             We are a team of data scientists, engineers, and analysts who believe that every business decision should be backed by data.
-            We transform raw information into <strong style={{color: '#D7E150'}}>actionable intelligence</strong> that drives measurable results.
+            We transform raw information into <strong style={{color: '#F2C864'}}>actionable intelligence</strong> that drives measurable results.
           </p>
         </div>
 
@@ -72,7 +72,7 @@ export default function About() {
             At AltDev, we believe that data is the{' '}
             <span
               style={{
-                background: 'linear-gradient(90deg, #D7E150 0%, #E9ECDD 25%, #D7E150 50%, #E9ECDD 75%, #D7E150 100%)',
+                background: 'linear-gradient(90deg, #F2C864 0%, #E9ECDD 25%, #F2C864 50%, #E9ECDD 75%, #F2C864 100%)',
                 backgroundSize: '200% auto',
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent',
@@ -91,7 +91,7 @@ export default function About() {
             {' '}of the 21st century. Our mission is to{' '}
             <span
               style={{
-                background: 'linear-gradient(90deg, #D7E150 0%, #E9ECDD 25%, #D7E150 50%, #E9ECDD 75%, #D7E150 100%)',
+                background: 'linear-gradient(90deg, #F2C864 0%, #E9ECDD 25%, #F2C864 50%, #E9ECDD 75%, #F2C864 100%)',
                 backgroundSize: '200% auto',
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent',
@@ -110,7 +110,7 @@ export default function About() {
             {' '}and make{' '}
             <span
               style={{
-                background: 'linear-gradient(90deg, #D7E150 0%, #E9ECDD 25%, #D7E150 50%, #E9ECDD 75%, #D7E150 100%)',
+                background: 'linear-gradient(90deg, #F2C864 0%, #E9ECDD 25%, #F2C864 50%, #E9ECDD 75%, #F2C864 100%)',
                 backgroundSize: '200% auto',
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent',
@@ -129,7 +129,7 @@ export default function About() {
             {' '}to businesses of all sizes. We transform complex datasets into{' '}
             <span
               style={{
-                background: 'linear-gradient(90deg, #D7E150 0%, #E9ECDD 25%, #D7E150 50%, #E9ECDD 75%, #D7E150 100%)',
+                background: 'linear-gradient(90deg, #F2C864 0%, #E9ECDD 25%, #F2C864 50%, #E9ECDD 75%, #F2C864 100%)',
                 backgroundSize: '200% auto',
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent',
@@ -148,7 +148,7 @@ export default function About() {
             {' '}that drive strategic decisions, optimize operations, and unlock new revenue opportunities. Every solution we build is designed to turn your data into your{' '}
             <span
               style={{
-                background: 'linear-gradient(90deg, #D7E150 0%, #E9ECDD 25%, #D7E150 50%, #E9ECDD 75%, #D7E150 100%)',
+                background: 'linear-gradient(90deg, #F2C864 0%, #E9ECDD 25%, #F2C864 50%, #E9ECDD 75%, #F2C864 100%)',
                 backgroundSize: '200% auto',
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent',
@@ -189,7 +189,7 @@ export default function About() {
             We envision a future where{' '}
             <span
               style={{
-                background: 'linear-gradient(90deg, #D7E150 0%, #E9ECDD 25%, #D7E150 50%, #E9ECDD 75%, #D7E150 100%)',
+                background: 'linear-gradient(90deg, #F2C864 0%, #E9ECDD 25%, #F2C864 50%, #E9ECDD 75%, #F2C864 100%)',
                 backgroundSize: '200% auto',
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent',
@@ -208,7 +208,7 @@ export default function About() {
             , regardless of size or industry, has the power to{' '}
             <span
               style={{
-                background: 'linear-gradient(90deg, #D7E150 0%, #E9ECDD 25%, #D7E150 50%, #E9ECDD 75%, #D7E150 100%)',
+                background: 'linear-gradient(90deg, #F2C864 0%, #E9ECDD 25%, #F2C864 50%, #E9ECDD 75%, #F2C864 100%)',
                 backgroundSize: '200% auto',
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent',
@@ -226,7 +226,7 @@ export default function About() {
             </span>. Through{' '}
             <span
               style={{
-                background: 'linear-gradient(90deg, #D7E150 0%, #E9ECDD 25%, #D7E150 50%, #E9ECDD 75%, #D7E150 100%)',
+                background: 'linear-gradient(90deg, #F2C864 0%, #E9ECDD 25%, #F2C864 50%, #E9ECDD 75%, #F2C864 100%)',
                 backgroundSize: '200% auto',
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent',
@@ -244,7 +244,7 @@ export default function About() {
             </span>, we aim to be the{' '}
             <span
               style={{
-                background: 'linear-gradient(90deg, #D7E150 0%, #E9ECDD 25%, #D7E150 50%, #E9ECDD 75%, #D7E150 100%)',
+                background: 'linear-gradient(90deg, #F2C864 0%, #E9ECDD 25%, #F2C864 50%, #E9ECDD 75%, #F2C864 100%)',
                 backgroundSize: '200% auto',
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent',
@@ -263,7 +263,7 @@ export default function About() {
             {' '}that empowers businesses to make confident, data-driven decisions that shape their success. Our vision is to create a world where{' '}
             <span
               style={{
-                background: 'linear-gradient(90deg, #D7E150 0%, #E9ECDD 25%, #D7E150 50%, #E9ECDD 75%, #D7E150 100%)',
+                background: 'linear-gradient(90deg, #F2C864 0%, #E9ECDD 25%, #F2C864 50%, #E9ECDD 75%, #F2C864 100%)',
                 backgroundSize: '200% auto',
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent',
@@ -281,7 +281,7 @@ export default function About() {
             </span>, and every byte of data becomes a{' '}
             <span
               style={{
-                background: 'linear-gradient(90deg, #D7E150 0%, #E9ECDD 25%, #D7E150 50%, #E9ECDD 75%, #D7E150 100%)',
+                background: 'linear-gradient(90deg, #F2C864 0%, #E9ECDD 25%, #F2C864 50%, #E9ECDD 75%, #F2C864 100%)',
                 backgroundSize: '200% auto',
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent',
@@ -337,14 +337,14 @@ export default function About() {
             onMouseEnter={(e) => {
               e.currentTarget.style.transform = 'translateY(-8px)';
               e.currentTarget.style.boxShadow = '0 20px 40px rgba(215, 225, 80, 0.3)';
-              e.currentTarget.style.borderColor = '#D7E150';
+              e.currentTarget.style.borderColor = '#F2C864';
             }}
             onMouseLeave={(e) => {
               e.currentTarget.style.transform = 'translateY(0)';
               e.currentTarget.style.boxShadow = '0 10px 25px rgba(0, 0, 0, 0.3)';
               e.currentTarget.style.borderColor = 'rgba(215, 225, 80, 0.2)';
             }}>
-              <div className="mb-4 flex justify-center" style={{color: '#D7E150', marginBottom: '1rem', display: 'flex', justifyContent: 'center'}}>{value.icon}</div>
+              <div className="mb-4 flex justify-center" style={{color: '#F2C864', marginBottom: '1rem', display: 'flex', justifyContent: 'center'}}>{value.icon}</div>
               <h3 className="text-xl font-semibold mb-3" style={{fontSize: '1.25rem', fontWeight: '600', color: '#E9ECDD', marginBottom: '0.75rem'}}>{value.title}</h3>
               <p style={{color: 'rgba(233, 236, 221, 0.8)', fontSize: '0.95rem', lineHeight: '1.6'}}>{value.description}</p>
             </div>
@@ -358,8 +358,8 @@ export default function About() {
             Let&apos;s discuss how we can help bring your vision to life.
           </p>
           <Link href="/contact" className="inline-flex items-center" style={{
-            backgroundColor: '#D7E150',
-            color: '#03203D',
+            backgroundColor: '#F2C864',
+            color: '#051D2E',
             fontWeight: '700',
             padding: '1rem 2.5rem',
             borderRadius: '2rem',
@@ -376,7 +376,7 @@ export default function About() {
             e.currentTarget.style.boxShadow = '0 15px 35px rgba(215, 225, 80, 0.5)';
           }}
           onMouseLeave={(e) => {
-            e.currentTarget.style.backgroundColor = '#D7E150';
+            e.currentTarget.style.backgroundColor = '#F2C864';
             e.currentTarget.style.transform = 'translateY(0)';
             e.currentTarget.style.boxShadow = '0 10px 25px rgba(215, 225, 80, 0.3)';
           }}>

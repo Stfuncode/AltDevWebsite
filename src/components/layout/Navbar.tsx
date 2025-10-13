@@ -122,14 +122,14 @@ const Navbar = () => {
   ]
 
   return (
-    <nav className="bg-white dark:bg-secondary-900 shadow-sm sticky top-0 z-[60] border-b border-secondary-200 dark:border-secondary-700 transition-colors duration-200">
+    <nav className="bg-white dark:bg-secondary-900 shadow-sm sticky top-0 z-[60] border-b border-secondary-200 dark:border-secondary-700 transition-colors duration-200" style={{backgroundColor: '#051D2E', borderBottom: '1px solid rgba(242, 200, 100, 0.1)'}}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <Link href="/" className="flex items-center space-x-2 group">
-            <div className="w-8 h-8 bg-gradient-to-br from-primary-400 to-accent-500 rounded-lg transition-transform duration-200 group-hover:scale-110"></div>
-            <span className="text-xl font-bold text-secondary-900 dark:text-secondary-100">
-              <span className="gradient-text">ALT</span>DEV
+            <div className="w-8 h-8 bg-gradient-to-br from-primary-400 to-accent-500 rounded-lg transition-transform duration-200 group-hover:scale-110" style={{background: '#F2C864'}}></div>
+            <span className="text-xl font-bold text-secondary-900 dark:text-secondary-100" style={{color: '#E9ECDD'}}>
+              <span className="gradient-text" style={{color: '#F2C864'}}>ALT</span>DEV
             </span>
           </Link>
 
@@ -148,6 +148,22 @@ const Navbar = () => {
                         ? 'text-primary-600 bg-primary-50 dark:bg-primary-900/20 dark:text-primary-400'
                         : 'text-secondary-700 dark:text-secondary-300 hover:text-primary-600 dark:hover:text-primary-400 hover:bg-secondary-50 dark:hover:bg-secondary-800'
                     }`}
+                    style={{
+                      color: activeDropdown === item.name ? '#F2C864' : '#E9ECDD',
+                      backgroundColor: activeDropdown === item.name ? 'rgba(242, 200, 100, 0.1)' : 'transparent'
+                    }}
+                    onMouseEnter={(e) => {
+                      if (activeDropdown !== item.name) {
+                        e.currentTarget.style.color = '#F2C864';
+                        e.currentTarget.style.backgroundColor = 'rgba(242, 200, 100, 0.05)';
+                      }
+                    }}
+                    onMouseLeave={(e) => {
+                      if (activeDropdown !== item.name) {
+                        e.currentTarget.style.color = '#E9ECDD';
+                        e.currentTarget.style.backgroundColor = 'transparent';
+                      }
+                    }}
                     onClick={() => toggleDropdown(item.name)}
                     aria-expanded={activeDropdown === item.name}
                     aria-haspopup="true"
@@ -163,6 +179,15 @@ const Navbar = () => {
                   <Link
                     href={item.href}
                     className="flex items-center px-4 py-2 text-sm font-medium text-secondary-700 dark:text-secondary-300 hover:text-primary-600 dark:hover:text-primary-400 hover:bg-secondary-50 dark:hover:bg-secondary-800 rounded-md transition-all duration-200"
+                    style={{color: '#E9ECDD'}}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.color = '#F2C864';
+                      e.currentTarget.style.backgroundColor = 'rgba(242, 200, 100, 0.05)';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.color = '#E9ECDD';
+                      e.currentTarget.style.backgroundColor = 'transparent';
+                    }}
                   >
                     {item.name}
                   </Link>
@@ -235,9 +260,28 @@ const Navbar = () => {
             <Link
               href="/contact"
               className="btn-primary group relative overflow-hidden"
+              style={{
+                backgroundColor: '#F2C864',
+                color: '#051D2E',
+                padding: '0.5rem 1.5rem',
+                borderRadius: '0.5rem',
+                fontWeight: '600',
+                textDecoration: 'none',
+                transition: 'all 0.3s ease',
+                boxShadow: '0 4px 12px rgba(242, 200, 100, 0.3)'
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.backgroundColor = '#EFB93C';
+                e.currentTarget.style.transform = 'translateY(-2px)';
+                e.currentTarget.style.boxShadow = '0 6px 20px rgba(242, 200, 100, 0.4)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.backgroundColor = '#F2C864';
+                e.currentTarget.style.transform = 'translateY(0)';
+                e.currentTarget.style.boxShadow = '0 4px 12px rgba(242, 200, 100, 0.3)';
+              }}
             >
               <span className="relative z-10">Get Started</span>
-              <div className="absolute inset-0 bg-gradient-to-r from-primary-700 to-accent-600 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-200 origin-left"></div>
             </Link>
           </div>
 

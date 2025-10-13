@@ -6,7 +6,7 @@ import DataVisualization from '@/components/three/DataVisualization'
 
 export default function SystemIntegration() {
   return (
-    <div className="min-h-screen py-20 relative" style={{minHeight: '100vh', padding: '5rem 0', backgroundColor: '#03203D', margin: 0, width: '100%', position: 'relative'}}>
+    <div className="min-h-screen py-20 relative" style={{minHeight: '100vh', padding: '5rem 0', backgroundColor: '#051D2E', margin: 0, width: '100%', position: 'relative'}}>
       <div className="absolute inset-0 opacity-30">
         <DataVisualization />
       </div>
@@ -15,7 +15,7 @@ export default function SystemIntegration() {
         {/* Hero Section */}
         <div className="text-center mb-16" style={{textAlign: 'center', marginBottom: '4rem'}}>
           <h1 className="text-4xl font-bold text-center mb-8" style={{fontSize: '3.5rem', fontWeight: 'bold', color: '#E9ECDD', marginBottom: '1.5rem'}}>
-            System <span style={{color: '#D7E150'}}>Integration</span>
+            System <span style={{color: '#F2C864'}}>Integration</span>
           </h1>
           <p className="text-lg text-center max-w-3xl mx-auto" style={{fontSize: '1.25rem', color: 'rgba(233, 236, 221, 0.8)', maxWidth: '48rem', margin: '0 auto', lineHeight: '1.7'}}>
             Connect disparate systems and create unified data flows across your entire technology ecosystem. We build seamless integrations that eliminate data silos and enable real-time synchronization.
@@ -57,7 +57,7 @@ export default function SystemIntegration() {
               onMouseEnter={(e) => {
                 e.currentTarget.style.transform = 'translateY(-8px)';
                 e.currentTarget.style.boxShadow = '0 20px 40px rgba(215, 225, 80, 0.3)';
-                e.currentTarget.style.borderColor = '#D7E150';
+                e.currentTarget.style.borderColor = '#F2C864';
               }}
               onMouseLeave={(e) => {
                 e.currentTarget.style.transform = 'translateY(0)';
@@ -65,7 +65,7 @@ export default function SystemIntegration() {
                 e.currentTarget.style.borderColor = 'rgba(215, 225, 80, 0.2)';
               }}
             >
-              <div className="mb-4 flex justify-center" style={{color: '#D7E150', marginBottom: '1.5rem', display: 'flex', justifyContent: 'center'}}>{type.icon}</div>
+              <div className="mb-4 flex justify-center" style={{color: '#F2C864', marginBottom: '1.5rem', display: 'flex', justifyContent: 'center'}}>{type.icon}</div>
               <h3 className="text-xl font-semibold mb-3" style={{fontSize: '1.5rem', fontWeight: '600', color: '#E9ECDD', marginBottom: '1rem'}}>{type.title}</h3>
               <p style={{color: 'rgba(233, 236, 221, 0.8)', fontSize: '1rem', lineHeight: '1.6'}}>{type.description}</p>
             </div>
@@ -86,7 +86,7 @@ export default function SystemIntegration() {
           }}
         >
           <h2 className="text-3xl font-bold text-center mb-8" style={{fontSize: '2.5rem', fontWeight: 'bold', color: '#E9ECDD', marginBottom: '2rem', textAlign: 'center'}}>
-            Challenges We <span style={{color: '#D7E150'}}>Solve</span>
+            Challenges We <span style={{color: '#F2C864'}}>Solve</span>
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6" style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '1.5rem'}}>
             {[
@@ -134,7 +134,7 @@ export default function SystemIntegration() {
                   e.currentTarget.style.borderColor = 'rgba(215, 225, 80, 0.1)';
                 }}
               >
-                <h4 className="font-bold mb-2" style={{fontSize: '1.125rem', fontWeight: 'bold', color: '#D7E150', marginBottom: '0.75rem'}}>{item.challenge}</h4>
+                <h4 className="font-bold mb-2" style={{fontSize: '1.125rem', fontWeight: 'bold', color: '#F2C864', marginBottom: '0.75rem'}}>{item.challenge}</h4>
                 <p style={{color: 'rgba(233, 236, 221, 0.7)', fontSize: '0.95rem', lineHeight: '1.5'}}>{item.solution}</p>
               </div>
             ))}
@@ -155,7 +155,7 @@ export default function SystemIntegration() {
           }}
         >
           <h2 className="text-3xl font-bold text-center mb-8" style={{fontSize: '2.5rem', fontWeight: 'bold', color: '#E9ECDD', marginBottom: '2rem', textAlign: 'center'}}>
-            Platforms & <span style={{color: '#D7E150'}}>Tools</span>
+            Platforms & <span style={{color: '#F2C864'}}>Tools</span>
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6" style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '1.5rem'}}>
             {[
@@ -203,11 +203,11 @@ export default function SystemIntegration() {
                   e.currentTarget.style.borderColor = 'rgba(215, 225, 80, 0.1)';
                 }}
               >
-                <h4 className="font-bold mb-3" style={{fontSize: '1.125rem', fontWeight: 'bold', color: '#D7E150', marginBottom: '1rem'}}>{platform.category}</h4>
+                <h4 className="font-bold mb-3" style={{fontSize: '1.125rem', fontWeight: 'bold', color: '#F2C864', marginBottom: '1rem'}}>{platform.category}</h4>
                 <div className="space-y-2" style={{display: 'flex', flexDirection: 'column', gap: '0.5rem'}}>
                   {platform.tools.map((tool, toolIndex) => (
                     <div key={toolIndex} className="flex items-center gap-2" style={{display: 'flex', alignItems: 'center', gap: '0.5rem'}}>
-                      <CheckCircle2 size={16} style={{color: '#D7E150', flexShrink: 0}} />
+                      <CheckCircle2 size={16} style={{color: '#F2C864', flexShrink: 0}} />
                       <span style={{color: 'rgba(233, 236, 221, 0.8)', fontSize: '0.9rem'}}>{tool}</span>
                     </div>
                   ))}
@@ -231,7 +231,7 @@ export default function SystemIntegration() {
           }}
         >
           <h2 className="text-3xl font-bold text-center mb-8" style={{fontSize: '2.5rem', fontWeight: 'bold', color: '#E9ECDD', marginBottom: '2rem', textAlign: 'center'}}>
-            Our Integration <span style={{color: '#D7E150'}}>Process</span>
+            Our Integration <span style={{color: '#F2C864'}}>Process</span>
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6" style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '1.5rem'}}>
             {[
@@ -267,7 +267,7 @@ export default function SystemIntegration() {
                     width: '5rem',
                     height: '5rem',
                     backgroundColor: 'rgba(215, 225, 80, 0.1)',
-                    color: '#D7E150',
+                    color: '#F2C864',
                     borderRadius: '1rem',
                     display: 'flex',
                     alignItems: 'center',
@@ -287,7 +287,7 @@ export default function SystemIntegration() {
                 >
                   {phase.icon}
                 </div>
-                <div className="text-sm font-bold mb-2" style={{fontSize: '0.875rem', fontWeight: 'bold', color: '#D7E150', marginBottom: '0.5rem'}}>STEP {phase.step}</div>
+                <div className="text-sm font-bold mb-2" style={{fontSize: '0.875rem', fontWeight: 'bold', color: '#F2C864', marginBottom: '0.5rem'}}>STEP {phase.step}</div>
                 <h3 className="text-lg font-semibold mb-2" style={{fontSize: '1.25rem', fontWeight: '600', color: '#E9ECDD', marginBottom: '0.5rem'}}>{phase.title}</h3>
                 <p style={{color: 'rgba(233, 236, 221, 0.7)', fontSize: '0.9rem', lineHeight: '1.5'}}>{phase.description}</p>
               </div>
@@ -302,8 +302,8 @@ export default function SystemIntegration() {
             Let&apos;s eliminate data silos and create seamless integrations across your technology stack.
           </p>
           <Link href="/contact" className="inline-flex items-center" style={{
-            backgroundColor: '#D7E150',
-            color: '#03203D',
+            backgroundColor: '#F2C864',
+            color: '#051D2E',
             fontWeight: '700',
             padding: '1rem 2.5rem',
             borderRadius: '2rem',
@@ -320,7 +320,7 @@ export default function SystemIntegration() {
             e.currentTarget.style.boxShadow = '0 15px 35px rgba(215, 225, 80, 0.5)';
           }}
           onMouseLeave={(e) => {
-            e.currentTarget.style.backgroundColor = '#D7E150';
+            e.currentTarget.style.backgroundColor = '#F2C864';
             e.currentTarget.style.transform = 'translateY(0)';
             e.currentTarget.style.boxShadow = '0 10px 25px rgba(215, 225, 80, 0.3)';
           }}>

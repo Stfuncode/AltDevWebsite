@@ -6,7 +6,7 @@ import DataVisualization from '@/components/three/DataVisualization'
 
 export default function DataStrategy() {
   return (
-    <div className="min-h-screen py-20 relative" style={{minHeight: '100vh', padding: '5rem 0', backgroundColor: '#03203D', margin: 0, width: '100%', position: 'relative'}}>
+    <div className="min-h-screen py-20 relative" style={{minHeight: '100vh', padding: '5rem 0', backgroundColor: '#051D2E', margin: 0, width: '100%', position: 'relative'}}>
       <div className="absolute inset-0 opacity-30">
         <DataVisualization />
       </div>
@@ -15,7 +15,7 @@ export default function DataStrategy() {
         {/* Hero Section */}
         <div className="text-center mb-16" style={{textAlign: 'center', marginBottom: '4rem'}}>
           <h1 className="text-4xl font-bold text-center mb-8" style={{fontSize: '3.5rem', fontWeight: 'bold', color: '#E9ECDD', marginBottom: '1.5rem'}}>
-            Data <span style={{color: '#D7E150'}}>Strategy</span> Consulting
+            Data <span style={{color: '#F2C864'}}>Strategy</span> Consulting
           </h1>
           <p className="text-lg text-center max-w-3xl mx-auto" style={{fontSize: '1.25rem', color: 'rgba(233, 236, 221, 0.8)', maxWidth: '48rem', margin: '0 auto', lineHeight: '1.7'}}>
             Transform your organization with a comprehensive data strategy that aligns technology, people, and processes to drive measurable business outcomes.
@@ -57,7 +57,7 @@ export default function DataStrategy() {
               onMouseEnter={(e) => {
                 e.currentTarget.style.transform = 'translateY(-8px)';
                 e.currentTarget.style.boxShadow = '0 20px 40px rgba(215, 225, 80, 0.3)';
-                e.currentTarget.style.borderColor = '#D7E150';
+                e.currentTarget.style.borderColor = '#F2C864';
               }}
               onMouseLeave={(e) => {
                 e.currentTarget.style.transform = 'translateY(0)';
@@ -65,7 +65,7 @@ export default function DataStrategy() {
                 e.currentTarget.style.borderColor = 'rgba(215, 225, 80, 0.2)';
               }}
             >
-              <div className="mb-4 flex justify-center" style={{color: '#D7E150', marginBottom: '1.5rem', display: 'flex', justifyContent: 'center'}}>{benefit.icon}</div>
+              <div className="mb-4 flex justify-center" style={{color: '#F2C864', marginBottom: '1.5rem', display: 'flex', justifyContent: 'center'}}>{benefit.icon}</div>
               <h3 className="text-xl font-semibold mb-3" style={{fontSize: '1.5rem', fontWeight: '600', color: '#E9ECDD', marginBottom: '1rem'}}>{benefit.title}</h3>
               <p style={{color: 'rgba(233, 236, 221, 0.8)', fontSize: '1rem', lineHeight: '1.6'}}>{benefit.description}</p>
             </div>
@@ -86,7 +86,7 @@ export default function DataStrategy() {
           }}
         >
           <h2 className="text-3xl font-bold text-center mb-8" style={{fontSize: '2.5rem', fontWeight: 'bold', color: '#E9ECDD', marginBottom: '2rem', textAlign: 'center'}}>
-            What We <span style={{color: '#D7E150'}}>Deliver</span>
+            What We <span style={{color: '#F2C864'}}>Deliver</span>
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6" style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '1.5rem'}}>
             {[
@@ -137,7 +137,7 @@ export default function DataStrategy() {
                   e.currentTarget.style.borderColor = 'rgba(215, 225, 80, 0.1)';
                 }}
               >
-                <CheckCircle2 size={24} style={{color: '#D7E150', flexShrink: 0, marginTop: '0.25rem'}} />
+                <CheckCircle2 size={24} style={{color: '#F2C864', flexShrink: 0, marginTop: '0.25rem'}} />
                 <div>
                   <h4 className="font-semibold mb-1" style={{fontSize: '1.125rem', fontWeight: '600', color: '#E9ECDD', marginBottom: '0.5rem'}}>{item.title}</h4>
                   <p style={{color: 'rgba(233, 236, 221, 0.7)', fontSize: '0.95rem', lineHeight: '1.5'}}>{item.description}</p>
@@ -161,7 +161,7 @@ export default function DataStrategy() {
           }}
         >
           <h2 className="text-3xl font-bold text-center mb-8" style={{fontSize: '2.5rem', fontWeight: 'bold', color: '#E9ECDD', marginBottom: '2rem', textAlign: 'center'}}>
-            Our <span style={{color: '#D7E150'}}>Approach</span>
+            Our <span style={{color: '#F2C864'}}>Approach</span>
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8" style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '2rem'}}>
             {[
@@ -197,7 +197,7 @@ export default function DataStrategy() {
                     width: '5rem',
                     height: '5rem',
                     backgroundColor: 'rgba(215, 225, 80, 0.1)',
-                    color: '#D7E150',
+                    color: '#F2C864',
                     borderRadius: '1rem',
                     display: 'flex',
                     alignItems: 'center',
@@ -217,7 +217,7 @@ export default function DataStrategy() {
                 >
                   {phase.icon}
                 </div>
-                <div className="text-sm font-bold mb-2" style={{fontSize: '0.875rem', fontWeight: 'bold', color: '#D7E150', marginBottom: '0.5rem'}}>STEP {phase.step}</div>
+                <div className="text-sm font-bold mb-2" style={{fontSize: '0.875rem', fontWeight: 'bold', color: '#F2C864', marginBottom: '0.5rem'}}>STEP {phase.step}</div>
                 <h3 className="text-lg font-semibold mb-2" style={{fontSize: '1.25rem', fontWeight: '600', color: '#E9ECDD', marginBottom: '0.5rem'}}>{phase.title}</h3>
                 <p style={{color: 'rgba(233, 236, 221, 0.7)', fontSize: '0.9rem', lineHeight: '1.5'}}>{phase.desc}</p>
               </div>
@@ -232,8 +232,8 @@ export default function DataStrategy() {
             Let&apos;s discuss how we can help you create a roadmap for data-driven success.
           </p>
           <Link href="/contact" className="inline-flex items-center" style={{
-            backgroundColor: '#D7E150',
-            color: '#03203D',
+            backgroundColor: '#F2C864',
+            color: '#051D2E',
             fontWeight: '700',
             padding: '1rem 2.5rem',
             borderRadius: '2rem',
@@ -250,7 +250,7 @@ export default function DataStrategy() {
             e.currentTarget.style.boxShadow = '0 15px 35px rgba(215, 225, 80, 0.5)';
           }}
           onMouseLeave={(e) => {
-            e.currentTarget.style.backgroundColor = '#D7E150';
+            e.currentTarget.style.backgroundColor = '#F2C864';
             e.currentTarget.style.transform = 'translateY(0)';
             e.currentTarget.style.boxShadow = '0 10px 25px rgba(215, 225, 80, 0.3)';
           }}>

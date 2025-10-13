@@ -29,7 +29,7 @@ const useCases: UseCase[] = [
       { name: 'AWS', icon: Cloud, percentage: 75 },
     ],
     link: '/solutions/data-analytics',
-    color: '#D7E150'
+    color: '#F2C864'
   },
   {
     title: 'Machine Learning Pipeline',
@@ -41,7 +41,7 @@ const useCases: UseCase[] = [
       { name: 'AWS', icon: Cloud, percentage: 80 },
     ],
     link: '/solutions/ml-models',
-    color: '#D7E150'
+    color: '#F2C864'
   },
   {
     title: 'Real-time Data Processing',
@@ -53,7 +53,7 @@ const useCases: UseCase[] = [
       { name: 'Docker', icon: Server, percentage: 75 },
     ],
     link: '/solutions/data-pipelines',
-    color: '#D7E150'
+    color: '#F2C864'
   },
   {
     title: 'Cloud Infrastructure',
@@ -65,7 +65,7 @@ const useCases: UseCase[] = [
       { name: 'PostgreSQL', icon: Database, percentage: 80 },
     ],
     link: '/solutions/cloud',
-    color: '#D7E150'
+    color: '#F2C864'
   }
 ]
 
@@ -106,7 +106,7 @@ export default function TechStackCarousel() {
       <div
         className="relative rounded-2xl overflow-hidden"
         style={{
-          background: 'linear-gradient(135deg, #03203D 0%, #04152a 100%)',
+          background: 'linear-gradient(135deg, #051D2E 0%, #04152a 100%)',
           borderRadius: '1.5rem',
           overflow: 'hidden',
           border: '1px solid rgba(215, 225, 80, 0.2)',
@@ -140,7 +140,7 @@ export default function TechStackCarousel() {
                   width: 'fit-content'
                 }}
               >
-                <span style={{ color: '#D7E150', fontSize: '0.875rem', fontWeight: '600' }}>
+                <span style={{ color: '#F2C864', fontSize: '0.875rem', fontWeight: '600' }}>
                   Use Case {currentIndex + 1} of {useCases.length}
                 </span>
               </div>
@@ -174,7 +174,7 @@ export default function TechStackCarousel() {
                 href={currentUseCase.link}
                 className="inline-flex items-center gap-2 font-semibold transition-all duration-300"
                 style={{
-                  color: '#D7E150',
+                  color: '#F2C864',
                   fontSize: '1rem',
                   fontWeight: '600',
                   display: 'inline-flex',
@@ -208,10 +208,10 @@ export default function TechStackCarousel() {
                   >
                     <div className="flex items-center justify-between mb-2" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.5rem' }}>
                       <div className="flex items-center gap-3" style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-                        <IconComponent size={20} style={{ color: '#D7E150' }} />
+                        <IconComponent size={20} style={{ color: '#F2C864' }} />
                         <span style={{ color: '#E9ECDD', fontSize: '1rem', fontWeight: '500' }}>{tech.name}</span>
                       </div>
-                      <span style={{ color: '#D7E150', fontSize: '1rem', fontWeight: '600' }}>{tech.percentage}%</span>
+                      <span style={{ color: '#F2C864', fontSize: '1rem', fontWeight: '600' }}>{tech.percentage}%</span>
                     </div>
 
                     {/* Progress Bar */}
@@ -229,7 +229,7 @@ export default function TechStackCarousel() {
                       <div
                         className="absolute top-0 left-0 h-full rounded-full transition-all duration-1000 ease-out"
                         style={{
-                          backgroundColor: '#D7E150',
+                          backgroundColor: '#F2C864',
                           width: `${tech.percentage}%`,
                           borderRadius: '0.75rem',
                           height: '100%',
@@ -271,7 +271,7 @@ export default function TechStackCarousel() {
                     width: currentIndex === index ? '2.5rem' : '0.75rem',
                     height: '0.75rem',
                     borderRadius: '0.5rem',
-                    backgroundColor: currentIndex === index ? '#D7E150' : 'rgba(233, 236, 221, 0.3)',
+                    backgroundColor: currentIndex === index ? '#F2C864' : 'rgba(233, 236, 221, 0.3)',
                     border: 'none',
                     cursor: 'pointer',
                     transition: 'all 0.3s ease'
@@ -297,7 +297,7 @@ export default function TechStackCarousel() {
                 }}
                 onMouseEnter={(e) => {
                   e.currentTarget.style.backgroundColor = 'rgba(215, 225, 80, 0.2)'
-                  e.currentTarget.style.borderColor = '#D7E150'
+                  e.currentTarget.style.borderColor = '#F2C864'
                 }}
                 onMouseLeave={(e) => {
                   e.currentTarget.style.backgroundColor = 'rgba(233, 236, 221, 0.1)'
@@ -322,7 +322,7 @@ export default function TechStackCarousel() {
                 }}
                 onMouseEnter={(e) => {
                   e.currentTarget.style.backgroundColor = 'rgba(215, 225, 80, 0.2)'
-                  e.currentTarget.style.borderColor = '#D7E150'
+                  e.currentTarget.style.borderColor = '#F2C864'
                 }}
                 onMouseLeave={(e) => {
                   e.currentTarget.style.backgroundColor = 'rgba(233, 236, 221, 0.1)'

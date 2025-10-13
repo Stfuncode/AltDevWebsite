@@ -6,7 +6,7 @@ import DataVisualization from '@/components/three/DataVisualization'
 
 export default function AnalyticsRoadmap() {
   return (
-    <div className="min-h-screen py-20 relative" style={{minHeight: '100vh', padding: '5rem 0', backgroundColor: '#03203D', margin: 0, width: '100%', position: 'relative'}}>
+    <div className="min-h-screen py-20 relative" style={{minHeight: '100vh', padding: '5rem 0', backgroundColor: '#051D2E', margin: 0, width: '100%', position: 'relative'}}>
       <div className="absolute inset-0 opacity-30">
         <DataVisualization />
       </div>
@@ -15,7 +15,7 @@ export default function AnalyticsRoadmap() {
         {/* Hero Section */}
         <div className="text-center mb-16" style={{textAlign: 'center', marginBottom: '4rem'}}>
           <h1 className="text-4xl font-bold text-center mb-8" style={{fontSize: '3.5rem', fontWeight: 'bold', color: '#E9ECDD', marginBottom: '1.5rem'}}>
-            Analytics <span style={{color: '#D7E150'}}>Roadmap</span>
+            Analytics <span style={{color: '#F2C864'}}>Roadmap</span>
           </h1>
           <p className="text-lg text-center max-w-3xl mx-auto" style={{fontSize: '1.25rem', color: 'rgba(233, 236, 221, 0.8)', maxWidth: '48rem', margin: '0 auto', lineHeight: '1.7'}}>
             Build a strategic plan to evolve your analytics capabilities from basic reporting to advanced predictive insights. We create actionable roadmaps that deliver value at every milestone.
@@ -57,7 +57,7 @@ export default function AnalyticsRoadmap() {
               onMouseEnter={(e) => {
                 e.currentTarget.style.transform = 'translateY(-8px)';
                 e.currentTarget.style.boxShadow = '0 20px 40px rgba(215, 225, 80, 0.3)';
-                e.currentTarget.style.borderColor = '#D7E150';
+                e.currentTarget.style.borderColor = '#F2C864';
               }}
               onMouseLeave={(e) => {
                 e.currentTarget.style.transform = 'translateY(0)';
@@ -65,7 +65,7 @@ export default function AnalyticsRoadmap() {
                 e.currentTarget.style.borderColor = 'rgba(215, 225, 80, 0.2)';
               }}
             >
-              <div className="mb-4 flex justify-center" style={{color: '#D7E150', marginBottom: '1.5rem', display: 'flex', justifyContent: 'center'}}>{reason.icon}</div>
+              <div className="mb-4 flex justify-center" style={{color: '#F2C864', marginBottom: '1.5rem', display: 'flex', justifyContent: 'center'}}>{reason.icon}</div>
               <h3 className="text-xl font-semibold mb-3" style={{fontSize: '1.5rem', fontWeight: '600', color: '#E9ECDD', marginBottom: '1rem'}}>{reason.title}</h3>
               <p style={{color: 'rgba(233, 236, 221, 0.8)', fontSize: '1rem', lineHeight: '1.6'}}>{reason.description}</p>
             </div>
@@ -86,7 +86,7 @@ export default function AnalyticsRoadmap() {
           }}
         >
           <h2 className="text-3xl font-bold text-center mb-8" style={{fontSize: '2.5rem', fontWeight: 'bold', color: '#E9ECDD', marginBottom: '2rem', textAlign: 'center'}}>
-            Analytics <span style={{color: '#D7E150'}}>Maturity Levels</span>
+            Analytics <span style={{color: '#F2C864'}}>Maturity Levels</span>
           </h2>
           <div className="space-y-4" style={{display: 'flex', flexDirection: 'column', gap: '1rem'}}>
             {[
@@ -141,8 +141,8 @@ export default function AnalyticsRoadmap() {
                     style={{
                       minWidth: '3rem',
                       height: '3rem',
-                      backgroundColor: index === 3 ? '#D7E150' : 'rgba(215, 225, 80, 0.2)',
-                      color: index === 3 ? '#03203D' : '#D7E150',
+                      backgroundColor: index === 3 ? '#F2C864' : 'rgba(215, 225, 80, 0.2)',
+                      color: index === 3 ? '#051D2E' : '#F2C864',
                       borderRadius: '0.5rem',
                       display: 'flex',
                       alignItems: 'center',
@@ -156,7 +156,7 @@ export default function AnalyticsRoadmap() {
                   </div>
                   <div style={{flex: 1}}>
                     <div className="mb-1" style={{marginBottom: '0.5rem'}}>
-                      <span className="text-sm font-bold" style={{fontSize: '0.875rem', color: '#D7E150', fontWeight: 'bold'}}>{maturity.level}</span>
+                      <span className="text-sm font-bold" style={{fontSize: '0.875rem', color: '#F2C864', fontWeight: 'bold'}}>{maturity.level}</span>
                     </div>
                     <h4 className="font-bold text-lg mb-2" style={{fontSize: '1.25rem', fontWeight: 'bold', color: '#E9ECDD', marginBottom: '0.5rem'}}>{maturity.title}</h4>
                     <p className="mb-3" style={{color: 'rgba(233, 236, 221, 0.7)', fontSize: '0.95rem', lineHeight: '1.5', marginBottom: '1rem'}}>{maturity.description}</p>
@@ -199,7 +199,7 @@ export default function AnalyticsRoadmap() {
           }}
         >
           <h2 className="text-3xl font-bold text-center mb-8" style={{fontSize: '2.5rem', fontWeight: 'bold', color: '#E9ECDD', marginBottom: '2rem', textAlign: 'center'}}>
-            What&apos;s <span style={{color: '#D7E150'}}>Included</span>
+            What&apos;s <span style={{color: '#F2C864'}}>Included</span>
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6" style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '1.5rem'}}>
             {[
@@ -256,7 +256,7 @@ export default function AnalyticsRoadmap() {
                   e.currentTarget.style.borderColor = 'rgba(215, 225, 80, 0.1)';
                 }}
               >
-                <div style={{color: '#D7E150', flexShrink: 0, marginTop: '0.25rem'}}>{component.icon}</div>
+                <div style={{color: '#F2C864', flexShrink: 0, marginTop: '0.25rem'}}>{component.icon}</div>
                 <div>
                   <h4 className="font-semibold mb-1" style={{fontSize: '1.125rem', fontWeight: '600', color: '#E9ECDD', marginBottom: '0.5rem'}}>{component.title}</h4>
                   <p style={{color: 'rgba(233, 236, 221, 0.7)', fontSize: '0.95rem', lineHeight: '1.5'}}>{component.description}</p>
@@ -280,7 +280,7 @@ export default function AnalyticsRoadmap() {
           }}
         >
           <h2 className="text-3xl font-bold text-center mb-8" style={{fontSize: '2.5rem', fontWeight: 'bold', color: '#E9ECDD', marginBottom: '2rem', textAlign: 'center'}}>
-            Typical <span style={{color: '#D7E150'}}>Timeline</span>
+            Typical <span style={{color: '#F2C864'}}>Timeline</span>
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6" style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '1.5rem'}}>
             {[
@@ -322,12 +322,12 @@ export default function AnalyticsRoadmap() {
                   e.currentTarget.style.transform = 'translateY(0)';
                 }}
               >
-                <div className="text-sm font-bold mb-2" style={{fontSize: '0.875rem', color: '#D7E150', fontWeight: 'bold', marginBottom: '0.75rem'}}>{timeline.phase}</div>
+                <div className="text-sm font-bold mb-2" style={{fontSize: '0.875rem', color: '#F2C864', fontWeight: 'bold', marginBottom: '0.75rem'}}>{timeline.phase}</div>
                 <h4 className="font-bold text-lg mb-4" style={{fontSize: '1.25rem', fontWeight: 'bold', color: '#E9ECDD', marginBottom: '1rem'}}>{timeline.title}</h4>
                 <ul className="space-y-2" style={{listStyle: 'none', padding: 0, display: 'flex', flexDirection: 'column', gap: '0.5rem'}}>
                   {timeline.items.map((item, itemIndex) => (
                     <li key={itemIndex} className="flex items-center justify-center gap-2" style={{display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem'}}>
-                      <CheckCircle2 size={16} style={{color: '#D7E150', flexShrink: 0}} />
+                      <CheckCircle2 size={16} style={{color: '#F2C864', flexShrink: 0}} />
                       <span style={{color: 'rgba(233, 236, 221, 0.8)', fontSize: '0.9rem'}}>{item}</span>
                     </li>
                   ))}
@@ -344,8 +344,8 @@ export default function AnalyticsRoadmap() {
             Let&apos;s create a roadmap that transforms your analytics capabilities.
           </p>
           <Link href="/contact" className="inline-flex items-center" style={{
-            backgroundColor: '#D7E150',
-            color: '#03203D',
+            backgroundColor: '#F2C864',
+            color: '#051D2E',
             fontWeight: '700',
             padding: '1rem 2.5rem',
             borderRadius: '2rem',
@@ -362,7 +362,7 @@ export default function AnalyticsRoadmap() {
             e.currentTarget.style.boxShadow = '0 15px 35px rgba(215, 225, 80, 0.5)';
           }}
           onMouseLeave={(e) => {
-            e.currentTarget.style.backgroundColor = '#D7E150';
+            e.currentTarget.style.backgroundColor = '#F2C864';
             e.currentTarget.style.transform = 'translateY(0)';
             e.currentTarget.style.boxShadow = '0 10px 25px rgba(215, 225, 80, 0.3)';
           }}>

@@ -114,7 +114,7 @@ export default function ProvenResults() {
       className="py-20 relative overflow-hidden"
       style={{
         padding: '5rem 0',
-        background: 'linear-gradient(135deg, #03203D 0%, #04152a 100%)',
+        background: 'linear-gradient(135deg, #051D2E 0%, #04152a 100%)',
         margin: 0,
         width: '100%',
         position: 'relative',
@@ -242,7 +242,7 @@ export default function ProvenResults() {
                             position: 'absolute',
                             width: '4px',
                             height: '4px',
-                            backgroundColor: '#D7E150',
+                            backgroundColor: '#F2C864',
                             borderRadius: '50%',
                             opacity: 0.6,
                             animation: `float ${2 + i * 0.3}s ease-in-out infinite`,
@@ -278,7 +278,7 @@ export default function ProvenResults() {
                       <IconComponent
                         size={32}
                         style={{
-                          color: '#D7E150',
+                          color: '#F2C864',
                           filter: isHovered ? 'drop-shadow(0 0 8px rgba(215, 225, 80, 0.6))' : 'none',
                           transition: 'filter 0.3s ease'
                         }}
@@ -300,7 +300,7 @@ export default function ProvenResults() {
                       style={{
                         fontSize: '3rem',
                         fontWeight: 'bold',
-                        color: '#D7E150',
+                        color: '#F2C864',
                         lineHeight: '1',
                         textShadow: isHovered ? '0 0 20px rgba(215, 225, 80, 0.5)' : 'none',
                         transition: 'text-shadow 0.3s ease'
