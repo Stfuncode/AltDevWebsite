@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import { Mail, Phone, MapPin, Github, Linkedin, Twitter, ArrowRight } from 'lucide-react'
+import { Mail, Phone, MapPin, Github, Linkedin, Twitter, ArrowRight, Award } from 'lucide-react'
 
 const Footer = () => {
   return (
@@ -32,6 +32,19 @@ const Footer = () => {
               Transforming businesses through <strong style={{color: '#F2C864'}}>data-driven insights</strong> and intelligent analytics.
               Building the future, one dataset at a time.
             </p>
+
+            {/* Certifications */}
+            <div className="space-y-2" style={{display: 'flex', flexDirection: 'column', gap: '0.5rem', marginTop: '0.5rem'}}>
+              <div className="px-3 py-1.5 rounded-full bg-fabric-500/10 border border-fabric-500/30 text-fabric-300 text-xs font-semibold flex items-center gap-2 w-fit" style={{fontSize: '0.75rem', width: 'fit-content'}}>
+                <Award size={14} />
+                Microsoft Certified Partner
+              </div>
+              <div className="px-3 py-1.5 rounded-full bg-azure-500/10 border border-azure-500/30 text-azure-300 text-xs font-semibold flex items-center gap-2 w-fit" style={{fontSize: '0.75rem', width: 'fit-content'}}>
+                <Award size={14} />
+                AWS & Azure AI Certified
+              </div>
+            </div>
+
             <div className="flex space-x-4" style={{display: 'flex', gap: '1rem'}}>
               <a href="#" className="text-secondary-400 hover:text-white transition-colors" style={{
                 color: 'rgba(233, 236, 221, 0.6)',
@@ -121,12 +134,12 @@ const Footer = () => {
             </h3>
             <ul className="space-y-2" style={{listStyle: 'none', padding: 0}}>
               {[
-                'Data Analytics',
-                'Data Engineering',
-                'Machine Learning',
-                'Business Intelligence',
-                'Data Strategy',
-                'Data Security'
+                'Microsoft Fabric',
+                'Snowflake Solutions',
+                'Databricks',
+                'AI & Machine Learning',
+                'Data Consultation',
+                'Corporate Training'
               ].map((service) => (
                 <li key={service} className="flex items-center" style={{display: 'flex', alignItems: 'center', marginBottom: '0.5rem'}}>
                   <div className="w-1.5 h-1.5 rounded-full mr-2" style={{
@@ -134,7 +147,8 @@ const Footer = () => {
                     height: '6px',
                     backgroundColor: '#F2C864',
                     borderRadius: '50%',
-                    marginRight: '0.5rem'
+                    marginRight: '0.5rem',
+                    flexShrink: 0
                   }}></div>
                   <span className="text-secondary-400" style={{color: 'rgba(233, 236, 221, 0.8)', fontSize: '0.9rem'}}>
                     {service}
@@ -150,25 +164,25 @@ const Footer = () => {
               Get In Touch
             </h3>
             <ul className="space-y-3" style={{listStyle: 'none', padding: 0}}>
-              <li className="flex items-start space-x-3 text-secondary-400" style={{display: 'flex', alignItems: 'flex-start', gap: '0.75rem', marginBottom: '0.75rem'}}>
-                <Mail size={16} style={{color: '#F2C864', marginTop: '2px'}} />
-                <div>
-                  <span style={{color: 'rgba(233, 236, 221, 0.8)', fontSize: '0.9rem'}}>contact@altdev.com</span>
-                  <p style={{fontSize: '0.75rem', color: 'rgba(233, 236, 221, 0.5)', margin: 0}}>24hr response time</p>
+              <li className="flex items-start space-x-3 text-secondary-400" style={{display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '0.75rem'}}>
+                <Mail size={18} style={{color: '#F2C864', flexShrink: 0}} />
+                <div style={{display: 'flex', flexDirection: 'column'}}>
+                  <span style={{color: 'rgba(233, 236, 221, 0.8)', fontSize: '0.9rem', lineHeight: 1.4}}>info@altdev.com.my</span>
+                  <p style={{fontSize: '0.75rem', color: 'rgba(233, 236, 221, 0.5)', margin: 0, lineHeight: 1.4}}>24hr response time</p>
                 </div>
               </li>
-              <li className="flex items-start space-x-3 text-secondary-400" style={{display: 'flex', alignItems: 'flex-start', gap: '0.75rem', marginBottom: '0.75rem'}}>
-                <Phone size={16} style={{color: '#F2C864', marginTop: '2px'}} />
-                <div>
-                  <span style={{color: 'rgba(233, 236, 221, 0.8)', fontSize: '0.9rem'}}>+1 (555) 123-4567</span>
-                  <p style={{fontSize: '0.75rem', color: 'rgba(233, 236, 221, 0.5)', margin: 0}}>Mon-Fri, 9AM-6PM PST</p>
+              <li className="flex items-start space-x-3 text-secondary-400" style={{display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '0.75rem'}}>
+                <Phone size={18} style={{color: '#F2C864', flexShrink: 0}} />
+                <div style={{display: 'flex', flexDirection: 'column'}}>
+                  <span style={{color: 'rgba(233, 236, 221, 0.8)', fontSize: '0.9rem', lineHeight: 1.4}}>+60 12-345 6789</span>
+                  <p style={{fontSize: '0.75rem', color: 'rgba(233, 236, 221, 0.5)', margin: 0, lineHeight: 1.4}}>Mon-Fri, 9AM-6PM MYT</p>
                 </div>
               </li>
-              <li className="flex items-start space-x-3 text-secondary-400" style={{display: 'flex', alignItems: 'flex-start', gap: '0.75rem', marginBottom: '0.75rem'}}>
-                <MapPin size={16} style={{color: '#F2C864', marginTop: '2px'}} />
-                <div>
-                  <span style={{color: 'rgba(233, 236, 221, 0.8)', fontSize: '0.9rem'}}>San Francisco, CA</span>
-                  <p style={{fontSize: '0.75rem', color: 'rgba(233, 236, 221, 0.5)', margin: 0}}>Remote-friendly worldwide</p>
+              <li className="flex items-start space-x-3 text-secondary-400" style={{display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '0.75rem'}}>
+                <MapPin size={18} style={{color: '#F2C864', flexShrink: 0}} />
+                <div style={{display: 'flex', flexDirection: 'column'}}>
+                  <span style={{color: 'rgba(233, 236, 221, 0.8)', fontSize: '0.9rem', lineHeight: 1.4}}>Kuala Lumpur, Malaysia</span>
+                  <p style={{fontSize: '0.75rem', color: 'rgba(233, 236, 221, 0.5)', margin: 0, lineHeight: 1.4}}>Remote-friendly worldwide</p>
                 </div>
               </li>
             </ul>
