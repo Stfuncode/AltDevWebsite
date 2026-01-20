@@ -226,7 +226,7 @@ export default function ColorDemo() {
               </h3>
               <p className="text-gray-600">
                 Calming, approachable, and modern. Creates a welcoming tech-forward
-                atmosphere that's not intimidating.
+                atmosphere that&apos;s not intimidating.
               </p>
             </div>
             <div className="p-6 bg-white border-2 border-accent-200 rounded-xl">

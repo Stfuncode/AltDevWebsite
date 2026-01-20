@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import { ArrowRight, Eye, Brain, MessageSquare, Award, Users, Briefcase } from 'lucide-react'
+import { ArrowRight, Eye, Brain, MessageSquare, Users, Briefcase } from 'lucide-react'
 import ParticleBackground from '@/components/three/ParticleBackground'
 import FloatingShapes from '@/components/three/FloatingShapes'
 import InteractiveBackground from '@/components/three/InteractiveBackground'
@@ -106,7 +106,7 @@ export default function Home() {
               Your Data Is Sitting There.
             </span>
             <span className="text-4xl md:text-6xl block" style={{fontSize: '3rem', fontWeight: 'bold', color: '#E9ECDD'}}>
-              Why Isn't It Making You Money?
+              Why Isn&apos;t It Making You Money?
             </span>
           </h1>
           <p
@@ -162,7 +162,7 @@ export default function Home() {
                 e.currentTarget.style.boxShadow = '0 10px 25px rgba(0, 120, 212, 0.3)';
               }}
             >
-              See What's Possible <ArrowRight className="ml-2" size={20} />
+              See What&apos;s Possible <ArrowRight className="ml-2" size={20} />
             </Link>
             <Link
               href="/contact"
@@ -225,7 +225,7 @@ export default function Home() {
             <div className="bg-secondary-900/50 backdrop-blur-sm border border-secondary-700/30 rounded-xl p-6 text-left" style={{backgroundColor: 'rgba(5, 29, 46, 0.5)', backdropFilter: 'blur(4px)', border: '1px solid rgba(242, 200, 100, 0.1)', borderRadius: '0.75rem', padding: '1.5rem', textAlign: 'left'}}>
               <div className="text-2xl mb-3">😫</div>
               <p className="text-gray-200" style={{color: 'rgba(233, 236, 221, 0.9)', fontSize: '1rem', lineHeight: '1.6'}}>
-                You <strong style={{color: '#F2C864'}}>KNOW</strong> there are insights hiding in your data, but can't find them
+                You <strong style={{color: '#F2C864'}}>KNOW</strong> there are insights hiding in your data, but can&apos;t find them
               </p>
             </div>
             <div className="bg-secondary-900/50 backdrop-blur-sm border border-secondary-700/30 rounded-xl p-6 text-left" style={{backgroundColor: 'rgba(5, 29, 46, 0.5)', backdropFilter: 'blur(4px)', border: '1px solid rgba(242, 200, 100, 0.1)', borderRadius: '0.75rem', padding: '1.5rem', textAlign: 'left'}}>
@@ -239,7 +239,7 @@ export default function Home() {
             className="mt-12 text-xl font-medium"
             style={{marginTop: '3rem', fontSize: '1.25rem', fontWeight: '500', color: '#F2C864'}}
           >
-            You're not alone. This is exactly why we exist.
+            You&apos;re not alone. This is exactly why we exist.
           </p>
         </div>
       </section>
@@ -566,7 +566,7 @@ export default function Home() {
                 We look at your current setup and find the biggest time-wasters.
               </p>
               <p className="text-sm text-accent-400 font-medium" style={{fontSize: '0.875rem', color: '#F2C864', fontWeight: '500'}}>
-                (Spoiler: It's usually your reporting process)
+                (Spoiler: It&apos;s usually your reporting process)
               </p>
             </div>
 
@@ -582,7 +582,7 @@ export default function Home() {
                 2-4 weeks, we connect your systems and build your dashboards.
               </p>
               <p className="text-sm text-accent-400 font-medium" style={{fontSize: '0.875rem', color: '#F2C864', fontWeight: '500'}}>
-                No tech jargon, just "here's what this button does"
+                No tech jargon, just &quot;here&apos;s what this button does&quot;
               </p>
             </div>
 
@@ -592,10 +592,10 @@ export default function Home() {
                 <span className="text-3xl font-bold text-accent-400" style={{fontSize: '2rem', fontWeight: 'bold', color: '#F2C864'}}>3</span>
               </div>
               <h3 className="text-2xl font-bold mb-3 text-white" style={{fontSize: '1.5rem', fontWeight: 'bold', color: '#E9ECDD', marginBottom: '0.75rem'}}>
-                You're Off to the Races
+                You&apos;re Off to the Races
               </h3>
               <p className="text-gray-300 mb-4" style={{color: 'rgba(233, 236, 221, 0.8)', marginBottom: '1rem', lineHeight: '1.6'}}>
-                Hit "refresh" and boom - instant insights. We train your team so you're never dependent on us.
+                Hit &quot;refresh&quot; and boom - instant insights. We train your team so you&apos;re never dependent on us.
               </p>
               <p className="text-sm text-accent-400 font-medium" style={{fontSize: '0.875rem', color: '#F2C864', fontWeight: '500'}}>
                 Your team runs it themselves
@@ -632,7 +632,7 @@ export default function Home() {
                 e.currentTarget.style.boxShadow = '0 10px 25px rgba(242, 200, 100, 0.3)';
               }}
             >
-              Book Your Discovery Call - It's Free <ArrowRight className="ml-2" size={20} />
+              Book Your Discovery Call - It&apos;s Free <ArrowRight className="ml-2" size={20} />
             </Link>
           </div>
         </div>
@@ -643,7 +643,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center" style={{maxWidth: '80rem', margin: '0 auto', padding: '0 2rem', textAlign: 'center'}}>
           <h2 className="text-4xl font-bold mb-4" style={{fontSize: '2.5rem', fontWeight: 'bold', color: '#E9ECDD', marginBottom: '1rem'}}>Stop Wasting Time. Start Making Money.</h2>
           <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto" style={{fontSize: '1.25rem', color: 'rgba(233, 236, 221, 0.8)', marginBottom: '2rem', maxWidth: '42rem', margin: '0 auto 2rem auto'}}>
-            Book a free 30-minute call. We'll show you exactly where you're bleeding time and money, and how to fix it. No sales pitch, just honest advice.
+            Book a free 30-minute call. We&apos;ll show you exactly where you&apos;re bleeding time and money, and how to fix it. No sales pitch, just honest advice.
           </p>
           <Link href="/contact" className="inline-flex items-center shadow-lg hover:shadow-xl" style={{
             backgroundColor: '#F2C864',
