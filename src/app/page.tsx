@@ -202,7 +202,11 @@ export default function Home() {
         className="py-16 relative"
         style={{padding: '4rem 0', backgroundColor: '#0a1929', position: 'relative', margin: 0, width: '100%'}}
       >
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center" style={{maxWidth: '60rem', margin: '0 auto', padding: '0 2rem'}}>
+        {/* Top gradient fade from previous section */}
+        <div style={{position: 'absolute', top: 0, left: 0, right: 0, height: '80px', background: 'linear-gradient(to bottom, #051D2E, #0a1929)', pointerEvents: 'none', zIndex: 0}} />
+        {/* Bottom gradient fade to next section */}
+        <div style={{position: 'absolute', bottom: 0, left: 0, right: 0, height: '80px', background: 'linear-gradient(to bottom, #0a1929, #051D2E)', pointerEvents: 'none', zIndex: 0}} />
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center" style={{maxWidth: '60rem', margin: '0 auto', padding: '0 2rem', position: 'relative', zIndex: 1}}>
           <h2
             className="text-3xl md:text-4xl font-bold text-white mb-12"
             style={{fontSize: '2rem', fontWeight: 'bold', color: '#E9ECDD', marginBottom: '3rem'}}
@@ -420,6 +424,10 @@ export default function Home() {
         className="py-20 relative"
         style={{padding: '5rem 0', backgroundColor: '#0a1929', position: 'relative', margin: 0, width: '100%'}}
       >
+        {/* Top gradient fade from previous section */}
+        <div style={{position: 'absolute', top: 0, left: 0, right: 0, height: '80px', background: 'linear-gradient(to bottom, #051D2E, #0a1929)', pointerEvents: 'none', zIndex: 0}} />
+        {/* Bottom gradient fade to next section */}
+        <div style={{position: 'absolute', bottom: 0, left: 0, right: 0, height: '80px', background: 'linear-gradient(to bottom, #0a1929, #051D2E)', pointerEvents: 'none', zIndex: 0}} />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10" style={{maxWidth: '80rem', margin: '0 auto', padding: '0 2rem', position: 'relative', zIndex: 10}}>
           <div
             className="text-center mb-16"
@@ -543,6 +551,10 @@ export default function Home() {
 
       {/* How It Works Section */}
       <section className="py-20 relative" style={{padding: '5rem 0', backgroundColor: '#0a1929', position: 'relative', margin: 0, width: '100%'}}>
+        {/* Top gradient fade from previous section */}
+        <div style={{position: 'absolute', top: 0, left: 0, right: 0, height: '80px', background: 'linear-gradient(to bottom, #051D2E, #0a1929)', pointerEvents: 'none', zIndex: 0}} />
+        {/* Bottom gradient fade to next section */}
+        <div style={{position: 'absolute', bottom: 0, left: 0, right: 0, height: '80px', background: 'linear-gradient(to bottom, #0a1929, #051D2E)', pointerEvents: 'none', zIndex: 0}} />
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8" style={{maxWidth: '72rem', margin: '0 auto', padding: '0 2rem'}}>
           <div className="text-center mb-16" style={{textAlign: 'center', marginBottom: '4rem'}}>
             <h2 className="text-4xl font-bold mb-4" style={{fontSize: '2.5rem', fontWeight: 'bold', color: '#E9ECDD', marginBottom: '1rem'}}>

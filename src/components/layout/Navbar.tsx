@@ -2,12 +2,13 @@
 
 import { useState, useEffect, useRef } from 'react'
 import Link from 'next/link'
-import { Menu, X, ChevronDown } from 'lucide-react'
+import { Menu, X, ChevronDown, Sun, Moon } from 'lucide-react'
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false)
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null)
   const [scrolled, setScrolled] = useState(false)
+  const [isDark, setIsDark] = useState(true)
   const dropdownRefs = useRef<{ [key: string]: HTMLDivElement | null }>({})
 
   // Handle scroll and close dropdown when clicking outside
@@ -15,6 +16,12 @@ const Navbar = () => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20)
     }
+
+    // Detect color scheme
+    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)')
+    setIsDark(mediaQuery.matches)
+    const handleColorSchemeChange = (e: MediaQueryListEvent) => setIsDark(e.matches)
+    mediaQuery.addEventListener('change', handleColorSchemeChange)
 
     const handleClickOutside = (event: MouseEvent) => {
       const target = event.target as Node
@@ -33,6 +40,7 @@ const Navbar = () => {
     return () => {
       window.removeEventListener('scroll', handleScroll)
       document.removeEventListener('mousedown', handleClickOutside)
+      mediaQuery.removeEventListener('change', handleColorSchemeChange)
     }
   }, [activeDropdown])
 
@@ -104,7 +112,9 @@ const Navbar = () => {
     <nav
       className="sticky top-0 z-[60] transition-all duration-500"
       style={{
-        backgroundColor: scrolled ? 'rgba(5, 29, 46, 0.8)' : 'transparent',
+        backgroundColor: scrolled
+          ? (isDark ? 'rgba(15, 23, 42, 0.95)' : 'rgba(255, 255, 255, 0.8)')
+          : (isDark ? 'rgba(5, 29, 46, 0.95)' : 'transparent'),
         backdropFilter: scrolled ? 'blur(20px)' : 'none',
         borderBottom: 'none',
         boxShadow: 'none'
@@ -115,7 +125,7 @@ const Navbar = () => {
           {/* Logo */}
           <Link href="/" className="flex items-center space-x-2 group">
             <div className="w-8 h-8 bg-gradient-to-br rounded-lg transition-transform duration-200 group-hover:scale-110" style={{ background: '#F2C864' }}></div>
-            <span className="text-xl font-bold transition-colors duration-300" style={{ color: '#E9ECDD' }}>
+            <span className="text-xl font-bold transition-colors duration-300" style={{ color: isDark ? '#E9ECDD' : '#0f172a' }}>
               <span style={{ color: '#F2C864' }}>ALT</span>DEV
             </span>
           </Link>
@@ -132,7 +142,7 @@ const Navbar = () => {
                   <button
                     className="flex items-center px-4 py-2 text-sm font-medium rounded-md transition-all duration-300"
                     style={{
-                      color: activeDropdown === item.name ? '#F2C864' : 'rgba(233, 236, 221, 0.9)',
+                      color: activeDropdown === item.name ? '#F2C864' : (isDark ? 'rgba(233, 236, 221, 0.9)' : 'rgba(15, 23, 42, 0.9)'),
                       backgroundColor: activeDropdown === item.name ? 'rgba(242, 200, 100, 0.1)' : 'transparent'
                     }}
                     onMouseEnter={(e) => {
@@ -141,7 +151,7 @@ const Navbar = () => {
                     }}
                     onMouseLeave={(e) => {
                       if (activeDropdown !== item.name) {
-                        e.currentTarget.style.color = 'rgba(233, 236, 221, 0.9)';
+                        e.currentTarget.style.color = isDark ? 'rgba(233, 236, 221, 0.9)' : 'rgba(15, 23, 42, 0.9)';
                         e.currentTarget.style.backgroundColor = 'transparent';
                       }
                     }}
@@ -160,13 +170,13 @@ const Navbar = () => {
                   <Link
                     href={item.href}
                     className="flex items-center px-4 py-2 text-sm font-medium rounded-md transition-all duration-300"
-                    style={{ color: 'rgba(233, 236, 221, 0.9)' }}
+                    style={{ color: isDark ? 'rgba(233, 236, 221, 0.9)' : 'rgba(15, 23, 42, 0.9)' }}
                     onMouseEnter={(e) => {
                       e.currentTarget.style.color = '#F2C864';
                       e.currentTarget.style.backgroundColor = 'rgba(242, 200, 100, 0.1)';
                     }}
                     onMouseLeave={(e) => {
-                      e.currentTarget.style.color = 'rgba(233, 236, 221, 0.9)';
+                      e.currentTarget.style.color = isDark ? 'rgba(233, 236, 221, 0.9)' : 'rgba(15, 23, 42, 0.9)';
                       e.currentTarget.style.backgroundColor = 'transparent';
                     }}
                   >
@@ -241,8 +251,32 @@ const Navbar = () => {
             ))}
           </div>
 
-          {/* CTA Button */}
+          {/* Theme Toggle & CTA Button */}
           <div className="hidden lg:flex items-center space-x-4">
+            <button
+              onClick={() => {
+                const newIsDark = !isDark
+                setIsDark(newIsDark)
+                document.documentElement.style.colorScheme = newIsDark ? 'dark' : 'light'
+                document.documentElement.classList.toggle('dark', newIsDark)
+              }}
+              className="p-2 rounded-lg transition-all duration-300"
+              style={{
+                color: isDark ? 'rgba(233, 236, 221, 0.9)' : 'rgba(15, 23, 42, 0.9)',
+                backgroundColor: 'transparent'
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.color = '#F2C864';
+                e.currentTarget.style.backgroundColor = 'rgba(242, 200, 100, 0.1)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.color = isDark ? 'rgba(233, 236, 221, 0.9)' : 'rgba(15, 23, 42, 0.9)';
+                e.currentTarget.style.backgroundColor = 'transparent';
+              }}
+              aria-label="Toggle dark mode"
+            >
+              {isDark ? <Sun size={20} /> : <Moon size={20} />}
+            </button>
             <Link
               href="/contact"
               className="font-semibold px-6 py-2 rounded-lg transition-all duration-200"
@@ -270,13 +304,13 @@ const Navbar = () => {
           <button
             onClick={() => setIsOpen(!isOpen)}
             className="lg:hidden p-2 rounded-md transition-all duration-300"
-            style={{ color: 'rgba(233, 236, 221, 0.9)' }}
+            style={{ color: isDark ? 'rgba(233, 236, 221, 0.9)' : 'rgba(15, 23, 42, 0.9)' }}
             onMouseEnter={(e) => {
               e.currentTarget.style.color = '#F2C864';
               e.currentTarget.style.backgroundColor = 'rgba(242, 200, 100, 0.1)';
             }}
             onMouseLeave={(e) => {
-              e.currentTarget.style.color = 'rgba(233, 236, 221, 0.9)';
+              e.currentTarget.style.color = isDark ? 'rgba(233, 236, 221, 0.9)' : 'rgba(15, 23, 42, 0.9)';
               e.currentTarget.style.backgroundColor = 'transparent';
             }}
           >
