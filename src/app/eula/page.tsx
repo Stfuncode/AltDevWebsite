@@ -1,11 +1,38 @@
 import type { Metadata } from 'next'
-import { eyebrow, h1, h2, body } from '@/components/ui/typography'
+import type { CSSProperties } from 'react'
 
 export const metadata: Metadata = {
   title: 'End-User License Agreement — N8N_Query | AltDev',
   description: 'End-user license agreement for N8N_Query, an internal AltDev automation connecting n8n to QuickBooks for invoicing and sales order processing.',
 }
 
+const eyebrow: CSSProperties = {
+  fontFamily: 'var(--font-jetbrains-mono), monospace',
+  fontSize: 12,
+  letterSpacing: '0.28em',
+  textTransform: 'uppercase',
+  color: '#F2C864',
+  marginBottom: 16,
+}
+const h1: CSSProperties = {
+  fontFamily: 'var(--font-inter), sans-serif',
+  fontSize: 'clamp(2.4rem, 5vw, 4rem)',
+  fontWeight: 700,
+  letterSpacing: '-0.02em',
+  lineHeight: 1.08,
+  color: '#E9ECDD',
+  margin: 0,
+}
+const h2: CSSProperties = {
+  fontFamily: 'var(--font-inter), sans-serif',
+  fontSize: 'clamp(1.8rem, 3.5vw, 2.6rem)',
+  fontWeight: 700,
+  letterSpacing: '-0.02em',
+  lineHeight: 1.12,
+  color: '#E9ECDD',
+  margin: 0,
+}
+const body: CSSProperties = { color: 'rgba(233,236,221,0.72)', lineHeight: 1.6, margin: 0 }
 const section = { marginTop: 40 }
 const p = { ...body, marginTop: 12 }
 const li = { ...body, marginTop: 8 }
