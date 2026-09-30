@@ -52,4 +52,4 @@ jobs:
           app-name: 'altdev'
           slot-name: 'Production'
           package: .
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_ALTDEV }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_D576656EFAC84B308B752F6F5FD3CBF3 }}
