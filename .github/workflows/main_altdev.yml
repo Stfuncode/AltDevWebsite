@@ -34,6 +34,9 @@ jobs:
         with:
           name: node-app
           path: .
+          # .next is a dot-folder; upload-artifact@v4 skips hidden files by default,
+          # which ships the app without its production build
+          include-hidden-files: true
 
   deploy:
     runs-on: ubuntu-latest
