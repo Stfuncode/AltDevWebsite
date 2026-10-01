@@ -15,31 +15,31 @@ interface PlatformCardProps {
 
 const platformStyles = {
   fabric: {
-    gradient: 'from-fabric-500/20 to-fabric-700/20',
-    border: 'border-fabric-500/30',
-    hoverBorder: 'border-fabric-500',
-    hoverShadow: 'shadow-fabric-500/50',
-    text: 'text-fabric-400',
-    bg: 'bg-fabric-500/10',
-    badgeBg: 'bg-fabric-500',
+    gradient: 'from-[#FCCB49]/20 to-[#FFE68E]/20',
+    border: 'border-[#FCCB49]/30',
+    hoverBorder: 'border-[#FCCB49]',
+    hoverShadow: 'shadow-[#FCCB49]/50',
+    text: 'text-[#FCCB49]',
+    bg: 'bg-[#FCCB49]/10',
+    badgeBg: 'bg-[#FCCB49]',
   },
   snowflake: {
-    gradient: 'from-snowflake-500/20 to-snowflake-700/20',
-    border: 'border-snowflake-500/30',
-    hoverBorder: 'border-snowflake-500',
-    hoverShadow: 'shadow-snowflake-500/50',
-    text: 'text-snowflake-400',
-    bg: 'bg-snowflake-500/10',
-    badgeBg: 'bg-snowflake-500',
+    gradient: 'from-[#9ECCFA]/20 to-[#D5EBFF]/20',
+    border: 'border-[#9ECCFA]/30',
+    hoverBorder: 'border-[#9ECCFA]',
+    hoverShadow: 'shadow-[#9ECCFA]/50',
+    text: 'text-[#9ECCFA]',
+    bg: 'bg-[#9ECCFA]/10',
+    badgeBg: 'bg-[#9ECCFA]',
   },
   databricks: {
-    gradient: 'from-databricks-500/20 to-databricks-700/20',
-    border: 'border-databricks-500/30',
-    hoverBorder: 'border-databricks-500',
-    hoverShadow: 'shadow-databricks-500/50',
-    text: 'text-databricks-400',
-    bg: 'bg-databricks-500/10',
-    badgeBg: 'bg-databricks-500',
+    gradient: 'from-[#E6DBC7]/20 to-[#FCCB49]/20',
+    border: 'border-[#E6DBC7]/30',
+    hoverBorder: 'border-[#E6DBC7]',
+    hoverShadow: 'shadow-[#E6DBC7]/50',
+    text: 'text-[#E6DBC7]',
+    bg: 'bg-[#E6DBC7]/10',
+    badgeBg: 'bg-[#E6DBC7]',
   },
 }
 
@@ -63,7 +63,7 @@ export default function PlatformCard({
         } ${isHovered ? `${styles.hoverBorder} shadow-2xl ${styles.hoverShadow}` : styles.border}`}
         style={{
           background: isHovered
-            ? `linear-gradient(135deg, ${platform === 'fabric' ? 'rgba(0, 120, 212, 0.15)' : platform === 'snowflake' ? 'rgba(41, 181, 232, 0.15)' : 'rgba(255, 54, 33, 0.15)'} 0%, rgba(5, 29, 46, 0.95) 100%)`
+            ? `linear-gradient(135deg, ${platform === 'fabric' ? 'rgba(252, 203, 73, 0.15)' : platform === 'snowflake' ? 'rgba(158, 204, 250, 0.15)' : 'rgba(230, 219, 199, 0.15)'} 0%, rgba(5, 29, 46, 0.95) 100%)`
             : 'rgba(5, 29, 46, 0.8)',
           transform: isHovered ? 'translateY(-8px)' : 'translateY(0)',
         }}

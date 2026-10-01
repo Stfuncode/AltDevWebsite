@@ -3,7 +3,10 @@ import { createServer } from 'http'
 import { parse } from 'url'
 import next from 'next'
 
-const dev = process.env.NODE_ENV !== 'production'
+// Production by default (this custom server serves the built app). Only run in
+// dev mode when NODE_ENV is explicitly 'development' — so a missing NODE_ENV on
+// the host never silently serves an unoptimized dev build. Local dev uses `next dev`.
+const dev = process.env.NODE_ENV === 'development'
 const hostname = '0.0.0.0'
 const port = process.env.PORT || 3000
 

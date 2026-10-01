@@ -1,411 +1,281 @@
 'use client'
 
+// AltDev navbar — 3-pillar IA, persistent gold CTA, dark-only.
+// A11y: labelled mobile toggle (aria-expanded/controls), closes on route change
+// and Escape, body scroll-lock when open, and hover states mirrored on focus.
+
 import { useState, useEffect, useRef } from 'react'
 import Link from 'next/link'
-import { Menu, X, ChevronDown, Sun, Moon } from 'lucide-react'
+import { usePathname } from 'next/navigation'
+import { Menu, X, ChevronDown } from 'lucide-react'
 
-const Navbar = () => {
-  const [isOpen, setIsOpen] = useState(false)
-  const [activeDropdown, setActiveDropdown] = useState<string | null>(null)
+const PILLARS = [
+  { name: 'Applied AI', href: '/applied-ai', desc: 'Vision, ML & NLP that ship' },
+  { name: 'Data Foundation', href: '/data-foundation', desc: 'AI-ready data platforms' },
+  { name: 'Enablement', href: '/enablement', desc: 'Training so you own it' },
+]
+const LINKS = [
+  { name: 'About', href: '/about' },
+  { name: 'Contact', href: '/contact' },
+]
+
+const REST = 'rgba(233,236,221,0.85)'
+const GOLD = '#F2C864'
+
+function paint(el: HTMLElement, color: string) {
+  el.style.color = color
+}
+
+export default function Navbar() {
+  const pathname = usePathname()
+  const [open, setOpen] = useState(false) // mobile menu
+  const [dd, setDd] = useState(false) // desktop "What we do" dropdown
   const [scrolled, setScrolled] = useState(false)
-  const [isDark, setIsDark] = useState(true)
-  const dropdownRefs = useRef<{ [key: string]: HTMLDivElement | null }>({})
+  const ddRef = useRef<HTMLDivElement>(null)
 
-  // Handle scroll and close dropdown when clicking outside
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 20)
+    const onScroll = () => setScrolled(window.scrollY > 20)
+    onScroll()
+    const onClickOutside = (e: MouseEvent) => {
+      if (ddRef.current && !ddRef.current.contains(e.target as Node)) setDd(false)
     }
-
-    // Detect color scheme
-    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)')
-    setIsDark(mediaQuery.matches)
-    const handleColorSchemeChange = (e: MediaQueryListEvent) => setIsDark(e.matches)
-    mediaQuery.addEventListener('change', handleColorSchemeChange)
-
-    const handleClickOutside = (event: MouseEvent) => {
-      const target = event.target as Node
-      const isClickInsideDropdown = Object.values(dropdownRefs.current).some(ref =>
-        ref && ref.contains(target)
-      )
-
-      if (!isClickInsideDropdown && activeDropdown) {
-        setActiveDropdown(null)
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        setOpen(false)
+        setDd(false)
       }
     }
-
-    window.addEventListener('scroll', handleScroll)
-    document.addEventListener('mousedown', handleClickOutside)
-
+    window.addEventListener('scroll', onScroll, { passive: true })
+    document.addEventListener('mousedown', onClickOutside)
+    document.addEventListener('keydown', onKey)
     return () => {
-      window.removeEventListener('scroll', handleScroll)
-      document.removeEventListener('mousedown', handleClickOutside)
-      mediaQuery.removeEventListener('change', handleColorSchemeChange)
+      window.removeEventListener('scroll', onScroll)
+      document.removeEventListener('mousedown', onClickOutside)
+      document.removeEventListener('keydown', onKey)
     }
-  }, [activeDropdown])
+  }, [])
 
-  const toggleDropdown = (itemName: string) => {
-    setActiveDropdown(activeDropdown === itemName ? null : itemName)
-  }
+  // Close menus on navigation.
+  useEffect(() => {
+    setOpen(false)
+    setDd(false)
+  }, [pathname])
 
-  const navItems = [
-    {
-      name: 'Solutions',
-      href: '/solutions',
-      dropdown: [
-        {
-          category: 'Analytics & Intelligence',
-          items: [
-            { name: 'Data Analytics', href: '/solutions/data-analytics' },
-            { name: 'Business Intelligence', href: '/solutions/business-intelligence' },
-            { name: 'Predictive Modeling', href: '/solutions/predictive-modeling' },
-            { name: 'Real-time Dashboards', href: '/solutions/dashboards' }
-          ]
-        },
-        {
-          category: 'Data Engineering',
-          items: [
-            { name: 'Data Pipelines', href: '/solutions/data-pipelines' },
-            { name: 'Data Migration', href: '/solutions/data-migration' },
-            { name: 'Data Warehousing', href: '/solutions/data-warehousing' },
-            { name: 'API Development', href: '/solutions/api-development' }
-          ]
-        },
-        {
-          category: 'AI & Machine Learning',
-          items: [
-            { name: 'Custom ML Models', href: '/solutions/ml-models' },
-            { name: 'Natural Language Processing', href: '/solutions/nlp' },
-            { name: 'Computer Vision', href: '/solutions/computer-vision' },
-            { name: 'Recommendation Systems', href: '/solutions/recommendations' }
-          ]
-        }
-      ]
-    },
-    {
-      name: 'Services',
-      href: '/services',
-      dropdown: [
-        {
-          category: 'Consulting',
-          items: [
-            { name: 'Data Strategy', href: '/services/data-strategy' },
-            { name: 'Digital Transformation', href: '/services/digital-transformation' },
-            { name: 'Analytics Roadmap', href: '/services/analytics-roadmap' }
-          ]
-        },
-        {
-          category: 'Implementation',
-          items: [
-            { name: 'Custom Development', href: '/services/custom-development' },
-            { name: 'System Integration', href: '/services/system-integration' },
-            { name: 'Training & Support', href: '/services/training-support' }
-          ]
-        }
-      ]
-    },
-    { name: 'About', href: '/about' },
-    { name: 'Contact', href: '/contact' }
-  ]
+  // Lock body scroll while the mobile menu is open.
+  useEffect(() => {
+    document.body.style.overflow = open ? 'hidden' : ''
+    return () => {
+      document.body.style.overflow = ''
+    }
+  }, [open])
+
+  const isActive = (href: string) => pathname === href || pathname.startsWith(href + '/')
+  const pillarsActive = PILLARS.some((p) => isActive(p.href))
+
+  const linkStyle = (active: boolean) => ({
+    padding: '0.5rem 0.9rem',
+    borderRadius: 8,
+    fontSize: 14,
+    fontWeight: 500,
+    textDecoration: 'none',
+    color: active ? GOLD : REST,
+    transition: 'color 0.2s ease',
+  })
+
+  const ctaStyle = {
+    background: GOLD,
+    color: '#051D2E',
+    fontWeight: 700,
+    fontSize: 14,
+    padding: '0.6rem 1.4rem',
+    borderRadius: 999,
+    textDecoration: 'none',
+    boxShadow: '0 4px 15px rgba(242,200,100,0.3)',
+  } as const
 
   return (
     <nav
-      className="sticky top-0 z-[60] transition-all duration-500"
+      className="fixed top-0 left-0 right-0 z-[60] transition-all duration-500"
       style={{
-        backgroundColor: scrolled
-          ? (isDark ? 'rgba(15, 23, 42, 0.95)' : 'rgba(255, 255, 255, 0.8)')
-          : (isDark ? 'rgba(5, 29, 46, 0.95)' : 'transparent'),
-        backdropFilter: scrolled ? 'blur(20px)' : 'none',
-        borderBottom: 'none',
-        boxShadow: 'none'
+        // Floats over the hero: barely-there frosted glass at the top (particles
+        // show through and blend), condensing to a solid dark bar on scroll.
+        backgroundColor: scrolled ? 'rgba(3,20,31,0.85)' : 'rgba(3,20,31,0.2)',
+        backdropFilter: scrolled ? 'saturate(140%) blur(20px)' : 'blur(8px)',
+        borderBottom: scrolled ? '1px solid rgba(242,200,100,0.10)' : '1px solid transparent',
       }}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
-          <Link href="/" className="flex items-center space-x-2 group">
-            <div className="w-8 h-8 bg-gradient-to-br rounded-lg transition-transform duration-200 group-hover:scale-110" style={{ background: '#F2C864' }}></div>
-            <span className="text-xl font-bold transition-colors duration-300" style={{ color: isDark ? '#E9ECDD' : '#0f172a' }}>
-              <span style={{ color: '#F2C864' }}>ALT</span>DEV
+          <Link href="/" className="flex items-center space-x-2 group" aria-label="AltDev home">
+            <div
+              className="w-8 h-8 rounded-lg transition-transform duration-200 group-hover:scale-110"
+              style={{ background: GOLD }}
+            />
+            <span className="text-xl font-bold" style={{ color: '#E9ECDD' }}>
+              <span style={{ color: GOLD }}>ALT</span>DEV
             </span>
           </Link>
 
-          {/* Desktop Navigation */}
+          {/* Desktop nav */}
           <div className="hidden lg:flex items-center space-x-1">
-            {navItems.map((item) => (
-              <div
-                key={item.name}
-                className="relative"
-                ref={(el) => { dropdownRefs.current[item.name] = el }}
+            <div className="relative" ref={ddRef}>
+              <button
+                onClick={() => setDd((v) => !v)}
+                className="flex items-center rounded-md"
+                style={{
+                  ...linkStyle(pillarsActive || dd),
+                  background: dd ? 'rgba(242,200,100,0.1)' : 'transparent',
+                  cursor: 'pointer',
+                  border: 'none',
+                }}
+                aria-haspopup="menu"
+                aria-expanded={dd}
+                aria-controls="whatwedo-menu"
+                onMouseEnter={(e) => paint(e.currentTarget, GOLD)}
+                onMouseLeave={(e) => paint(e.currentTarget, pillarsActive || dd ? GOLD : REST)}
+                onFocus={(e) => paint(e.currentTarget, GOLD)}
+                onBlur={(e) => paint(e.currentTarget, pillarsActive || dd ? GOLD : REST)}
               >
-                {item.dropdown ? (
-                  <button
-                    className="flex items-center px-4 py-2 text-sm font-medium rounded-md transition-all duration-300"
-                    style={{
-                      color: activeDropdown === item.name ? '#F2C864' : (isDark ? 'rgba(233, 236, 221, 0.9)' : 'rgba(15, 23, 42, 0.9)'),
-                      backgroundColor: activeDropdown === item.name ? 'rgba(242, 200, 100, 0.1)' : 'transparent'
-                    }}
-                    onMouseEnter={(e) => {
-                      e.currentTarget.style.color = '#F2C864';
-                      e.currentTarget.style.backgroundColor = 'rgba(242, 200, 100, 0.1)';
-                    }}
-                    onMouseLeave={(e) => {
-                      if (activeDropdown !== item.name) {
-                        e.currentTarget.style.color = isDark ? 'rgba(233, 236, 221, 0.9)' : 'rgba(15, 23, 42, 0.9)';
-                        e.currentTarget.style.backgroundColor = 'transparent';
-                      }
-                    }}
-                    onClick={() => toggleDropdown(item.name)}
-                    aria-expanded={activeDropdown === item.name}
-                    aria-haspopup="true"
-                  >
-                    {item.name}
-                    <ChevronDown
-                      className={`ml-1 h-4 w-4 transition-transform duration-200 ${
-                        activeDropdown === item.name ? 'rotate-180' : ''
-                      }`}
-                    />
-                  </button>
-                ) : (
-                  <Link
-                    href={item.href}
-                    className="flex items-center px-4 py-2 text-sm font-medium rounded-md transition-all duration-300"
-                    style={{ color: isDark ? 'rgba(233, 236, 221, 0.9)' : 'rgba(15, 23, 42, 0.9)' }}
-                    onMouseEnter={(e) => {
-                      e.currentTarget.style.color = '#F2C864';
-                      e.currentTarget.style.backgroundColor = 'rgba(242, 200, 100, 0.1)';
-                    }}
-                    onMouseLeave={(e) => {
-                      e.currentTarget.style.color = isDark ? 'rgba(233, 236, 221, 0.9)' : 'rgba(15, 23, 42, 0.9)';
-                      e.currentTarget.style.backgroundColor = 'transparent';
-                    }}
-                  >
-                    {item.name}
-                  </Link>
-                )}
+                What we do
+                <ChevronDown className={`ml-1 h-4 w-4 transition-transform ${dd ? 'rotate-180' : ''}`} />
+              </button>
 
-                {/* Dropdown Menu */}
-                {item.dropdown && activeDropdown === item.name && (
-                  <div
-                    className="absolute top-full left-1/2 transform -translate-x-1/2 mt-3 min-w-[700px] max-w-4xl p-8 z-[100] animate-dropdown-enter"
-                    style={{
-                      backgroundColor: 'rgba(5, 29, 46, 0.98)',
-                      backdropFilter: 'blur(20px)',
-                      boxShadow: '0 20px 60px rgba(0, 0, 0, 0.4)',
-                      borderRadius: '1rem',
-                      border: 'none'
-                    }}
-                  >
-                    <div className="grid grid-cols-3 gap-10">
-                      {item.dropdown.map((category, categoryIndex) => (
-                        <div
-                          key={category.category}
-                          className="animate-stagger-fade-in opacity-0"
-                          style={{ animationDelay: `${categoryIndex * 50}ms` }}
-                        >
-                          <h3 className="text-xs font-bold mb-4 uppercase tracking-wider border-b pb-2" style={{ color: '#F2C864', borderColor: 'rgba(233, 236, 221, 0.1)' }}>
-                            {category.category}
-                          </h3>
-                          <ul className="space-y-2">
-                            {category.items.map((subItem, itemIndex) => (
-                              <li
-                                key={subItem.name}
-                                className="animate-stagger-fade-in opacity-0"
-                                style={{ animationDelay: `${(categoryIndex * 50) + (itemIndex * 25) + 100}ms` }}
-                              >
-                                <Link
-                                  href={subItem.href}
-                                  className="block text-sm px-3 py-2 rounded-lg transition-all duration-200 font-medium group"
-                                  style={{ color: 'rgba(233, 236, 221, 0.8)' }}
-                                  onMouseEnter={(e) => {
-                                    e.currentTarget.style.color = '#F2C864';
-                                    e.currentTarget.style.backgroundColor = 'rgba(242, 200, 100, 0.1)';
-                                  }}
-                                  onMouseLeave={(e) => {
-                                    e.currentTarget.style.color = 'rgba(233, 236, 221, 0.8)';
-                                    e.currentTarget.style.backgroundColor = 'transparent';
-                                  }}
-                                  onClick={() => setActiveDropdown(null)}
-                                >
-                                  <span className="flex items-center">
-                                    {subItem.name}
-                                    <svg
-                                      className="w-4 h-4 ml-2 opacity-0 group-hover:opacity-100 transform translate-x-0 group-hover:translate-x-1 transition-all duration-200"
-                                      fill="none"
-                                      stroke="currentColor"
-                                      viewBox="0 0 24 24"
-                                    >
-                                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                                    </svg>
-                                  </span>
-                                </Link>
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                )}
-              </div>
+              {dd && (
+                <div
+                  id="whatwedo-menu"
+                  role="menu"
+                  className="absolute top-full left-0 mt-3 p-3 z-[100]"
+                  style={{
+                    minWidth: 320,
+                    background: 'rgba(5,29,46,0.98)',
+                    backdropFilter: 'blur(20px)',
+                    borderRadius: 16,
+                    border: '1px solid rgba(242,200,100,0.12)',
+                    boxShadow: '0 20px 60px rgba(0,0,0,0.45)',
+                  }}
+                >
+                  {PILLARS.map((p) => (
+                    <Link
+                      key={p.href}
+                      href={p.href}
+                      role="menuitem"
+                      className="block rounded-lg"
+                      style={{ padding: '0.7rem 0.9rem', textDecoration: 'none' }}
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.background = 'rgba(242,200,100,0.08)'
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.background = 'transparent'
+                      }}
+                      onFocus={(e) => {
+                        e.currentTarget.style.background = 'rgba(242,200,100,0.08)'
+                      }}
+                      onBlur={(e) => {
+                        e.currentTarget.style.background = 'transparent'
+                      }}
+                    >
+                      <div style={{ color: isActive(p.href) ? GOLD : '#E9ECDD', fontWeight: 600, fontSize: 15 }}>
+                        {p.name}
+                      </div>
+                      <div style={{ color: 'rgba(233,236,221,0.6)', fontSize: 13, marginTop: 2 }}>{p.desc}</div>
+                    </Link>
+                  ))}
+                </div>
+              )}
+            </div>
+
+            {LINKS.map((l) => (
+              <Link
+                key={l.href}
+                href={l.href}
+                style={linkStyle(isActive(l.href))}
+                onMouseEnter={(e) => paint(e.currentTarget, GOLD)}
+                onMouseLeave={(e) => paint(e.currentTarget, isActive(l.href) ? GOLD : REST)}
+                onFocus={(e) => paint(e.currentTarget, GOLD)}
+                onBlur={(e) => paint(e.currentTarget, isActive(l.href) ? GOLD : REST)}
+              >
+                {l.name}
+              </Link>
             ))}
-          </div>
 
-          {/* Theme Toggle & CTA Button */}
-          <div className="hidden lg:flex items-center space-x-4">
-            <button
-              onClick={() => {
-                const newIsDark = !isDark
-                setIsDark(newIsDark)
-                document.documentElement.style.colorScheme = newIsDark ? 'dark' : 'light'
-                document.documentElement.classList.toggle('dark', newIsDark)
-              }}
-              className="p-2 rounded-lg transition-all duration-300"
-              style={{
-                color: isDark ? 'rgba(233, 236, 221, 0.9)' : 'rgba(15, 23, 42, 0.9)',
-                backgroundColor: 'transparent'
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.color = '#F2C864';
-                e.currentTarget.style.backgroundColor = 'rgba(242, 200, 100, 0.1)';
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.color = isDark ? 'rgba(233, 236, 221, 0.9)' : 'rgba(15, 23, 42, 0.9)';
-                e.currentTarget.style.backgroundColor = 'transparent';
-              }}
-              aria-label="Toggle dark mode"
-            >
-              {isDark ? <Sun size={20} /> : <Moon size={20} />}
-            </button>
-            <Link
-              href="/contact"
-              className="font-semibold px-6 py-2 rounded-lg transition-all duration-200"
-              style={{
-                backgroundColor: '#F2C864',
-                color: '#051D2E',
-                boxShadow: '0 4px 15px rgba(242, 200, 100, 0.3)'
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.backgroundColor = '#EFB93C';
-                e.currentTarget.style.boxShadow = '0 6px 20px rgba(242, 200, 100, 0.5)';
-                e.currentTarget.style.transform = 'translateY(-2px)';
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.backgroundColor = '#F2C864';
-                e.currentTarget.style.boxShadow = '0 4px 15px rgba(242, 200, 100, 0.3)';
-                e.currentTarget.style.transform = 'translateY(0)';
-              }}
-            >
-              Get Started
+            <Link href="/contact" style={{ ...ctaStyle, marginLeft: 12 }}>
+              Book a consultation
             </Link>
           </div>
 
-          {/* Mobile menu button */}
+          {/* Mobile toggle */}
           <button
-            onClick={() => setIsOpen(!isOpen)}
-            className="lg:hidden p-2 rounded-md transition-all duration-300"
-            style={{ color: isDark ? 'rgba(233, 236, 221, 0.9)' : 'rgba(15, 23, 42, 0.9)' }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.color = '#F2C864';
-              e.currentTarget.style.backgroundColor = 'rgba(242, 200, 100, 0.1)';
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.color = isDark ? 'rgba(233, 236, 221, 0.9)' : 'rgba(15, 23, 42, 0.9)';
-              e.currentTarget.style.backgroundColor = 'transparent';
-            }}
+            onClick={() => setOpen((v) => !v)}
+            className="lg:hidden p-2 rounded-md"
+            style={{ color: REST, background: 'transparent', border: 'none', cursor: 'pointer' }}
+            aria-label={open ? 'Close menu' : 'Open menu'}
+            aria-expanded={open}
+            aria-controls="mobile-menu"
           >
-            {isOpen ? <X size={24} /> : <Menu size={24} />}
+            {open ? <X size={24} /> : <Menu size={24} />}
           </button>
         </div>
 
-        {/* Mobile Navigation */}
-        {isOpen && (
+        {/* Mobile menu */}
+        {open && (
           <div
-            className="lg:hidden absolute top-full left-0 right-0 max-h-[80vh] overflow-y-auto animate-dropdown-enter"
+            id="mobile-menu"
+            className="lg:hidden absolute top-full left-0 right-0 max-h-[80vh] overflow-y-auto"
             style={{
-              backgroundColor: 'rgba(5, 29, 46, 0.98)',
+              background: 'rgba(5,29,46,0.98)',
               backdropFilter: 'blur(20px)',
-              borderTop: 'none',
-              boxShadow: '0 10px 40px rgba(0, 0, 0, 0.4)'
+              boxShadow: '0 10px 40px rgba(0,0,0,0.45)',
             }}
           >
             <div className="max-w-7xl mx-auto px-4 py-6">
-              <div className="space-y-4">
-                {navItems.map((item, index) => (
-                  <div
-                    key={item.name}
-                    className="border-b pb-4 last:border-b-0 animate-stagger-fade-in opacity-0"
-                    style={{
-                      animationDelay: `${index * 50}ms`,
-                      borderColor: 'rgba(233, 236, 221, 0.1)'
-                    }}
-                  >
-                    <Link
-                      href={item.href}
-                      className="block text-lg font-semibold transition-colors mb-3"
-                      style={{ color: '#E9ECDD' }}
-                      onMouseEnter={(e) => {
-                        e.currentTarget.style.color = '#F2C864';
-                      }}
-                      onMouseLeave={(e) => {
-                        e.currentTarget.style.color = '#E9ECDD';
-                      }}
-                      onClick={() => setIsOpen(false)}
-                    >
-                      {item.name}
-                    </Link>
-                    {item.dropdown && (
-                      <div className="grid grid-cols-1 gap-4">
-                        {item.dropdown.map((category) => (
-                          <div
-                            key={category.category}
-                            className="rounded-lg p-4"
-                            style={{
-                              backgroundColor: 'rgba(233, 236, 221, 0.05)',
-                              border: '1px solid rgba(233, 236, 221, 0.1)'
-                            }}
-                          >
-                            <h4 className="text-xs font-bold uppercase tracking-wider mb-3 border-b pb-2" style={{ color: '#F2C864', borderColor: 'rgba(233, 236, 221, 0.1)' }}>
-                              {category.category}
-                            </h4>
-                            <div className="space-y-2">
-                              {category.items.map((subItem) => (
-                                <Link
-                                  key={subItem.name}
-                                  href={subItem.href}
-                                  className="block text-sm px-3 py-2 rounded-md transition-all duration-200"
-                                  style={{ color: 'rgba(233, 236, 221, 0.8)' }}
-                                  onMouseEnter={(e) => {
-                                    e.currentTarget.style.color = '#F2C864';
-                                    e.currentTarget.style.backgroundColor = 'rgba(242, 200, 100, 0.1)';
-                                  }}
-                                  onMouseLeave={(e) => {
-                                    e.currentTarget.style.color = 'rgba(233, 236, 221, 0.8)';
-                                    e.currentTarget.style.backgroundColor = 'transparent';
-                                  }}
-                                  onClick={() => setIsOpen(false)}
-                                >
-                                  {subItem.name}
-                                </Link>
-                              ))}
-                            </div>
-                          </div>
-                        ))}
-                      </div>
-                    )}
-                  </div>
-                ))}
+              <div
+                style={{
+                  ...eyebrowMini,
+                }}
+              >
+                What we do
               </div>
-              <div className="mt-6 pt-6" style={{ borderTop: '1px solid rgba(233, 236, 221, 0.1)' }}>
+              {PILLARS.map((p) => (
                 <Link
-                  href="/contact"
-                  className="block w-full text-center font-bold px-6 py-3 rounded-xl transition-all duration-200 shadow-lg hover:shadow-xl"
-                  style={{ backgroundColor: '#F2C864', color: '#051D2E' }}
-                  onClick={() => setIsOpen(false)}
+                  key={p.href}
+                  href={p.href}
+                  className="block rounded-lg"
+                  style={{ padding: '0.8rem 0.5rem', textDecoration: 'none', marginBottom: 4 }}
                 >
-                  Get Started
+                  <div style={{ color: isActive(p.href) ? GOLD : '#E9ECDD', fontWeight: 600, fontSize: 17 }}>
+                    {p.name}
+                  </div>
+                  <div style={{ color: 'rgba(233,236,221,0.6)', fontSize: 13, marginTop: 2 }}>{p.desc}</div>
                 </Link>
-              </div>
+              ))}
+
+              <div style={{ height: 1, background: 'rgba(233,236,221,0.1)', margin: '14px 0' }} />
+
+              {LINKS.map((l) => (
+                <Link
+                  key={l.href}
+                  href={l.href}
+                  className="block"
+                  style={{
+                    padding: '0.7rem 0.5rem',
+                    textDecoration: 'none',
+                    fontSize: 17,
+                    fontWeight: 600,
+                    color: isActive(l.href) ? GOLD : '#E9ECDD',
+                  }}
+                >
+                  {l.name}
+                </Link>
+              ))}
+
+              <Link
+                href="/contact"
+                className="block w-full text-center"
+                style={{ ...ctaStyle, padding: '0.85rem 1.4rem', marginTop: 18, fontSize: 15 }}
+              >
+                Book a consultation
+              </Link>
             </div>
           </div>
         )}
@@ -414,4 +284,11 @@ const Navbar = () => {
   )
 }
 
-export default Navbar
+const eyebrowMini = {
+  fontFamily: 'var(--font-jetbrains-mono), monospace',
+  fontSize: 11,
+  letterSpacing: '0.22em',
+  textTransform: 'uppercase' as const,
+  color: 'rgba(233,236,221,0.45)',
+  marginBottom: 10,
+}

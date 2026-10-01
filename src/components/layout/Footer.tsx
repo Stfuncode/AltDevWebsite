@@ -1,258 +1,203 @@
 'use client'
 
-import Link from 'next/link'
-import { Mail, Phone, MapPin, Github, Linkedin, Twitter, ArrowRight, Award } from 'lucide-react'
+// AltDev footer — new 3-pillar IA, single gold CTA, consistent KL/Malaysia
+// contact details, icon links with aria-labels. Inline styles only.
 
-const Footer = () => {
+import Link from 'next/link'
+import type { ReactNode } from 'react'
+import { Mail, Phone, MapPin, Linkedin, Github, ArrowRight, Award } from 'lucide-react'
+
+const MUTED = 'rgba(233,236,221,0.75)'
+const GOLD = '#F2C864'
+
+function FooterLink({ href, children }: { href: string; children: ReactNode }) {
   return (
-    <footer className="bg-secondary-900 text-white" style={{
-      backgroundColor: '#051D2E',
-      color: '#E9ECDD',
-      margin: 0,
-      padding: 0,
-      width: '100%'
-    }}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12" style={{maxWidth: '80rem', margin: '0 auto', padding: '3rem 2rem'}}>
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8" style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '2rem'}}>
-          
-          {/* Company Info */}
-          <div className="space-y-4" style={{display: 'flex', flexDirection: 'column', gap: '1rem'}}>
-            <div className="flex items-center space-x-2" style={{display: 'flex', alignItems: 'center', gap: '0.5rem'}}>
-              <div className="w-8 h-8 bg-gradient-to-br from-primary-600 to-accent-600 rounded-lg" style={{
-                width: '2rem',
-                height: '2rem',
-                background: '#F2C864',
-                borderRadius: '0.5rem'
-              }}></div>
-              <span className="text-xl font-bold" style={{fontSize: '1.5rem', fontWeight: 'bold', color: '#E9ECDD'}}>
-                <span style={{color: '#F2C864'}}>ALT</span>DEV
+    <Link
+      href={href}
+      style={{ color: MUTED, textDecoration: 'none', fontSize: 14, transition: 'color 0.2s, transform 0.2s', display: 'inline-block' }}
+      onMouseEnter={(e) => {
+        e.currentTarget.style.color = GOLD
+        e.currentTarget.style.transform = 'translateX(3px)'
+      }}
+      onMouseLeave={(e) => {
+        e.currentTarget.style.color = MUTED
+        e.currentTarget.style.transform = 'translateX(0)'
+      }}
+      onFocus={(e) => (e.currentTarget.style.color = GOLD)}
+      onBlur={(e) => (e.currentTarget.style.color = MUTED)}
+    >
+      {children}
+    </Link>
+  )
+}
+
+function Social({ href, label, children }: { href: string; label: string; children: ReactNode }) {
+  return (
+    <a
+      href={href}
+      aria-label={label}
+      style={{ color: 'rgba(233,236,221,0.6)', transition: 'color 0.2s, transform 0.2s', display: 'inline-flex' }}
+      onMouseEnter={(e) => {
+        e.currentTarget.style.color = GOLD
+        e.currentTarget.style.transform = 'translateY(-2px)'
+      }}
+      onMouseLeave={(e) => {
+        e.currentTarget.style.color = 'rgba(233,236,221,0.6)'
+        e.currentTarget.style.transform = 'translateY(0)'
+      }}
+      onFocus={(e) => (e.currentTarget.style.color = GOLD)}
+      onBlur={(e) => (e.currentTarget.style.color = 'rgba(233,236,221,0.6)')}
+    >
+      {children}
+    </a>
+  )
+}
+
+const colTitle = {
+  fontFamily: 'var(--font-jetbrains-mono), monospace',
+  fontSize: 12,
+  letterSpacing: '0.2em',
+  textTransform: 'uppercase' as const,
+  color: GOLD,
+  marginBottom: 16,
+}
+const contactLine = { color: MUTED, fontSize: 14, lineHeight: 1.4 } as const
+const contactSub = { color: 'rgba(233,236,221,0.45)', fontSize: 12, margin: 0 } as const
+
+export default function Footer() {
+  return (
+    <footer style={{ background: '#03141F', color: '#E9ECDD', borderTop: '1px solid rgba(242,200,100,0.12)' }}>
+      <div style={{ maxWidth: 1200, margin: '0 auto', padding: '4rem 1.5rem 2rem' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '2.5rem' }}>
+          {/* Brand */}
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 16, maxWidth: 320 }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+              <div style={{ width: 32, height: 32, background: GOLD, borderRadius: 8 }} />
+              <span style={{ fontSize: '1.4rem', fontWeight: 700 }}>
+                <span style={{ color: GOLD }}>ALT</span>DEV
               </span>
             </div>
-            <p className="text-secondary-400 text-sm" style={{color: 'rgba(233, 236, 221, 0.8)', fontSize: '0.875rem', lineHeight: '1.5'}}>
-              Transforming businesses through <strong style={{color: '#F2C864'}}>data-driven insights</strong> and intelligent analytics.
-              Building the future, one dataset at a time.
+            <p style={{ color: MUTED, fontSize: 14, lineHeight: 1.6, margin: 0 }}>
+              Applied AI, built on data that’s ready. We engineer the data foundation and the AI on top — then hand you
+              the keys.
             </p>
-
-            {/* Certifications */}
-            <div className="space-y-2" style={{display: 'flex', flexDirection: 'column', gap: '0.5rem', marginTop: '0.5rem'}}>
-              <div className="px-3 py-1.5 rounded-full bg-fabric-500/10 border border-fabric-500/30 text-fabric-300 text-xs font-semibold flex items-center gap-2 w-fit" style={{fontSize: '0.75rem', width: 'fit-content'}}>
-                <Award size={14} />
-                Microsoft Certified Partner
-              </div>
-              <div className="px-3 py-1.5 rounded-full bg-azure-500/10 border border-azure-500/30 text-azure-300 text-xs font-semibold flex items-center gap-2 w-fit" style={{fontSize: '0.75rem', width: 'fit-content'}}>
-                <Award size={14} />
-                AWS & Azure AI Certified
-              </div>
-            </div>
-
-            <div className="flex space-x-4" style={{display: 'flex', gap: '1rem'}}>
-              <a href="#" className="text-secondary-400 hover:text-white transition-colors" style={{
-                color: 'rgba(233, 236, 221, 0.6)',
-                transition: 'all 0.3s'
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.color = '#F2C864';
-                e.currentTarget.style.transform = 'translateY(-2px)';
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.color = 'rgba(233, 236, 221, 0.6)';
-                e.currentTarget.style.transform = 'translateY(0)';
-              }}>
-                <Github size={20} />
-              </a>
-              <a href="#" className="text-secondary-400 hover:text-white transition-colors" style={{
-                color: 'rgba(233, 236, 221, 0.6)',
-                transition: 'all 0.3s'
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.color = '#F2C864';
-                e.currentTarget.style.transform = 'translateY(-2px)';
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.color = 'rgba(233, 236, 221, 0.6)';
-                e.currentTarget.style.transform = 'translateY(0)';
-              }}>
-                <Linkedin size={20} />
-              </a>
-              <a href="#" className="text-secondary-400 hover:text-white transition-colors" style={{
-                color: 'rgba(233, 236, 221, 0.6)',
-                transition: 'all 0.3s'
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.color = '#F2C864';
-                e.currentTarget.style.transform = 'translateY(-2px)';
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.color = 'rgba(233, 236, 221, 0.6)';
-                e.currentTarget.style.transform = 'translateY(0)';
-              }}>
-                <Twitter size={20} />
-              </a>
-            </div>
-          </div>
-
-          {/* Quick Links */}
-          <div>
-            <h3 className="text-lg font-semibold mb-4" style={{fontSize: '1.125rem', fontWeight: '600', color: '#E9ECDD', marginBottom: '1rem'}}>
-              Quick Links
-            </h3>
-            <ul className="space-y-2" style={{listStyle: 'none', padding: 0}}>
-              {[
-                { name: 'Home', href: '/' },
-                { name: 'About', href: '/about' },
-                { name: 'Services', href: '/services' },
-                { name: 'Contact', href: '/contact' }
-              ].map((link) => (
-                <li key={link.name} style={{marginBottom: '0.5rem'}}>
-                  <Link href={link.href} className="text-secondary-400 hover:text-white transition-colors" style={{
-                    color: 'rgba(233, 236, 221, 0.8)',
-                    textDecoration: 'none',
-                    transition: 'all 0.3s',
-                    display: 'inline-flex',
-                    alignItems: 'center',
-                    gap: '0.25rem'
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.color = '#F2C864';
-                    e.currentTarget.style.transform = 'translateX(4px)';
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.color = 'rgba(233, 236, 221, 0.8)';
-                    e.currentTarget.style.transform = 'translateX(0)';
-                  }}>
-                    {link.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Services */}
-          <div>
-            <h3 className="text-lg font-semibold mb-4" style={{fontSize: '1.125rem', fontWeight: '600', color: '#E9ECDD', marginBottom: '1rem'}}>
-              Our Services
-            </h3>
-            <ul className="space-y-2" style={{listStyle: 'none', padding: 0}}>
-              {[
-                'Microsoft Fabric',
-                'Snowflake Solutions',
-                'Databricks',
-                'AI & Machine Learning',
-                'Data Consultation',
-                'Corporate Training'
-              ].map((service) => (
-                <li key={service} className="flex items-center" style={{display: 'flex', alignItems: 'center', marginBottom: '0.5rem'}}>
-                  <div className="w-1.5 h-1.5 rounded-full mr-2" style={{
-                    width: '6px',
-                    height: '6px',
-                    backgroundColor: '#F2C864',
-                    borderRadius: '50%',
-                    marginRight: '0.5rem',
-                    flexShrink: 0
-                  }}></div>
-                  <span className="text-secondary-400" style={{color: 'rgba(233, 236, 221, 0.8)', fontSize: '0.9rem'}}>
-                    {service}
-                  </span>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Contact Info */}
-          <div>
-            <h3 className="text-lg font-semibold mb-4" style={{fontSize: '1.125rem', fontWeight: '600', color: '#E9ECDD', marginBottom: '1rem'}}>
-              Get In Touch
-            </h3>
-            <ul className="space-y-3" style={{listStyle: 'none', padding: 0}}>
-              <li className="flex items-start space-x-3 text-secondary-400" style={{display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '0.75rem'}}>
-                <Mail size={18} style={{color: '#F2C864', flexShrink: 0}} />
-                <div style={{display: 'flex', flexDirection: 'column'}}>
-                  <span style={{color: 'rgba(233, 236, 221, 0.8)', fontSize: '0.9rem', lineHeight: 1.4}}>info@altdev.com.my</span>
-                  <p style={{fontSize: '0.75rem', color: 'rgba(233, 236, 221, 0.5)', margin: 0, lineHeight: 1.4}}>24hr response time</p>
-                </div>
-              </li>
-              <li className="flex items-start space-x-3 text-secondary-400" style={{display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '0.75rem'}}>
-                <Phone size={18} style={{color: '#F2C864', flexShrink: 0}} />
-                <div style={{display: 'flex', flexDirection: 'column'}}>
-                  <span style={{color: 'rgba(233, 236, 221, 0.8)', fontSize: '0.9rem', lineHeight: 1.4}}>+60 12-345 6789</span>
-                  <p style={{fontSize: '0.75rem', color: 'rgba(233, 236, 221, 0.5)', margin: 0, lineHeight: 1.4}}>Mon-Fri, 9AM-6PM MYT</p>
-                </div>
-              </li>
-              <li className="flex items-start space-x-3 text-secondary-400" style={{display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '0.75rem'}}>
-                <MapPin size={18} style={{color: '#F2C864', flexShrink: 0}} />
-                <div style={{display: 'flex', flexDirection: 'column'}}>
-                  <span style={{color: 'rgba(233, 236, 221, 0.8)', fontSize: '0.9rem', lineHeight: 1.4}}>Kuala Lumpur, Malaysia</span>
-                  <p style={{fontSize: '0.75rem', color: 'rgba(233, 236, 221, 0.5)', margin: 0, lineHeight: 1.4}}>Remote-friendly worldwide</p>
-                </div>
-              </li>
-            </ul>
-
-            <div className="mt-6" style={{marginTop: '1.5rem'}}>
-              <Link href="/contact" className="inline-flex items-center" style={{
-                backgroundColor: '#F2C864',
-                color: '#051D2E',
-                fontWeight: '600',
-                padding: '0.5rem 1rem',
-                borderRadius: '0.5rem',
-                textDecoration: 'none',
+            <div
+              style={{
                 display: 'inline-flex',
                 alignItems: 'center',
-                gap: '0.25rem',
-                fontSize: '0.875rem',
-                transition: 'all 0.3s ease',
-                boxShadow: '0 4px 12px rgba(242, 200, 100, 0.3)'
+                gap: 8,
+                width: 'fit-content',
+                padding: '0.4rem 0.8rem',
+                borderRadius: 999,
+                fontSize: 12,
+                fontWeight: 600,
+                color: GOLD,
+                background: 'rgba(242,200,100,0.08)',
+                border: '1px solid rgba(242,200,100,0.25)',
               }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.backgroundColor = '#EFB93C';
-                e.currentTarget.style.transform = 'translateY(-2px)';
-                e.currentTarget.style.boxShadow = '0 6px 20px rgba(242, 200, 100, 0.4)';
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.backgroundColor = '#F2C864';
-                e.currentTarget.style.transform = 'translateY(0)';
-                e.currentTarget.style.boxShadow = '0 4px 12px rgba(242, 200, 100, 0.3)';
-              }}>
-                Start Project <ArrowRight size={14} />
-              </Link>
+            >
+              <Award size={14} /> Microsoft-certified team
             </div>
+            <div style={{ display: 'flex', gap: 16, marginTop: 4 }}>
+              {/* TODO: replace with real profile URLs */}
+              <Social href="#" label="AltDev on LinkedIn">
+                <Linkedin size={20} />
+              </Social>
+              <Social href="#" label="AltDev on GitHub">
+                <Github size={20} />
+              </Social>
+            </div>
+          </div>
+
+          {/* What we do */}
+          <div>
+            <div style={colTitle}>What we do</div>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+              <FooterLink href="/applied-ai">Applied AI</FooterLink>
+              <FooterLink href="/data-foundation">Data Foundation</FooterLink>
+              <FooterLink href="/enablement">Enablement</FooterLink>
+            </div>
+          </div>
+
+          {/* Company */}
+          <div>
+            <div style={colTitle}>Company</div>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+              <FooterLink href="/">Home</FooterLink>
+              <FooterLink href="/about">About</FooterLink>
+              <FooterLink href="/contact">Contact</FooterLink>
+            </div>
+          </div>
+
+          {/* Get in touch */}
+          <div>
+            <div style={colTitle}>Get in touch</div>
+            <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: 16 }}>
+              <li style={{ display: 'flex', gap: 10 }}>
+                <Mail size={18} style={{ color: GOLD, flexShrink: 0 }} />
+                <div>
+                  <div style={contactLine}>info@altdev.com.my</div>
+                  <p style={contactSub}>24hr response time</p>
+                </div>
+              </li>
+              <li style={{ display: 'flex', gap: 10 }}>
+                <Phone size={18} style={{ color: GOLD, flexShrink: 0 }} />
+                <div>
+                  <div style={contactLine}>+60 12-345 6789</div>
+                  <p style={contactSub}>Mon–Fri, 9AM–6PM MYT</p>
+                </div>
+              </li>
+              <li style={{ display: 'flex', gap: 10 }}>
+                <MapPin size={18} style={{ color: GOLD, flexShrink: 0 }} />
+                <div>
+                  <div style={contactLine}>Kuala Lumpur, Malaysia</div>
+                  <p style={contactSub}>Remote-friendly worldwide</p>
+                </div>
+              </li>
+            </ul>
+            <Link
+              href="/contact"
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: 6,
+                marginTop: 20,
+                background: GOLD,
+                color: '#051D2E',
+                fontWeight: 700,
+                fontSize: 14,
+                padding: '0.6rem 1.3rem',
+                borderRadius: 999,
+                textDecoration: 'none',
+              }}
+            >
+              Book a consultation <ArrowRight size={16} />
+            </Link>
           </div>
         </div>
 
-        {/* Bottom Section */}
-        <div className="border-t border-secondary-800 mt-12 pt-8" style={{
-          borderTop: '1px solid rgba(242, 200, 100, 0.2)',
-          marginTop: '3rem',
-          paddingTop: '2rem'
-        }}>
-          <div className="flex flex-col md:flex-row justify-between items-center" style={{display: 'flex', flexDirection: 'column', justifyContent: 'space-between', alignItems: 'center', gap: '1rem'}}>
-            <p className="text-center text-secondary-400 text-sm" style={{color: 'rgba(233, 236, 221, 0.6)', fontSize: '0.875rem', textAlign: 'center'}}>
-              &copy; 2025 <span style={{color: '#F2C864'}}>AltDev</span>. All rights reserved. Built with cutting-edge technology.
-            </p>
-            <div className="flex space-x-6 text-sm" style={{display: 'flex', gap: '1.5rem', fontSize: '0.875rem'}}>
-              <a href="#" className="text-secondary-400 hover:text-lime-400 transition-colors" style={{
-                color: 'rgba(233, 236, 221, 0.6)',
-                textDecoration: 'none',
-                transition: 'color 0.3s'
-              }}
-              onMouseEnter={(e) => e.currentTarget.style.color = '#F2C864'}
-              onMouseLeave={(e) => e.currentTarget.style.color = 'rgba(233, 236, 221, 0.6)'}>
-                Privacy Policy
-              </a>
-              <a href="#" className="text-secondary-400 hover:text-lime-400 transition-colors" style={{
-                color: 'rgba(233, 236, 221, 0.6)',
-                textDecoration: 'none',
-                transition: 'color 0.3s'
-              }}
-              onMouseEnter={(e) => e.currentTarget.style.color = '#F2C864'}
-              onMouseLeave={(e) => e.currentTarget.style.color = 'rgba(233, 236, 221, 0.6)'}>
-                Terms of Service
-              </a>
-            </div>
+        {/* Bottom */}
+        <div
+          style={{
+            borderTop: '1px solid rgba(233,236,221,0.1)',
+            marginTop: '3rem',
+            paddingTop: '1.75rem',
+            display: 'flex',
+            flexWrap: 'wrap',
+            gap: 12,
+            justifyContent: 'space-between',
+            alignItems: 'center',
+          }}
+        >
+          <p style={{ color: 'rgba(233,236,221,0.55)', fontSize: 13, margin: 0 }}>
+            © 2026 <span style={{ color: GOLD }}>AltDev</span>. All rights reserved.
+          </p>
+          <div style={{ display: 'flex', gap: 24, fontSize: 13 }}>
+            <FooterLink href="/privacy">Privacy Policy</FooterLink>
+            <FooterLink href="/eula">EULA</FooterLink>
           </div>
         </div>
       </div>
     </footer>
   )
 }
-
-export default Footer

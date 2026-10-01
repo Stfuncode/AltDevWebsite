@@ -31,15 +31,11 @@ body {
 }
 
 :root {
-  --background: #ffffff;
-  --foreground: #0f172a;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0f172a;
-    --foreground: #f8fafc;
-  }
+  /* Dark-only brand theme. The body must be the dark base so translucent
+     elements (e.g. the navbar) blend over dark, not wash out to grey. */
+  color-scheme: dark;
+  --background: #03141F;
+  --foreground: #E9ECDD;
 }
 
 @layer components {
